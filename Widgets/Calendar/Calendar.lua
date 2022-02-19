@@ -1,8 +1,8 @@
 function Initialize()
-    Labels = split(SKIN:GetVariable('WeekdaysShort'), ',')
-    SundayWeek = SKIN:GetVariable('SundayWeek')
-    FontFace = SKIN:GetVariable('FontFace')
     Padding = tonumber(SKIN:GetVariable('WidgetPaddingSize'))
+    Labels = split(SKIN:GetVariable('WeekdaysShort'), ',')
+    SundayWeek = tonumber(SKIN:GetVariable('SundayWeek'))
+    FontFace = SKIN:GetVariable('FontFace')
     Size = SELF:GetNumberOption('Size')
     FontSize = Size / 20
 
@@ -44,7 +44,7 @@ function initDaysLabels()
     for dd = 1, daysInMonth do
         local weekday = tonumber(os.date('%w', os.time({ year=yy, month=mm, day=dd })))
 
-        local x = Padding + Size * ((weekday - 1) % 7 + 1) / 8
+        local x = Padding + Size * ((weekday - 1 + SundayWeek) % 7 + 1) / 8
         local y = Padding + Size / 4 + currentWeek * Size / 8
 
         if (dd == d) then initRedCircle(x, y) end
@@ -76,7 +76,7 @@ function isWeekend(weekday)
 end
 
 function isLastWeekDay(weekday)
-    return (weekday == 6 and SundayWeek == '1') or (weekday == 0 and SundayWeek == '0')
+    return (weekday == 6 and SundayWeek == 1) or (weekday == 0 and SundayWeek == 0)
 end
 
 function getDaysInMonth(month, year)
