@@ -4,6 +4,7 @@ function Initialize()
     FontFace = SKIN:GetVariable('FontFace')
     Padding = tonumber(SKIN:GetVariable('WidgetPaddingSize'))
     Size = SELF:GetNumberOption('Size')
+    FontSize = Size / 20
 
     initWeekdayLabels()
     initDaysLabels()
@@ -20,7 +21,7 @@ end
 function initWeekdayLabels()
     for a = 1, 7 do 
         SKIN:Bang('!SetOption', 'Label' .. a, 'Text', Labels[(a - SundayWeek) % 7 + 1])
-        SKIN:Bang('!SetOption', 'Label' .. a, 'FontSize', '8') 
+        SKIN:Bang('!SetOption', 'Label' .. a, 'FontSize', FontSize) 
         SKIN:Bang('!SetOption', 'Label' .. a, 'FontFace', FontFace)
         SKIN:Bang('!SetOption', 'Label' .. a, 'FontColor', getTextColor((a - SundayWeek) % 7, false))
         SKIN:Bang('!SetOption', 'Label' .. a, 'StringAlign', 'CenterCenter')
@@ -44,12 +45,12 @@ function initDaysLabels()
         local weekday = tonumber(os.date('%w', os.time({ year=yy, month=mm, day=dd })))
 
         local x = Padding + Size * ((weekday - 1) % 7 + 1) / 8
-        local y = Padding + Size / 4 + currentWeek * 20
+        local y = Padding + Size / 4 + currentWeek * Size / 8
 
         if (dd == d) then initRedCircle(x, y) end
 
         SKIN:Bang('!SetOption', 'Day' .. dd, 'Text', dd)
-        SKIN:Bang('!SetOption', 'Day' .. dd, 'FontSize', '8') 
+        SKIN:Bang('!SetOption', 'Day' .. dd, 'FontSize', FontSize) 
         SKIN:Bang('!SetOption', 'Day' .. dd, 'FontFace', FontFace)
         SKIN:Bang('!SetOption', 'Day' .. dd, 'FontColor', getTextColor(weekday, dd == d))
         SKIN:Bang('!SetOption', 'Day' .. dd, 'StringAlign', 'CenterCenter')
@@ -67,7 +68,7 @@ function initRedCircle(x, y)
     size = Size / 16
 
     SKIN:Bang('!SetOption', 'RedCircle', 'Shape', 
-        string.format('Ellipse %d,%d,%d,%d | Fill Color 240,60,60 | StrokeWidth 0', x, y-1, size, size))
+        string.format('Ellipse %d,%d,%d,%d | Fill Color 240,60,60 | StrokeWidth 0', x, y, size, size))
 end
 
 function isWeekend(weekday)
