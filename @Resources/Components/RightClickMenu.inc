@@ -1,0 +1,22 @@
+[Rainmeter]
+RightMouseUpAction = [!SkinCustomMenu]
+ContextTitle    = #Edit# "[#WidgetName]"
+ContextAction   = [!WriteKeyValue Variables ReturnTo "#WidgetName#-#WidgetSize#.ini" "#WidgetName#-settings.inc"][!ActivateConfig "#CURRENTCONFIG#" "#WidgetName#-settings.ini"]
+ContextTitle2   = ---
+ContextAction2  = []
+ContextTitle3   = #Small#
+ContextAction3  = [!ActivateConfig "#CURRENTCONFIG#" "#WidgetName#-small.ini"]
+ContextTitle4   = #Medium#
+ContextAction4  = [!ActivateConfig "#CURRENTCONFIG#" "#WidgetName#-medium.ini"]
+ContextTitle5   = #Wide#
+ContextAction5  = [!ActivateConfig "#CURRENTCONFIG#" "#WidgetName#-wide.ini"]
+ContextTitle6   = #Large#
+ContextAction6  = [!ActivateConfig "#CURRENTCONFIG#" "#WidgetName#-large.ini"]
+ContextTitle7   = ---
+ContextAction7  = []
+ContextTitle8   = #RemoveWidget#
+ContextAction8  = [!DeactivateConfig]
+ContextTitle9   = ---
+ContextAction9  = []
+ContextTitle10  = #EditWidgets#
+ContextAction10 = []
