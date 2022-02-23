@@ -101,7 +101,7 @@ function DrawText(index, meter, padding, widgetSize, _x, _y, size)
     local x = padding + widgetSize * _x
     local y = padding + widgetSize * (_y + 2.2 * size)
     local fontSize = widgetSize * 0.09
-    local fontColor = SKIN:GetMeasure('ForegroundColor'):GetValue()
+    local fontColor = SKIN:GetMeasure('DarkMode'):GetValue() > 0.5 and SKIN:GetVariable('DarkForeground') or SKIN:GetVariable('LightForeground')
 
     SKIN:Bang('!SetOption', name, 'MeasureName', measure)
     SKIN:Bang('!SetOption', name, 'Text', '%1 %')
