@@ -1,13 +1,14 @@
-function Initialize()
+function Draw()
     Padding = tonumber(SKIN:GetVariable('WidgetPaddingSize'))
     Labels = split(SKIN:GetVariable('WeekdaysShort'), ',')
     SundayWeek = tonumber(SKIN:GetVariable('SundayWeek'))
     FontFace = SKIN:GetVariable('FontFace')
-    Size = SELF:GetNumberOption('Size')
+    Size = tonumber(SKIN:GetMeasure('WidgetHeight'):GetStringValue())
+    OffsetX = SELF:GetNumberOption('OffsetX', 0)
     FontSize = Size / 20
-
     initWeekdayLabels()
     initDaysLabels()
+    return 0
 end
 
 function split(input, sep)
@@ -28,7 +29,7 @@ function initWeekdayLabels()
         SKIN:Bang('!SetOption', 'Label' .. a, 'FontWeight', '400')
         SKIN:Bang('!SetOption', 'Label' .. a, 'AntiAlias', '1')
         SKIN:Bang('!SetOption', 'Label' .. a, 'X',
-            string.format('(%s + %s * %d / 8)', Padding, Size, a))
+            string.format('(%d + %s + %s * %d / 8)', OffsetX, Padding, Size, a))
         SKIN:Bang('!SetOption', 'Label' .. a, 'Y', 
             string.format('(%s + %s / 4)', Padding, Size))
     end
@@ -44,7 +45,7 @@ function initDaysLabels()
     for dd = 1, daysInMonth do
         local weekday = tonumber(os.date('%w', os.time({ year=yy, month=mm, day=dd })))
 
-        local x = Padding + Size * ((weekday - 1 + SundayWeek) % 7 + 1) / 8
+        local x = OffsetX + Padding + Size * ((weekday - 1 + SundayWeek) % 7 + 1) / 8
         local y = Padding + Size / 4 + currentWeek * Size / 8
 
         if (dd == d) then initRedCircle(x, y) end

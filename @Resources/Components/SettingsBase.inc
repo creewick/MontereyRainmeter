@@ -6,8 +6,8 @@ RightMouseUpAction=[]
 WidgetSize=large
 @include=#@#Settings.inc
 @include1=#@#Languages\#Language#.inc
-@include2=#@#Components\WidgetSize.inc
-@include3=#@#Components\SolidBackground.inc
+@include2=#@#Components\WidgetBase.inc
+@include3=#@#Components\Background\Solid.inc
 
 [IconMeter]
 Meter=Image
