@@ -16,4 +16,4 @@ YellowStarts=75
 RedStarts=90
 
 ;Widget size to return to after save
-ReturnTo=ActivityMonitor-small.ini
+ReturnTo=ActivityMonitor-wide.ini
