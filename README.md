@@ -39,7 +39,7 @@ Size options and other settings can be found in context menu
 4. ...
 5. Have fun
 
-## You may want to
+## You may also want to
 * Center your taskbar buttons with [TaskbarX](https://chrisandriessen.nl/taskbarx)
 * Install MacOS-like menu bar - [Droptop Four](https://github.com/Droptop-Four)
 ---
