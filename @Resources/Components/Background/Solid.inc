@@ -1,14 +1,19 @@
 [BackgroundMeter]
 Meter = Shape
 DynamicVariables = 1
-Shape = Rectangle 0, 0, [WidgetWidth], [WidgetHeight], #WidgetBorderRadius#, #WidgetBorderRadius# | Fill Color #BackgroundColor# | StrokeWidth 0
+Shape = Rectangle 0, 0, [WidgetWidth], [WidgetHeight], #WidgetBorderRadius#, #WidgetBorderRadius# | Fill Color [BackgroundColor] | StrokeWidth 0
 Padding = #WidgetPaddingSize#, #WidgetPaddingSize#, #WidgetPaddingSize#, #WidgetPaddingSize#
 UpdateDivider=-1
 
-[SetBackgroundColor]
-Measure = Calc
+[BackgroundColor]
+Measure = String
+String = #DarkMode#
 DynamicVariables = 1
-IfCondition = #DarkMode#=0
-IfTrueAction = [!SetVariable BackgroundColor #LightBackground#][!SetVariable ForegroundColor #DarkForeground#][!UpdateMeter BackgroundMeter]
-IfFalseAction = [!SetVariable BackgroundColor #DarkBackground#][!SetVariable ForegroundColor #LightForeground#][!UpdateMeter BackgroundMeter]
-UpdateDivider=-1
+Substitute = "0":"#LightBackground#", "1":"#DarkBackground#"
+OnUpdateAction = [!UpdateMeter BackgroundMeter]
+
+[ForegroundColor]
+Measure = String
+String = #DarkMode#
+DynamicVariables = 1
+Substitute = "0":"#DarkForeground#", "1":"#LightForeground#"

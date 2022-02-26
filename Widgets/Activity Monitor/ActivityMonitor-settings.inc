@@ -2,7 +2,7 @@
 
 ; Meters order. Available options: CPU, Memory, Disk, Net
 Meter1=CPU
-Meter2=Mem
+Meter2=RAM
 Meter3=Disk
 Meter4=Net
 

@@ -83,7 +83,7 @@ end
 function DrawImage(index, meter, padding, widgetSize, _x, _y, size)
     local name = string.format('Meter%sImage', index)
     local darkMode = SKIN:GetMeasure('DarkMode'):GetValue() > 0.5 and 0 or 1
-    local image = string.format('#@#Images\\Widgets\\System Monitor\\%s-%s.png', meter, darkMode)
+    local image = string.format('#@#Images\\Widgets\\ActivityMonitor\\%s-%s.png', meter, darkMode)
     local w = widgetSize * (size - 0.03)
     local x = padding + widgetSize * _x - w / 2
     local y = padding + widgetSize * _y - w / 2

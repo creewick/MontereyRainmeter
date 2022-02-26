@@ -1,6 +1,6 @@
 [Rainmeter]
 RightMouseUpAction = [!SkinCustomMenu]
-ContextTitle    = #Edit# "[#WidgetName]"
+ContextTitle    = #Edit# "[#[#WidgetName]]"
 ContextAction   = [!WriteKeyValue Variables ReturnTo "#WidgetName#-#WidgetSize#.ini" "#WidgetName#-settings.inc"][!ActivateConfig "#CURRENTCONFIG#" "#WidgetName#-settings.ini"]
 ContextTitle2   = ---
 ContextAction2  = []

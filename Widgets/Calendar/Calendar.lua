@@ -91,10 +91,10 @@ function isLeapYear(year)
 end
 
 function getTextColor(weekday, today)
-    if today then return '255,255,255' end
-    local opacity = (isWeekend(weekday)) and 128 or 255
+    if today then return 'ffffff' end
+    local opacity = (isWeekend(weekday)) and '80' or 'ff'
     local colorVar = SKIN:GetVariable('DarkMode') == '1' and 'LightForeground' or 'DarkForeground'
     local color = SKIN:GetVariable(colorVar)
 
-    return string.format('%s,%s', color, opacity)
+    return string.format('%s%s', color, opacity)
 end

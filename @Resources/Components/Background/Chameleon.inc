@@ -1,7 +1,7 @@
 [BackgroundMeter]
 Meter = Shape
 DynamicVariables = 1
-Shape = Rectangle 0, 0, [WidgetWidth], [WidgetHeight], #WidgetBorderRadius#, #WidgetBorderRadius# | Fill Color [BackgroundColor] | StrokeWidth 0
+Shape = Rectangle 0, 0, [WidgetWidth], [WidgetHeight], #WidgetBorderRadius#, #WidgetBorderRadius# | Fill Color [BackgroundColor]dd | StrokeWidth 0
 Padding = #WidgetPaddingSize#, #WidgetPaddingSize#, #WidgetPaddingSize#, #WidgetPaddingSize#
 UpdateDivider=-1
 
