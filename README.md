@@ -4,11 +4,10 @@
 
 A MacOS **Monterey** style widget pack for **Rainmeter**
 
-
 ## Why?
 
 * Easy customization
-* Accurate appearance
+* Accurate design
 * Dark mode support
 * Effective resources usage
 
@@ -44,5 +43,4 @@ Size options and other settings can be found in context menu
 * Center your taskbar buttons with [TaskbarX](https://chrisandriessen.nl/taskbarx)
 * Install MacOS-like menu bar - [Droptop Four](https://github.com/Droptop-Four)
 ---
-
 All right to MacOS Monterey belongs to Apple
