@@ -16,21 +16,21 @@ A MacOS **Monterey** style widget pack for **Rainmeter**
 
 <img src="@Resources/Images/Banners/Widgets.png" align="right" />
   
-Right now we have 4 functioning widgets available
+So far we have 4 widgets available
 
 * Clock
 * Calendar
 * Resource Monitor
 * Weather
 
-Each of them comes in 4 different sizes
+Each of them comes in 4 sizes
 
 * Small (1x1)
 * Medium (2x2)
 * Wide (2x4)
 * Large (4x4)
 
-Size options and other customizations can be found in context menu
+Size options and other settings can be found in context menu
 
 ## Get started
 
