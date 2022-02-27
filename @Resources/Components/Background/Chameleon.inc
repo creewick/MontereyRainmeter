@@ -1,7 +1,7 @@
 [BackgroundMeter]
 Meter = Shape
 DynamicVariables = 1
-Shape = Rectangle 0, 0, [WidgetWidth], [WidgetHeight], #WidgetBorderRadius#, #WidgetBorderRadius# | Fill Color [BackgroundColor]dd | StrokeWidth 0
+Shape = Rectangle 0, 0, [WidgetWidth], [WidgetHeight], #WidgetBorderRadius#, #WidgetBorderRadius# | Fill Color [BackgroundColor]ee | StrokeWidth 0
 Padding = #WidgetPaddingSize#, #WidgetPaddingSize#, #WidgetPaddingSize#, #WidgetPaddingSize#
 UpdateDivider=-1
 
@@ -15,7 +15,7 @@ UpdateDivider=-1
 Measure=Plugin
 Plugin=Chameleon
 Parent=ChameleonMeasure
-Color=Background1
+Color=Average
 UpdateDivider=-1
 
 [ForegroundColor]
