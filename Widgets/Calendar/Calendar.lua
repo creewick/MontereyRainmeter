@@ -5,7 +5,7 @@ function Draw()
     FontFace = SKIN:GetVariable('FontFace')
     Size = tonumber(SKIN:GetMeasure('WidgetHeight'):GetStringValue())
     OffsetX = SELF:GetNumberOption('OffsetX', 0)
-    FontSize = Size / 20
+    FontSize = Size * 0.05
     initWeekdayLabels()
     initDaysLabels()
     return 0
@@ -40,13 +40,14 @@ function initDaysLabels()
     local mm = tonumber(os.date('%m'))
     local yy = tonumber(os.date('%Y'))
     local daysInMonth = getDaysInMonth(mm, yy)
+    local weeks = getWeekCount(daysInMonth, mm, yy)
     local currentWeek = 1
 
     for dd = 1, daysInMonth do
         local weekday = tonumber(os.date('%w', os.time({ year=yy, month=mm, day=dd })))
 
         local x = OffsetX + Padding + Size * ((weekday - 1 + SundayWeek) % 7 + 1) / 8
-        local y = Padding + Size / 4 + currentWeek * Size / 8
+        local y = Padding + Size / 4 + currentWeek * Size / (1.6 * weeks)
 
         if (dd == d) then initRedCircle(x, y) end
 
@@ -66,7 +67,7 @@ function initDaysLabels()
 end
 
 function initRedCircle(x, y)
-    size = Size / 16
+    size = math.ceil(Size * 0.06)
 
     SKIN:Bang('!SetOption', 'RedCircle', 'Shape', 
         string.format('Ellipse %d,%d,%d,%d | Fill Color 240,60,60 | StrokeWidth 0', x, y, size, size))
@@ -97,4 +98,12 @@ function getTextColor(weekday, today)
     local color = SKIN:GetVariable(colorVar)
 
     return string.format('%s%s', color, opacity)
+end
+
+function getWeekCount(daysInMonth, mm, yy)
+    local weekday = tonumber(os.date('%w', os.time({ year=yy, month=mm, day=1 })))
+    local daysInPrevMonth = (weekday + 6 + SundayWeek) % 7
+    local totalDays = daysInMonth + daysInPrevMonth    
+
+    return math.ceil(totalDays / 7)
 end
