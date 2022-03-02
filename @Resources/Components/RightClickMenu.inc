@@ -19,4 +19,4 @@ ContextAction8  = [!DeactivateConfig]
 ContextTitle9   = ---
 ContextAction9  = []
 ContextTitle10  = #EditWidgets#
-ContextAction10 = [!ActivateConfig "Widgets\WidgetsGallery" "WidgetsGallery.ini"]
+ContextAction10 = [!ActivateConfig "Monterey\Widgets\WidgetsGallery" "WidgetsGallery.ini"]

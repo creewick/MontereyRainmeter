@@ -31,3 +31,15 @@ String = #WidgetSize#
 DynamicVariables = 1
 Substitute = "small":"[SmallWidgetSize]","medium":"[MediumWidgetSize]","wide":"[MediumWidgetSize]","large":"[LargeWidgetSize]"
 UpdateDivider=-1
+
+[WidgetCenterX]
+Measure = Calc
+Formula = (#WidgetPaddingSize# + [WidgetWidth] / 2)
+DynamicVariables = 1
+UpdateDivider=-1
+
+[WidgetCenterY]
+Measure = Calc
+Formula = (#WidgetPaddingSize# + [WidgetHeight] / 2)
+DynamicVariables = 1
+UpdateDivider=-1

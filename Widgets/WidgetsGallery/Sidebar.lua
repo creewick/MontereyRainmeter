@@ -10,9 +10,15 @@ function Initialize()
 end
 
 function drawItem(item, i)
+    local buttonMeter = 'SidebarButton'..i
     local labelMeter = 'SidebarLabel'..i
     local iconMeter = 'SidebarIcon'..i
     local padding = SKIN:GetVariable('WidgetPaddingSize')
+
+
+    SKIN:Bang('!SetOption', buttonMeter, 'Shape', 'Rectangle 0,0,100,30,6,6 | Fill Color ffffff40 | StrokeWidth 0')
+    SKIN:Bang('!SetOption', buttonMeter, 'X', padding + 8)
+    SKIN:Bang('!SetOption', buttonMeter, 'Y', padding + 20 + 30 * i)
 
     SKIN:Bang('!SetOption', labelMeter, 'Text', SKIN:GetVariable(item))
     SKIN:Bang('!SetOption', labelMeter, 'FontFace', SKIN:GetVariable('FontFace'))
@@ -45,5 +51,4 @@ function drawTitle(item, i)
     SKIN:Bang('!SetOption', labelMeter, 'AntiAlias', 1)
     SKIN:Bang('!SetOption', labelMeter, 'X', padding + 12)
     SKIN:Bang('!SetOption', labelMeter, 'Y', padding + 20 + 30 * i)
-
 end

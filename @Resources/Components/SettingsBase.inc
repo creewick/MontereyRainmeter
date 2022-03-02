@@ -67,36 +67,42 @@ Measure=String
 String=#Option1Title#
 RegExpSubstitute=1
 Substitute=".+":"0","^$":"1"
+UpdateDivider=-1
 
 [HideOption2]
 Measure=String
 String=#Option2Title#
 RegExpSubstitute=1
 Substitute=".+":"0","^$":"1"
+UpdateDivider=-1
 
 [HideOption3]
 Measure=String
 String=#Option3Title#
 RegExpSubstitute=1
 Substitute=".+":"0","^$":"1"
+UpdateDivider=-1
 
 [HideOption4]
 Measure=String
 String=#Option4Title#
 RegExpSubstitute=1
 Substitute=".+":"0","^$":"1"
+UpdateDivider=-1
 
 [HideOption5]
 Measure=String
 String=#Option5Title#
 RegExpSubstitute=1
 Substitute=".+":"0","^$":"1"
+UpdateDivider=-1
 
 [HideOption6]
 Measure=String
 String=#Option6Title#
 RegExpSubstitute=1
 Substitute=".+":"0","^$":"1"
+UpdateDivider=-1
 
 
 [Option1Title]
