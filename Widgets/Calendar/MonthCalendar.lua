@@ -1,11 +1,9 @@
-function Draw()
+function Initialize()
     Padding = tonumber(SKIN:GetVariable('WidgetPaddingSize'))
     Labels = split(SKIN:GetVariable('WeekdaysShort'), ',')
     SundayWeek = tonumber(SKIN:GetVariable('SundayWeek'))
-    FontFace = SKIN:GetVariable('FontFace')
-    Size = tonumber(SKIN:GetMeasure('WidgetHeight'):GetStringValue())
-    OffsetX = SELF:GetNumberOption('OffsetX', 0)
-    FontSize = Size * 0.05
+    loadstring('Size=tonumber'..SKIN:GetVariable('WidgetHeight'))()
+    loadstring('OffsetX=tonumber'..SKIN:GetVariable('CalendarOffsetX', '(0)'))()
     initWeekdayLabels()
     initDaysLabels()
     return 0
@@ -22,16 +20,9 @@ end
 function initWeekdayLabels()
     for a = 1, 7 do 
         SKIN:Bang('!SetOption', 'Label' .. a, 'Text', Labels[(a - SundayWeek) % 7 + 1])
-        SKIN:Bang('!SetOption', 'Label' .. a, 'FontSize', FontSize) 
-        SKIN:Bang('!SetOption', 'Label' .. a, 'FontFace', FontFace)
         SKIN:Bang('!SetOption', 'Label' .. a, 'FontColor', getTextColor((a - SundayWeek) % 7, false))
-        SKIN:Bang('!SetOption', 'Label' .. a, 'StringAlign', 'CenterCenter')
-        SKIN:Bang('!SetOption', 'Label' .. a, 'FontWeight', '400')
-        SKIN:Bang('!SetOption', 'Label' .. a, 'AntiAlias', '1')
         SKIN:Bang('!SetOption', 'Label' .. a, 'X',
             string.format('(%d + %s + %s * %d / 8)', OffsetX, Padding, Size, a))
-        SKIN:Bang('!SetOption', 'Label' .. a, 'Y', 
-            string.format('(%s + %s / 4)', Padding, Size))
     end
 end
 
@@ -52,12 +43,8 @@ function initDaysLabels()
         if (dd == d) then initRedCircle(x, y) end
 
         SKIN:Bang('!SetOption', 'Day' .. dd, 'Text', dd)
-        SKIN:Bang('!SetOption', 'Day' .. dd, 'FontSize', FontSize) 
-        SKIN:Bang('!SetOption', 'Day' .. dd, 'FontFace', FontFace)
         SKIN:Bang('!SetOption', 'Day' .. dd, 'FontColor', getTextColor(weekday, dd == d))
         SKIN:Bang('!SetOption', 'Day' .. dd, 'StringAlign', 'CenterCenter')
-        SKIN:Bang('!SetOption', 'Day' .. dd, 'FontWeight', '400')
-        SKIN:Bang('!SetOption', 'Day' .. dd, 'AntiAlias', '1')
         SKIN:Bang('!SetOption', 'Day' .. dd, 'X', x)
         SKIN:Bang('!SetOption', 'Day' .. dd, 'Y', y)
         if isLastWeekDay(weekday) then 
@@ -67,10 +54,8 @@ function initDaysLabels()
 end
 
 function initRedCircle(x, y)
-    size = math.ceil(Size * 0.06)
-
-    SKIN:Bang('!SetOption', 'RedCircle', 'Shape', 
-        string.format('Ellipse %d,%d,%d,%d | Fill Color 240,60,60 | StrokeWidth 0', x, y, size, size))
+    SKIN:Bang('!SetOption', 'RedCircle', 'X', x)
+    SKIN:Bang('!SetOption', 'RedCircle', 'Y', y)
 end
 
 function isWeekend(weekday)
@@ -94,10 +79,9 @@ end
 function getTextColor(weekday, today)
     if today then return 'ffffff' end
     local opacity = (isWeekend(weekday)) and '80' or 'ff'
-    local colorVar = SKIN:GetVariable('DarkMode') == '1' and 'LightForeground' or 'DarkForeground'
-    local color = SKIN:GetVariable(colorVar)
+    local color = SKIN:GetVariable('ForegroundColor')
 
-    return string.format('%s%s', color, opacity)
+    return color..opacity
 end
 
 function getWeekCount(daysInMonth, mm, yy)

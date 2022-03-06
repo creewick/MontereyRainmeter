@@ -7,13 +7,15 @@ Meter3=Disk
 Meter4=Net
 
 ; Meter colors
-GreenColor=45,210,85
-YellowColor=255,215,10
-RedColor=235,85,70
+GreenColor=2dd255
+YellowColor=ffd70a
+RedColor=eb5546
 
 ; Meter color start value
 YellowStarts=75
 RedStarts=90
+
+Colored=0
 
 ;Widget size to return to after save
 ReturnTo=ActivityMonitor-wide.ini

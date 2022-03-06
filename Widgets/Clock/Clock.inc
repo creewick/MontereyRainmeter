@@ -1,40 +1,72 @@
 [Variables]
-@include=#@#Components\WidgetBase.inc
+ClockhandWidth = (#WidgetHeight# * 0.025)
+HourHandHeight = (#WidgetHeight# * 0.17)
+MinuteHandHeight = (#WidgetHeight# * 0.34)
+SecondHandHeight = (#WidgetHeight# * 0.39)
 
 [Time]
 Measure=Time
 AverageSize=10
+UpdateDivider=1
 
 [SecondsAngle]
 Measure=Calc
 Formula=(Time % 60) * 6
+UpdateDivider=1
 
 [MinutesAngle]
 Measure=Calc
 Formula=(Time % 3600) / 10
-UpdateDivider=30
+UpdateDivider=(10*3)
 
 [HoursAngle]
 Measure=Calc
 Formula=(Time % 43200) / 120
-UpdateDivider=1800
+UpdateDivider=(10*60*3)
 
-[ClockhandWidth]
-Measure=Calc
-Formula=[WidgetHeight] * 0.025
+[Clockface]
+Meter=Image
+ImageName=#@#Images\Widgets\Clock\face-#DarkMode#.png
 DynamicVariables=1
+X=(#WidgetPaddingSize# + #WidgetWidth# * 0.5 - (#WidgetHeight# * (1 - 2 * #ClockfacePadding#) * 0.5))
+Y=(#WidgetPaddingSize# + #WidgetHeight# * 0.5 - (#WidgetHeight# * (1 - 2 * #ClockfacePadding#) * 0.5))
+W=(#WidgetHeight# * (1 - 2 * #ClockfacePadding#))
+H=(#WidgetHeight# * (1 - 2 * #ClockfacePadding#))
 
-[HourHandHeight]
-Measure=Calc
-Formula=[WidgetHeight] * 0.17
-DynamicVariables=1
+[Container]
+Meter = Shape
+DynamicVariables = 1
+Shape = Rectangle 0, 0, #WidgetWidth#, #WidgetHeight#| Fill Color #BackgroundColor# | StrokeWidth 0
+Padding = #WidgetPaddingSize#, #WidgetPaddingSize#, #WidgetPaddingSize#, #WidgetPaddingSize#
+UpdateDivider=-1
 
-[MinuteHandHeight]
-Measure=Calc
-Formula=[WidgetHeight] * 0.34
+[ClockHand]
+Meter=Shape
+Shape=Ellipse #WidgetCenterX#,#WidgetCenterY#,#ClockhandWidth#,#ClockhandWidth# | Fill Color 00000000 | Stroke Color #ForegroundColor# | StrokeWidth (#ClockhandWidth# / 2)
+Shape2=Rectangle (#WidgetCenterX# - #ClockhandWidth# * 0.25),(#WidgetCenterY# - 3 * #ClockhandWidth#),(#ClockhandWidth#/2),(2*#ClockhandWidth#) | Fill Color #ForegroundColor# | StrokeWidth 0
+Shape3=Rectangle (#WidgetCenterX# - #ClockhandWidth# / 2),(#WidgetCenterY# - 2 * #ClockhandWidth# - #HourHandHeight#),#ClockhandWidth#,#HourHandHeight#,(#ClockhandWidth# / 2)
+Shape4=Combine Shape2 | Union Shape3 | Rotate [HoursAngle],#WidgetCenterX#,#WidgetCenterY#
+Container=Container
 DynamicVariables=1
+UpdateDivider=(10*60*3)
 
-[SecondHandHeight]
-Measure=Calc
-Formula=[WidgetHeight] * 0.39
+[MinuteHand]
+Meter=Shape
+Shape=Ellipse #WidgetCenterX#,#WidgetCenterY#,#ClockhandWidth#,#ClockhandWidth# | Fill Color 00000000 | Stroke Color #ForegroundColor# | StrokeWidth (#ClockhandWidth# / 2)
+Shape2=Rectangle (#WidgetCenterX# - #ClockhandWidth# * 0.25),(#WidgetCenterY# - 3 * #ClockhandWidth#),(#ClockhandWidth#/2),(2*#ClockhandWidth#) | Fill Color #ForegroundColor# | StrokeWidth 0
+Shape3=Rectangle (#WidgetCenterX# - #ClockhandWidth# / 2),(#WidgetCenterY# - 2 * #ClockhandWidth# - #MinuteHandHeight#),#ClockhandWidth#,#MinuteHandHeight#,(#ClockhandWidth# / 2)
+Shape4=Combine Shape2 | Union Shape3 | Rotate [MinutesAngle],#WidgetCenterX#,#WidgetCenterY#
+Container=Container
 DynamicVariables=1
+UpdateDivider=(10*3)
+
+[SecondHand]
+Meter=Shape
+Shape=Ellipse #WidgetCenterX#,#WidgetCenterY#,(#ClockhandWidth#*0.6),(#ClockhandWidth#*0.6) | Fill Color 00000000 | Stroke Color ff9900 | StrokeWidth (#ClockhandWidth# / 4)
+Shape2=Rectangle (#WidgetCenterX# - #ClockhandWidth# / 8),(#WidgetCenterY# - #ClockhandWidth# / 2 - #SecondHandHeight#),(#ClockhandWidth#/4),#SecondHandHeight# | Fill Color ff9900 | StrokeWidth 0
+Shape3=Rectangle (#WidgetCenterX# - #ClockhandWidth# / 8),(#WidgetCenterY# + #ClockhandWidth# / 2),(#ClockhandWidth#/4),(2*#ClockhandWidth#) | Fill Color ff9900 | StrokeWidth 0
+Shape4=Combine Shape2 | Union Shape3 | Rotate [SecondsAngle],#WidgetCenterX#,#WidgetCenterY#
+Container=Container
+Hidden=(#ShowSeconds# = 0)
+DynamicVariables=1
+UpdateDivider=1

@@ -1,9 +1,8 @@
-[BackgroundMeter]
-Meter = Shape
-DynamicVariables = 1
-Shape = Rectangle 0, 0, [WidgetWidth], [WidgetHeight], #WidgetBorderRadius#, #WidgetBorderRadius# | Fill Color 111111ee | StrokeWidth 1 | Stroke Color 666666
-Padding = #WidgetPaddingSize#, #WidgetPaddingSize#, #WidgetPaddingSize#, #WidgetPaddingSize#
-UpdateDivider=-1
+[Variables]
+WidgetWidth = 800
+WidgetHeight = 500
+@include = #@#Const\Colors\#DarkMode#.inc
+@include2 = #@#Components\Background\Solid.inc
 
 [RedLight]
 Meter=Shape
