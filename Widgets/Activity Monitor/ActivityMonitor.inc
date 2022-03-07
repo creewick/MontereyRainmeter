@@ -1,3 +1,9 @@
+[ImageTint]
+Measure=String
+String=#IsDark#
+Substitute="0":"000000","1":"ffffff"
+DynamicVariables=1
+
 [CPUMonitor]
 Measure=Plugin
 Plugin=UsageMonitor

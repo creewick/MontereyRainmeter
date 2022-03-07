@@ -5,6 +5,7 @@ UpdateDivider=1
 UpdateRate=(60*15)
 RegExp=(?siU).*"timezone":".*/(.*)".*"timezone_offset":(.*),.*"current".*"temp":(.*),.*"description":"(.*)".*"icon":"(.*([d|n]))".*"hourly".*"dt":(.*),.*"temp":(.*),.*"icon":"(.*)".*"dt":(.*),.*"temp":(.*),.*"icon":"(.*)".*"dt":(.*),.*"temp":(.*),.*"icon":"(.*)".*"dt":(.*),.*"temp":(.*),.*"icon":"(.*)".*"dt":(.*),.*"temp":(.*),.*"icon":"(.*)".*"dt":(.*),.*"temp":(.*),.*"icon":"(.*)".*"daily".*"dt":(.*),.*"min":(.*),.*"max":(.*),.*"icon":"(.*)".*"dt":(.*),.*"min":(.*),.*"max":(.*),.*"icon":"(.*)".*"dt":(.*),.*"min":(.*),.*"max":(.*),.*"icon":"(.*)".*"dt":(.*),.*"min":(.*),.*"max":(.*),.*"icon":"(.*)".*"dt":(.*),.*"min":(.*),.*"max":(.*),.*"icon":"(.*)".*"dt":(.*),.*"min":(.*),.*"max":(.*),.*"icon":"(.*)".*"dt":(.*),.*"min":(.*),.*"max":(.*),.*"icon":"(.*)".*
 FinishAction=[!UpdateMeasureGroup Measures][!UpdateMeterGroup Meters][!Redraw]
+Debug=2
 
 [Timezone]
 Measure=WebParser

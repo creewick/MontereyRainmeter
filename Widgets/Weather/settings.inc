@@ -12,8 +12,8 @@ Longitude = 60.61
 WeatherUnits = metric
 WeatherLanguage = ru
 
-Colored=0
+Colored=1
 
 ; Widget size to return to after save
 
-ReturnTo=Weather-large.ini
+ReturnTo=Weather-wide.ini

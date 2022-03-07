@@ -1,3 +1,3 @@
 [Variables]
-WidgetWidth=#WidgetBaseSize#
-WidgetHeight=#WidgetBaseSize#
+WidgetWidth=#WidgetBase#
+WidgetHeight=#WidgetBase#

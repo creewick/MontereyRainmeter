@@ -24,20 +24,31 @@ Measure=Calc
 Formula=(Time % 43200) / 120
 UpdateDivider=(10*60*3)
 
+[ClockCircleColor]
+Measure=String
+String=#IsDark#
+Substitute="0":"ffffff80","1":"ffffff20"
+DynamicVariables=1
+
+[ClockCircle]
+Meter=Shape
+Shape=Ellipse (#WidgetCenterX#),(#WidgetCenterY#),(#WidgetHeight# * (0.5 - 1 * #ClockfacePadding#)),(#WidgetHeight# * (0.5 - 1 * #ClockfacePadding#)) | Fill Color [ClockCircleColor] | StrokeWidth 0
+DynamicVariables=1
+
 [Clockface]
 Meter=Image
-ImageName=#@#Images\Widgets\Clock\face-#DarkMode#.png
-DynamicVariables=1
-X=(#WidgetPaddingSize# + #WidgetWidth# * 0.5 - (#WidgetHeight# * (1 - 2 * #ClockfacePadding#) * 0.5))
-Y=(#WidgetPaddingSize# + #WidgetHeight# * 0.5 - (#WidgetHeight# * (1 - 2 * #ClockfacePadding#) * 0.5))
+ImageName=#@#Images\Widgets\Clock\face-#IsDark#.png
+X=(#WidgetPadding# + #WidgetWidth# * 0.5 - (#WidgetHeight# * (1 - 2 * #ClockfacePadding#) * 0.5))
+Y=(#WidgetPadding# + #WidgetHeight# * 0.5 - (#WidgetHeight# * (1 - 2 * #ClockfacePadding#) * 0.5))
 W=(#WidgetHeight# * (1 - 2 * #ClockfacePadding#))
 H=(#WidgetHeight# * (1 - 2 * #ClockfacePadding#))
+DynamicVariables=1
 
 [Container]
 Meter = Shape
 DynamicVariables = 1
 Shape = Rectangle 0, 0, #WidgetWidth#, #WidgetHeight#| Fill Color #BackgroundColor# | StrokeWidth 0
-Padding = #WidgetPaddingSize#, #WidgetPaddingSize#, #WidgetPaddingSize#, #WidgetPaddingSize#
+Padding = #WidgetPadding#, #WidgetPadding#, #WidgetPadding#, #WidgetPadding#
 UpdateDivider=-1
 
 [ClockHand]

@@ -1,3 +1,3 @@
 [Variables]
-WidgetWidth=(4 * #WidgetBaseSize# + 6 * #WidgetPaddingSize#)
-WidgetHeight=(4 * #WidgetBaseSize# + 6 * #WidgetPaddingSize#)
+WidgetWidth=(4 * #WidgetBase# + 6 * #WidgetPadding#)
+WidgetHeight=(4 * #WidgetBase# + 6 * #WidgetPadding#)

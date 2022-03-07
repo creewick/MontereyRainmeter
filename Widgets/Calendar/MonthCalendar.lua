@@ -1,6 +1,6 @@
 function Initialize()
-    Padding = tonumber(SKIN:GetVariable('WidgetPaddingSize'))
-    Labels = split(SKIN:GetVariable('WeekdaysShort'), ',')
+    Padding = tonumber(SKIN:GetVariable('WidgetPadding'))
+    Labels = split(SKIN:GetVariable('tWeekDays'), ',')
     SundayWeek = tonumber(SKIN:GetVariable('SundayWeek'))
     loadstring('Size=tonumber'..SKIN:GetVariable('WidgetHeight'))()
     loadstring('OffsetX=tonumber'..SKIN:GetVariable('CalendarOffsetX', '(0)'))()
@@ -79,9 +79,8 @@ end
 function getTextColor(weekday, today)
     if today then return 'ffffff' end
     local opacity = (isWeekend(weekday)) and '80' or 'ff'
-    local color = SKIN:GetVariable('ForegroundColor')
 
-    return color..opacity
+    return '[#ForegroundColor]'..opacity
 end
 
 function getWeekCount(daysInMonth, mm, yy)

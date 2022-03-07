@@ -1,9 +1,3 @@
-[Rainmeter]
-OnUpdateAction=[&Lua:Initialize()]
-
-[ForegroundColor]
-OnUpdateAction=[!SetVariable ForegroundColor [ForegroundColor]][&Lua:Initialize()]
-
 [MeasureDay]
 Measure=Time
 Format=%d
@@ -25,7 +19,8 @@ FontFace=#FontFace#
 StringAlign=CenterCenter
 FontWeight=400
 AntiAlias=1
-Y=(#WidgetPaddingSize# + #WidgetHeight# * 0.25)
+Y=(#WidgetPadding# + #WidgetHeight# * 0.25)
+DynamicVariables=1
 [Label2]
 Meter=String
 MeterStyle=Label1
