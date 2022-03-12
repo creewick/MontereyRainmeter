@@ -1,11 +1,10 @@
 [WeatherParser]
 Measure=WebParser
-URL=https://api.openweathermap.org/data/2.5/onecall?lat=#Latitude#&lon=#Longitude#&exclude=minutely&units=#WeatherUnits#&lang=#WeatherLanguage#&appid=#APIKey#
+URL=https://api.openweathermap.org/data/2.5/onecall?lat=#Latitude#&lon=#Longitude#&exclude=minutely&units=#Units#&lang=#Language#&appid=#APIKey#
 UpdateDivider=1
 UpdateRate=(60*15)
 RegExp=(?siU).*"timezone":".*/(.*)".*"timezone_offset":(.*),.*"current".*"temp":(.*),.*"description":"(.*)".*"icon":"(.*([d|n]))".*"hourly".*"dt":(.*),.*"temp":(.*),.*"icon":"(.*)".*"dt":(.*),.*"temp":(.*),.*"icon":"(.*)".*"dt":(.*),.*"temp":(.*),.*"icon":"(.*)".*"dt":(.*),.*"temp":(.*),.*"icon":"(.*)".*"dt":(.*),.*"temp":(.*),.*"icon":"(.*)".*"dt":(.*),.*"temp":(.*),.*"icon":"(.*)".*"daily".*"dt":(.*),.*"min":(.*),.*"max":(.*),.*"icon":"(.*)".*"dt":(.*),.*"min":(.*),.*"max":(.*),.*"icon":"(.*)".*"dt":(.*),.*"min":(.*),.*"max":(.*),.*"icon":"(.*)".*"dt":(.*),.*"min":(.*),.*"max":(.*),.*"icon":"(.*)".*"dt":(.*),.*"min":(.*),.*"max":(.*),.*"icon":"(.*)".*"dt":(.*),.*"min":(.*),.*"max":(.*),.*"icon":"(.*)".*"dt":(.*),.*"min":(.*),.*"max":(.*),.*"icon":"(.*)".*
 FinishAction=[!UpdateMeasureGroup Measures][!UpdateMeterGroup Meters][!Redraw]
-Debug=2
 
 [Timezone]
 Measure=WebParser
@@ -26,6 +25,7 @@ StringIndex=3
 Measure=Calc
 Group=Measures
 Formula=Round([CurrentTempValue],0)
+Substitute="-0":"0"
 DynamicVariables=1
 
 [CurrentDescription]
@@ -42,8 +42,8 @@ StringIndex=5
 Measure=WebParser
 URL=[WeatherParser]
 StringIndex=6
-Substitute="d":"3694d8","n":"232640","":"3694d8"
-OnUpdateAction=[!SetVariable BackgroundColor [DarkMode]][!SetVariable ForegroundColor "ffffff"]
+Substitute="d":"0","n":"1","":"0"
+OnUpdateAction=[!SetVariable IsDark [DarkMode]]
 Disabled=#Colored#
 
 [HourlyTimeValue1]
@@ -67,6 +67,7 @@ StringIndex=8
 Measure=Calc
 Group=Measures
 Formula=Round([HourlyTempValue1],0)
+Substitute="-0":"0"
 DynamicVariables=1
 
 [HourlyIcon1]
@@ -95,6 +96,7 @@ StringIndex=11
 Measure=Calc
 Group=Measures
 Formula=Round([HourlyTempValue2],0)
+Substitute="-0":"0"
 DynamicVariables=1
 
 [HourlyIcon2]
@@ -123,6 +125,7 @@ StringIndex=14
 Measure=Calc
 Group=Measures
 Formula=Round([HourlyTempValue3],0)
+Substitute="-0":"0"
 DynamicVariables=1
 
 [HourlyIcon3]
@@ -151,6 +154,7 @@ StringIndex=17
 Measure=Calc
 Group=Measures
 Formula=Round([HourlyTempValue4],0)
+Substitute="-0":"0"
 DynamicVariables=1
 
 [HourlyIcon4]
@@ -179,6 +183,7 @@ StringIndex=20
 Measure=Calc
 Group=Measures
 Formula=Round([HourlyTempValue5],0)
+Substitute="-0":"0"
 DynamicVariables=1
 
 [HourlyIcon5]
@@ -207,6 +212,7 @@ StringIndex=23
 Measure=Calc
 Group=Measures
 Formula=Round([HourlyTempValue6],0)
+Substitute="-0":"0"
 DynamicVariables=1
 
 [HourlyIcon6]
@@ -236,6 +242,7 @@ StringIndex=26
 Measure=Calc
 Group=Measures
 Formula=Round([DailyLowValue1],0)
+Substitute="-0":"0"
 DynamicVariables=1
 
 [DailyHighValue1]
@@ -247,6 +254,7 @@ StringIndex=27
 Measure=Calc
 Group=Measures
 Formula=Round([DailyHighValue1],0)
+Substitute="-0":"0"
 DynamicVariables=1
 
 [DailyIcon1]
@@ -276,6 +284,7 @@ StringIndex=30
 Measure=Calc
 Group=Measures
 Formula=Round([DailyLowValue2],0)
+Substitute="-0":"0"
 DynamicVariables=1
 
 [DailyHighValue2]
@@ -287,6 +296,7 @@ StringIndex=31
 Measure=Calc
 Group=Measures
 Formula=Round([DailyHighValue2],0)
+Substitute="-0":"0"
 DynamicVariables=1
 
 [DailyIcon2]
@@ -316,6 +326,7 @@ StringIndex=34
 Measure=Calc
 Group=Measures
 Formula=Round([DailyLowValue3],0)
+Substitute="-0":"0"
 DynamicVariables=1
 
 [DailyHighValue3]
@@ -327,6 +338,7 @@ StringIndex=35
 Measure=Calc
 Group=Measures
 Formula=Round([DailyHighValue3],0)
+Substitute="-0":"0"
 DynamicVariables=1
 
 [DailyIcon3]
@@ -356,6 +368,7 @@ StringIndex=38
 Measure=Calc
 Group=Measures
 Formula=Round([DailyLowValue4],0)
+Substitute="-0":"0"
 DynamicVariables=1
 
 [DailyHighValue4]
@@ -367,6 +380,7 @@ StringIndex=39
 Measure=Calc
 Group=Measures
 Formula=Round([DailyHighValue4],0)
+Substitute="-0":"0"
 DynamicVariables=1
 
 [DailyIcon4]
@@ -396,6 +410,7 @@ StringIndex=42
 Measure=Calc
 Group=Measures
 Formula=Round([DailyLowValue5],0)
+Substitute="-0":"0"
 DynamicVariables=1
 
 [DailyHighValue5]
@@ -407,6 +422,7 @@ StringIndex=43
 Measure=Calc
 Group=Measures
 Formula=Round([DailyHighValue5],0)
+Substitute="-0":"0"
 DynamicVariables=1
 
 [DailyIcon5]
@@ -436,6 +452,7 @@ StringIndex=46
 Measure=Calc
 Group=Measures
 Formula=Round([DailyLowValue6],0)
+Substitute="-0":"0"
 DynamicVariables=1
 
 [DailyHighValue6]
@@ -447,6 +464,7 @@ StringIndex=47
 Measure=Calc
 Group=Measures
 Formula=Round([DailyHighValue6],0)
+Substitute="-0":"0"
 DynamicVariables=1
 
 [DailyIcon6]
@@ -476,6 +494,7 @@ StringIndex=50
 Measure=Calc
 Group=Measures
 Formula=Round([DailyLowValue7],0)
+Substitute="-0":"0"
 DynamicVariables=1
 
 [DailyHighValue7]
@@ -487,6 +506,7 @@ StringIndex=51
 Measure=Calc
 Group=Measures
 Formula=Round([DailyHighValue7],0)
+Substitute="-0":"0"
 DynamicVariables=1
 
 [DailyIcon7]

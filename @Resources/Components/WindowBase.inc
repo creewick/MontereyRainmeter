@@ -1,18 +1,14 @@
+[BackgroundMeter]
+Meter = Shape
+DynamicVariables = 1
+Shape = Rectangle 0, 0, #WidgetWidth#, #WidgetHeight#, #WidgetRadius#, #WidgetRadius# | Fill Color #BackgroundColor# | StrokeWidth 0.5 | Stroke Color 808080
+Padding = #WidgetPadding#, #WidgetPadding#, #WidgetPadding#, #WidgetPadding#
+
 [Variables]
-WidgetWidth = 800
-WidgetHeight = 500
-@include = #@#Const\Colors\#DarkMode#.inc
-@include2 = #@#Components\Background\Solid.inc
+@include  = #@#Settings.inc
+@include1 = #@#Languages\#Language#.inc
+@include2 = #@#Const\Colors\#Theme#.inc
 
-[RedLight]
-Meter=Shape
-Shape=Ellipse (#WidgetPadding#+24),(#WidgetPadding#+24),6,6 | Fill Color f9615e | StrokeWidth 0
-LeftMouseUpAction=[!DeactivateConfig]
-
-[YellowLight]
-Meter=Shape
-Shape=Ellipse (#WidgetPadding#+44),(#WidgetPadding#+24),6,6 | Fill Color 666666 | StrokeWidth 0
-
-[GreenLight]
-Meter=Shape
-Shape=Ellipse (#WidgetPadding#+64),(#WidgetPadding#+24),6,6 | Fill Color 666666 | StrokeWidth 0
+WidgetCenterX = (#WidgetPadding# + #WidgetWidth# / 2)
+WidgetCenterY = (#WidgetPadding# + #WidgetHeight# / 2)
+WidgetPadding = 0

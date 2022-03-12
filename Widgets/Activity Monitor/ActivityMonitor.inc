@@ -1,9 +1,3 @@
-[ImageTint]
-Measure=String
-String=#IsDark#
-Substitute="0":"000000","1":"ffffff"
-DynamicVariables=1
-
 [CPUMonitor]
 Measure=Plugin
 Plugin=UsageMonitor
@@ -14,7 +8,7 @@ UpdateDivider=1
 
 [CPUMeasure]
 Measure=Calc
-Formula=CPUMonitor
+Formula=Round(CPUMonitor, 0)
 AverageSize=10
 MinValue=0
 MaxValue=100
@@ -35,7 +29,7 @@ UpdateDivider=1
 
 [RAMMeasure]
 Measure=Calc
-Formula=RAMMonitor
+Formula=Round(RAMMonitor, 0)
 AverageSize=10
 MinValue=0
 MaxValue=100
@@ -56,7 +50,7 @@ UpdateDivider=1
 
 [DiskMeasure]
 Measure=Calc
-Formula=Clamp(DiskMonitor / 10, 0, 100)
+Formula=Round(Clamp(DiskMonitor / 10, 0, 100),0)
 AverageSize=10
 MinValue=0
 MaxValue=100
@@ -84,7 +78,7 @@ UpdateDivider=1
 
 [NetMeasure]
 Measure=Calc
-Formula=Clamp(NetBytes * 8 / NetWidth * 100, 0, 100)
+Formula=Round(Clamp(NetBytes * 8 / NetWidth * 100, 0, 100),0)
 AverageSize=10
 MinValue=0
 MaxValue=100

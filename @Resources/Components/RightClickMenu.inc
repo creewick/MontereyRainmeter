@@ -19,4 +19,4 @@ ContextAction8  = [!DeactivateConfig]
 ContextTitle9   = ---
 ContextAction9  = []
 ContextTitle10  = #tEditWidgets#
-ContextAction10 = [!WriteKeyValue Variables Tab "#WidgetName#" "#@#Settings.inc"][!Refresh "Monterey\Widgets\WidgetsGallery"][!ActivateConfig "Monterey\Widgets\WidgetsGallery" "WidgetsGallery.ini"]
+ContextAction10 = [!WriteKeyValue Variables Tab "Widgets" "#@#Settings.inc"][!Refresh "Monterey\Widgets\Window"][!ActivateConfig "Monterey\Widgets\Window" "Window.ini"]

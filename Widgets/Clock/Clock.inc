@@ -27,7 +27,7 @@ UpdateDivider=(10*60*3)
 [ClockCircleColor]
 Measure=String
 String=#IsDark#
-Substitute="0":"ffffff80","1":"ffffff20"
+Substitute="0":"ffffffa0","1":"ffffff20"
 DynamicVariables=1
 
 [ClockCircle]
