@@ -67,5 +67,5 @@ So far we support 3 languages
 ## You may also want to
 * Center your taskbar buttons with [TaskbarX](https://chrisandriessen.nl/taskbarx)
 * Install MacOS-like menu bar - [Droptop Four](https://github.com/Droptop-Four)
----
-All right to MacOS Monterey belongs to Apple
+
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Лицензия Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>
