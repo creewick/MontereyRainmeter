@@ -229,7 +229,7 @@ StringIndex=25
 Measure=Time
 Group=Measures
 TimeStamp=([DailyTimeValue1] + 11644473600)
-FormatLocale=Local
+FormatLocale=#Language#
 DynamicVariables=1
 Format=%a
 
@@ -271,7 +271,7 @@ StringIndex=29
 Measure=Time
 Group=Measures
 TimeStamp=([DailyTimeValue2] + 11644473600)
-FormatLocale=Local
+FormatLocale=#Language#
 DynamicVariables=1
 Format=%a
 
@@ -313,7 +313,7 @@ StringIndex=33
 Measure=Time
 Group=Measures
 TimeStamp=([DailyTimeValue3] + 11644473600)
-FormatLocale=Local
+FormatLocale=#Language#
 DynamicVariables=1
 Format=%a
 
@@ -355,7 +355,7 @@ StringIndex=37
 Measure=Time
 Group=Measures
 TimeStamp=([DailyTimeValue4] + 11644473600)
-FormatLocale=Local
+FormatLocale=#Language#
 DynamicVariables=1
 Format=%a
 
@@ -397,7 +397,7 @@ StringIndex=41
 Measure=Time
 Group=Measures
 TimeStamp=([DailyTimeValue5] + 11644473600)
-FormatLocale=Local
+FormatLocale=#Language#
 DynamicVariables=1
 Format=%a
 
@@ -439,7 +439,7 @@ StringIndex=45
 Measure=Time
 Group=Measures
 TimeStamp=([DailyTimeValue6] + 11644473600)
-FormatLocale=Local
+FormatLocale=#Language#
 DynamicVariables=1
 Format=%a
 
@@ -481,7 +481,7 @@ StringIndex=49
 Measure=Time
 Group=Measures
 TimeStamp=([DailyTimeValue7] + 11644473600)
-FormatLocale=Local
+FormatLocale=#Language#
 DynamicVariables=1
 Format=%a
 
