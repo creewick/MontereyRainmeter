@@ -17,6 +17,9 @@ Inspired by [Big Sur for Rainmeter](https://www.deviantart.com/fediafedia/art/Bi
 
 <img src="@Resources/Images/Banners/Widgets.png" width="100%" />
 
+
+<img src="@Resources/Images/Banners/Sizes.png" width="400px" align="right" />
+
 So far we have 7 widgets available
 
 * Clock
