@@ -15,8 +15,9 @@ Inspired by [Big Sur for Rainmeter](https://www.deviantart.com/fediafedia/art/Bi
 
 ## What will you get?
 
-<img src="@Resources/Images/Banners/Widgets.png" width="100%" />
+### Widgets
 
+<img src="@Resources/Images/Banners/Widgets.png" width="100%" />
 
 <img src="@Resources/Images/Banners/Sizes.png" width="500px" align="right" />
 
@@ -30,17 +31,18 @@ So far we have 7 widgets available
 * Volume
 * Notes
 
-Each of them comes in 4 sizes
+### Sizes
 
 <img src="@Resources/Images/Banners/Context.png" align="right" />
+
+Each of them comes in 4 sizes, that can be found in context menu
 
 * Small (1x1)
 * Medium (2x2)
 * Wide (2x4)
 * Large (4x4)
 
-Size options and other settings can be found in context menu
-
+### Themes
 
 Widgets appears in one of 3 predefined themes
 
