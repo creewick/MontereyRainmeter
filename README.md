@@ -56,6 +56,8 @@ Widgets appears in one of 3 predefined themes
 
 Color theme uses average color of your desktop wallpaper
 
+### Languages
+
 So far we support 3 languages
 
 * Russian
