@@ -30,9 +30,9 @@ So far we have 7 widgets available
 * Volume
 * Notes
 
-<img src="@Resources/Images/Banners/Context.png" align="right" />
-
 Each of them comes in 4 sizes
+
+<img src="@Resources/Images/Banners/Context.png" align="right" />
 
 * Small (1x1)
 * Medium (2x2)
