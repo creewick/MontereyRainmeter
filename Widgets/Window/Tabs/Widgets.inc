@@ -36,11 +36,19 @@ Shape=Rectangle 0,0,80,20,10 | Fill Color #ForegroundColor#20 | StrokeWidth 0
 X=(#WidgetPadding#+#SidebarWidth#+220)
 Y=(#WidgetPadding#+45+35)
 DynamicVariables=1
-LeftMouseUpAction=[!ActivateConfig "Monterey\Widgets\Clock" "Clock-medium.ini"]
+LeftMouseUpAction=[!ToggleConfig "Monterey\Widgets\Clock" "Clock-medium.ini"]
+
+[Widget1Opened]
+Measure=Plugin
+Plugin=ConfigActive
+ConfigName=Monterey\Widgets\Clock
+RegExpSubstitute=1
+Substitute=".+":"#tRemove#","^$":"#tAdd#"
+UpdateDivider=1
 
 [Widget1AddText]
 Meter=String
-Text=#tAdd#
+MeasureName=Widget1Opened
 FontSize=8
 FontFace=#FontFace#
 FontColor=#ForegroundColor#
@@ -51,6 +59,7 @@ StringAlign=Center
 StringCase=Upper
 X=(#WidgetPadding#+#SidebarWidth#+260)
 Y=(#WidgetPadding#+45+38)
+UpdateDivider=1
 
 [Widget2Icon]
 Meter=Image
@@ -74,12 +83,21 @@ X=(#WidgetPadding#+#SidebarWidth#+400)
 Meter=Shape
 MeterStyle=Widget1Add
 X=(#WidgetPadding#+#SidebarWidth#+540)
-LeftMouseUpAction=[!ActivateConfig "Monterey\Widgets\Calendar" "Calendar-medium.ini"]
+LeftMouseUpAction=[!ToggleConfig "Monterey\Widgets\Calendar" "Calendar-medium.ini"]
 
 [Widget2AddText]
 Meter=String
+MeasureName=Widget2Opened
 MeterStyle=Widget1AddText
 X=(#WidgetPadding#+#SidebarWidth#+580)
+
+[Widget2Opened]
+Measure=Plugin
+Plugin=ConfigActive
+ConfigName=Monterey\Widgets\Calendar
+RegExpSubstitute=1
+Substitute=".+":"#tRemove#","^$":"#tAdd#"
+UpdateDivider=1
 
 [Widget3Icon]
 Meter=Image
@@ -103,10 +121,19 @@ Y=(#WidgetPadding#+45+120)
 Meter=Shape
 MeterStyle=Widget1Add
 Y=(#WidgetPadding#+45+115)
-LeftMouseUpAction=[!ActivateConfig "Monterey\Widgets\Activity Monitor" "ActivityMonitor-medium.ini"]
+LeftMouseUpAction=[!ToggleConfig "Monterey\Widgets\Activity Monitor" "ActivityMonitor-medium.ini"]
+
+[Widget3Opened]
+Measure=Plugin
+Plugin=ConfigActive
+ConfigName=Monterey\Widgets\Activity Monitor
+RegExpSubstitute=1
+Substitute=".+":"#tRemove#","^$":"#tAdd#"
+UpdateDivider=1
 
 [Widget3AddText]
 Meter=String
+MeasureName=Widget3Opened
 MeterStyle=Widget1AddText
 Y=(#WidgetPadding#+45+118)
 
@@ -135,11 +162,20 @@ Y=(#WidgetPadding#+45+120)
 Meter=Shape
 MeterStyle=Widget1Add
 X=(#WidgetPadding#+#SidebarWidth#+540)
-LeftMouseUpAction=[!ActivateConfig "Monterey\Widgets\Weather" "Weather-medium.ini"]
+LeftMouseUpAction=[!ToggleConfig "Monterey\Widgets\Weather" "Weather-medium.ini"]
 Y=(#WidgetPadding#+45+115)
+
+[Widget4Opened]
+Measure=Plugin
+Plugin=ConfigActive
+ConfigName=Monterey\Widgets\Weather
+RegExpSubstitute=1
+Substitute=".+":"#tRemove#","^$":"#tAdd#"
+UpdateDivider=1
 
 [Widget4AddText]
 Meter=String
+MeasureName=Widget4Opened
 MeterStyle=Widget1AddText
 X=(#WidgetPadding#+#SidebarWidth#+580)
 Y=(#WidgetPadding#+45+118)
@@ -166,10 +202,19 @@ Y=(#WidgetPadding#+45+200)
 Meter=Shape
 MeterStyle=Widget1Add
 Y=(#WidgetPadding#+45+195)
-LeftMouseUpAction=[!ActivateConfig "Monterey\Widgets\Notes" "Notes-medium.ini"]
+LeftMouseUpAction=[!ToggleConfig "Monterey\Widgets\Notes" "Notes-medium.ini"]
+
+[Widget5Opened]
+Measure=Plugin
+Plugin=ConfigActive
+ConfigName=Monterey\Widgets\Notes
+RegExpSubstitute=1
+Substitute=".+":"#tRemove#","^$":"#tAdd#"
+UpdateDivider=1
 
 [Widget5AddText]
 Meter=String
+MeasureName=Widget5Opened
 MeterStyle=Widget1AddText
 Y=(#WidgetPadding#+45+198)
 
@@ -198,11 +243,20 @@ Y=(#WidgetPadding#+45+200)
 Meter=Shape
 MeterStyle=Widget1Add
 X=(#WidgetPadding#+#SidebarWidth#+540)
-LeftMouseUpAction=[!ActivateConfig "Monterey\Widgets\Music" "Music-medium.ini"]
+LeftMouseUpAction=[!ToggleConfig "Monterey\Widgets\Music" "Music-medium.ini"]
 Y=(#WidgetPadding#+45+195)
+
+[Widget6Opened]
+Measure=Plugin
+Plugin=ConfigActive
+ConfigName=Monterey\Widgets\Music
+RegExpSubstitute=1
+Substitute=".+":"#tRemove#","^$":"#tAdd#"
+UpdateDivider=1
 
 [Widget6AddText]
 Meter=String
+MeasureName=Widget6Opened
 MeterStyle=Widget1AddText
 X=(#WidgetPadding#+#SidebarWidth#+580)
 Y=(#WidgetPadding#+45+198)
@@ -229,9 +283,18 @@ Y=(#WidgetPadding#+45+280)
 Meter=Shape
 MeterStyle=Widget1Add
 Y=(#WidgetPadding#+45+275)
-LeftMouseUpAction=[!ActivateConfig "Monterey\Widgets\Volume" "Volume-medium.ini"]
+LeftMouseUpAction=[!ToggleConfig "Monterey\Widgets\Volume" "Volume-medium.ini"]
+
+[Widget7Opened]
+Measure=Plugin
+Plugin=ConfigActive
+ConfigName=Monterey\Widgets\Volume
+RegExpSubstitute=1
+Substitute=".+":"#tRemove#","^$":"#tAdd#"
+UpdateDivider=1
 
 [Widget7AddText]
 Meter=String
+MeasureName=Widget7Opened
 MeterStyle=Widget1AddText
 Y=(#WidgetPadding#+45+278)

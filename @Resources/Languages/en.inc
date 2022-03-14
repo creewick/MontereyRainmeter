@@ -48,6 +48,7 @@ tSettings=Settings
 tAbout=About
 tVersion=Version
 tAdd=Add
+tRemove=Remove
 ; --- Appearence ---
 tAppearence=Design
 tTheme=Theme
