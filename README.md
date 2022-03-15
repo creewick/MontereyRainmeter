@@ -44,14 +44,16 @@ Each of them comes in 4 sizes, that can be found in context menu
 
 ### Themes
 
-Widgets appears in one of 3 predefined themes
+Widgets appears in one of 4 predefined themes
 
-<img src="@Resources/Images/Widgets/Window/color.png" align="right" />
-<img src="@Resources/Images/Widgets/Window/dark.png" align="right" />
-<img src="@Resources/Images/Widgets/Window/light.png" align="right" />
+<img src="@Resources/Images/Settings/color.png" align="right" />
+<img src="@Resources/Images/Settings/auto.png" align="right" />
+<img src="@Resources/Images/Settings/dark.png" align="right" />
+<img src="@Resources/Images/Settings/light.png" align="right" />
 
 * Light
 * Dark
+* Auto
 * Color
 
 Color theme uses average color of your desktop wallpaper
