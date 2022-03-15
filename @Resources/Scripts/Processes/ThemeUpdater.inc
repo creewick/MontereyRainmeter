@@ -38,3 +38,11 @@ IfCondition4=(#IsDark#=1) && ([SecondsStart] > [SecondsEnd]) && ([IsBetween] = 1
 IfTrueAction4=[!WriteKeyValue Variables IsDark 0 "#@#Settings\Global.inc"][!RefreshGroup Monterey]
 DynamicVariables=1
 UpdateDivider=60
+
+[ChameleonMeasure]
+Measure=Plugin
+Group=ColorTheme
+Plugin=Chameleon
+Type=Desktop
+UpdateDivider=10
+OnChangeAction=[!RefreshGroup Monterey]

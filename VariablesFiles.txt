@@ -1,0 +1,1 @@
+Monterey\@Resources\Settings\ActivityMonitor.inc | Monterey\@Resources\Settings\Calendar.inc | Monterey\@Resources\Settings\Clock.inc | Monterey\@Resources\Settings\Glboal.inc | Monterey\@Resources\Settings\Notes.inc | Monterey\@Resources\Settings\Settings.inc | Monterey\@Resources\Settings\Weather.inc
