@@ -44,7 +44,7 @@ Meter=Image
 MeterStyle=Light
 ImageName=#@#Images\Settings\color.png
 X=(#SidebarWidth#+430)
-LeftMouseUpAction=[!WriteKeyValue Variables Theme "Color" "#@#Settings\Global.inc"][!RefreshGroup Monterey]
+LeftMouseUpAction=[!WriteKeyValue Variables Theme "Color" "#@#Settings\Global.inc"][!ActivateConfig "Monterey\Processes" "Processes.ini"][!RefreshGroup Monterey]
 
 [Border]
 Meter=Shape
