@@ -129,7 +129,7 @@ LeftMouseUpAction=[!ToggleConfig "Monterey\Widgets\ActivityMonitor" "Medium.ini"
 [Widget3Opened]
 Measure=Plugin
 Plugin=ConfigActive
-ConfigName=Monterey\Widgets\Activity Monitor
+ConfigName=Monterey\Widgets\ActivityMonitor
 RegExpSubstitute=1
 Substitute=".+":"#tRemove#","^$":"#tAdd#"
 UpdateDivider=1

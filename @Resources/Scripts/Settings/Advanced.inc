@@ -41,7 +41,7 @@ X=(#SidebarWidth#+200-40)
 W=80
 StringAlign=Center
 DynamicVariables=1
-Command1=[!WriteKeyValue Variables WidgetBase "$UserInput$" "#@#Settings.inc"][!RefreshGroup Monterey]
+Command1=[!WriteKeyValue Variables WidgetBase "$UserInput$" "#@#Settings\Global.inc"][!RefreshGroup Monterey]
 
 [Label2]
 Meter=String
@@ -75,7 +75,7 @@ X=(#SidebarWidth#+200-40)
 W=80
 StringAlign=Center
 DynamicVariables=1
-Command1=[!WriteKeyValue Variables WidgetPadding "$UserInput$" "#@#Settings.inc"][!RefreshGroup Monterey]
+Command1=[!WriteKeyValue Variables WidgetPadding "$UserInput$" "#@#Settings\Global.inc"][!RefreshGroup Monterey]
 
 [Label3]
 Meter=String
@@ -109,4 +109,4 @@ X=(#SidebarWidth#+470-40)
 W=80
 StringAlign=Center
 DynamicVariables=1
-Command1=[!WriteKeyValue Variables WidgetRadius "$UserInput$" "#@#Settings.inc"][!RefreshGroup Monterey]
+Command1=[!WriteKeyValue Variables WidgetRadius "$UserInput$" "#@#Settings\Global.inc"][!RefreshGroup Monterey]

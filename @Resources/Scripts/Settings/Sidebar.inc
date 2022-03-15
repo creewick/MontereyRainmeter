@@ -9,7 +9,6 @@ Meter=Shape
 Shape=Rectangle 0,0,#SidebarWidth#,#WidgetHeight#,#WidgetRadius# | Fill Color #GrayColor# | StrokeWidth 0.5 | Stroke Color 808080
 Shape2=Rectangle (#SidebarWidth#/2),0,(#SidebarWidth#/2),#WidgetHeight#
 Shape3=Combine Shape | Union Shape2
-UpdateDivider=-1
 
 [MenuItem]
 Meter=String
