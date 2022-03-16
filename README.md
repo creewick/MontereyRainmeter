@@ -93,13 +93,13 @@ So far we support 3 languages
 
 ## Special thanks
 
-fediaFedia - Big Sur for Rainmeter
-Socks the Fox - Chameleon plugin
-i2002 - MediaPlayer plugin
-khanhas - AppVolume plugin
-jsmorley - ConfigActive plugin
-fawy - English, Ukrainian translations
-Active Color - helped with pesisting settings
+* fediaFedia - Big Sur for Rainmeter
+* Socks the Fox - Chameleon plugin
+* i2002 - MediaPlayer plugin
+* khanhas - AppVolume plugin
+* jsmorley - ConfigActive plugin
+* fawy - English, Ukrainian translations
+* Active Color - helped with pesisting settings
 
 ## You may also want to
 * Center your taskbar buttons with [TaskbarX](https://chrisandriessen.nl/taskbarx)
