@@ -56,6 +56,9 @@ Widgets appears in one of 4 predefined themes
 * Auto
 * Color
 
+
+<img src="@Resources/Images/Banners/ColorTheme.png" width="400px" align="right" />
+
 Color theme uses average color of your desktop wallpaper
 
 ### Languages
