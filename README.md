@@ -1,46 +1,62 @@
-# MontereyRainmeter
+<img src="@Resources/Images/Banners/Header.png"  />
 
-<img src="@Resources/Images/Icons/Monterey.png" width="200px" align="right" />
+<div align="center">
+  A MacOS <strong>Monterey</strong> style widget pack for <strong>Rainmeter</strong>
+  
+  Inspired by [Big Sur for Rainmeter](https://www.deviantart.com/fediafedia/art/Big-Sur-RC1-for-Rainmeter-846882462)
+</div>
 
-A MacOS **Monterey** style widget pack for **Rainmeter**
-
-Inspired by [Big Sur for Rainmeter](https://www.deviantart.com/fediafedia/art/Big-Sur-RC1-for-Rainmeter-846882462)
-
-## Why?
-
-* Lots of customisation
-* Accurate design
-* Dark theme and color theme
-* Effective resources usage
-
-## What will you get?
+## What will you get
 
 ### Widgets
 
 <img src="@Resources/Images/Banners/Widgets.png" width="100%" />
 
-<img src="@Resources/Images/Banners/Sizes.png" width="500px" align="right" />
 
 So far we have 7 widgets available
 
-* Clock
-* Calendar
-* Music
-* Weather
-* Resource Monitor
-* Volume
-* Notes
+* 🕒 **Clock**
+
+  Shows current time with or without second hand
+  
+* 🗓️ **Calendar**
+
+  Shows current month view, with Monday or Sunday as first day of week
+  
+* 🎵 **Music**
+
+  Allows you to control music player, if your player is visible in system flyout<br/>
+  Tested on playing music in Chrome
+
+* ☀️ **Weather**
+
+  Shows hourly and daily forecast.<br/>
+  You can change the forecast by entering your city name
+  
+<img src="@Resources/Images/Banners/Sizes.png" width="500px" align="right" />
+
+* 📊 **Resource Monitor**
+
+  Shows CPU, RAM, Disk and Network usage in your desired order
+
+* 🎚️ **Volume**
+
+  Allows you to control system volume, volume per app, mute apps and switch output devices
+
+* 📝 **Notes**
+
+  Gives you a quick access to your most important text information
 
 ### Sizes
 
 <img src="@Resources/Images/Banners/Context.png" align="right" />
 
-Each of them comes in 4 sizes, that can be found in context menu
+Each of them comes in 4 sizes, you can switch between them in the context menu
 
-* Small (1x1)
-* Medium (2x2)
-* Wide (2x4)
-* Large (4x4)
+* 1️⃣ Small
+* 2️⃣ Medium
+* 3️⃣ Wide
+* 4️⃣ Large
 
 ### Themes
 
@@ -51,11 +67,10 @@ Widgets appears in one of 4 predefined themes
 <img src="@Resources/Images/Settings/dark.png" align="right" />
 <img src="@Resources/Images/Settings/light.png" align="right" />
 
-* Light
-* Dark
-* Auto
-* Color
-
+* ⬜ Light
+* ⬛ Dark
+* 🔲 Auto
+* 🟪 Color
 
 <img src="@Resources/Images/Banners/ColorTheme.png" width="400px" align="right" />
 
@@ -75,6 +90,16 @@ So far we support 3 languages
 2. Get our [latest release](https://github.com/creewick/MontereyRainmeter/releases)
 3. To change widget settings, right-click it and select "Edit"
 4. To add widgets and change global settings, right-click any widget and select "Edit widgets"
+
+## Special thanks
+
+* fediaFedia - Big Sur for Rainmeter
+* Socks the Fox - Chameleon plugin
+* i2002 - MediaPlayer plugin
+* khanhas - AppVolume plugin
+* jsmorley - ConfigActive plugin
+* fawy - English, Ukrainian translations
+* Active Color - helped with pesisting settings
 
 ## You may also want to
 * Center your taskbar buttons with [TaskbarX](https://chrisandriessen.nl/taskbarx)
