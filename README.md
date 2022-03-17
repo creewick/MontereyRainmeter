@@ -100,6 +100,7 @@ So far we support 3 languages
 * jsmorley - ConfigActive plugin
 * fawy - English, Ukrainian translations
 * Active Color - helped with pesisting settings
+* ikarus1969 - German translation
 
 ## You may also want to
 * Center your taskbar buttons with [TaskbarX](https://chrisandriessen.nl/taskbarx)

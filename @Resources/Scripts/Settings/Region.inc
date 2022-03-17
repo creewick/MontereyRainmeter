@@ -53,6 +53,14 @@ Hidden=0
 X=(#SidebarWidth#+425)
 LeftMouseUpAction=[!WriteKeyValue Variables Language "en" "#@#Settings\Global.inc"][!RefreshGroup Monterey]
 
+[de]
+Meter=String
+MeterStyle=lang
+Text=#de#
+Hidden=0
+X=(#SidebarWidth#+525)
+LeftMouseUpAction=[!WriteKeyValue Variables Language "de" "#@#Settings\Global.inc"][!RefreshGroup Monterey]
+
 [TempLabel]
 Meter=String
 MeterStyle=LangLabel
