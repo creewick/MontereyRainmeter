@@ -1,2 +1,2 @@
 [Variables]
-Tab=Appearence
+Tab=Region
