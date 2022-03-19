@@ -1,5 +1,5 @@
 [Variables]
-Menu=Languages
-WidgetName=Music
-Config=Monterey\Widgets\Music
-WidgetSize=wide
+Menu=Widget
+WidgetName=Clock
+Config=Monterey\Widgets\Clock
+WidgetSize=medium

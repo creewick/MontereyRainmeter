@@ -1,2 +1,2 @@
 [Variables]
-Tab=Region
+Tab=About
