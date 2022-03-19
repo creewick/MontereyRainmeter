@@ -1,5 +1,5 @@
 [Variables]
 Menu=Widget
-WidgetName=Clock
-Config=Monterey\Widgets\Clock
-WidgetSize=medium
+WidgetName=Volume
+Config=Monterey\Widgets\Volume
+WidgetSize=large
