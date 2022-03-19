@@ -1,7 +1,7 @@
 <img src="@Resources/Images/Banners/Header.png"  />
 
 <div align="center">
-  A MacOS <strong>Monterey</strong> style widget pack for <strong>Rainmeter</strong>
+  A MacOS <strong>Monterey</strong> style widget pack for <strong>Rainmeter</strong> on Windows
   
   Inspired by [Big Sur for Rainmeter](https://www.deviantart.com/fediafedia/art/Big-Sur-RC1-for-Rainmeter-846882462)
 </div>
