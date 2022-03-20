@@ -13,11 +13,10 @@
 3. Run `Monterey.rmskin`
 4. If you're updating, remove the tick from **Apply included layout**
 
-[User guide](https://github.com/creewick/MontereyRainmeter/wiki/User-guide)
+## Documentation
 
-[Troubleshooting](https://github.com/creewick/MontereyRainmeter/wiki/Troubleshooting)
-
-[Performance Index](https://github.com/creewick/MontereyRainmeter/wiki/Performance-Index)
+|[User guide](https://github.com/creewick/MontereyRainmeter/wiki/User-guide)|[Troubleshooting](https://github.com/creewick/MontereyRainmeter/wiki/Troubleshooting)|[Performance Index](https://github.com/creewick/MontereyRainmeter/wiki/Performance-Index)|
+|-|-|-|
 
 ## What will you get
 
@@ -38,7 +37,7 @@ So far we have 7 widgets available
 * 🎵 **Music**
 
   Allows you to control music player, if your player is visible in system flyout<br/>
-  Tested on playing music in Chrome
+  Tested on iTunes (web version), Spotify, YouTube
 
 * ☀️ **Weather**
 
