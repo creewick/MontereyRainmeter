@@ -29,13 +29,13 @@ Formula=TimeEnd % (60 * 60 * 24)
 Measure=Calc
 Formula=([SecondsNow] >= Min([SecondsStart],[SecondsEnd])) && ([SecondsNow] < Max([SecondsStart],[SecondsEnd]))
 IfCondition=(#IsDark#=0) && ([SecondsStart] < [SecondsEnd]) && ([IsBetween] = 1)
-IfTrueAction=[!WriteKeyValue Variables IsDark 1 "#@#Settings\Global.inc"][!RefreshGroup Monterey]
+IfTrueAction=[!WriteKeyValue Variables IsDark 1 "#@#Variables\Global.inc"][!RefreshGroup Monterey]
 IfCondition2=(#IsDark#=0) && ([SecondsStart] > [SecondsEnd]) && ([IsBetween] = 0)
-IfTrueAction2=[!WriteKeyValue Variables IsDark 1 "#@#Settings\Global.inc"][!RefreshGroup Monterey]
+IfTrueAction2=[!WriteKeyValue Variables IsDark 1 "#@#Variables\Global.inc"][!RefreshGroup Monterey]
 IfCondition3=(#IsDark#=1) && ([SecondsStart] < [SecondsEnd]) && ([IsBetween] = 0)
-IfTrueAction3=[!WriteKeyValue Variables IsDark 0 "#@#Settings\Global.inc"][!RefreshGroup Monterey]
+IfTrueAction3=[!WriteKeyValue Variables IsDark 0 "#@#Variables\Global.inc"][!RefreshGroup Monterey]
 IfCondition4=(#IsDark#=1) && ([SecondsStart] > [SecondsEnd]) && ([IsBetween] = 1)
-IfTrueAction4=[!WriteKeyValue Variables IsDark 0 "#@#Settings\Global.inc"][!RefreshGroup Monterey]
+IfTrueAction4=[!WriteKeyValue Variables IsDark 0 "#@#Variables\Global.inc"][!RefreshGroup Monterey]
 DynamicVariables=1
 UpdateDivider=60
 
