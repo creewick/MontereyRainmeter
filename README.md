@@ -90,11 +90,12 @@ Color theme uses average color of your desktop wallpaper
 
 ### Languages
 
-So far we support 3 languages
+So far we support 4 languages
 
 * Russian
 * Ukrainian
 * English
+* German
 
 ## Special thanks
 
