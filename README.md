@@ -6,12 +6,18 @@
   Inspired by [Big Sur for Rainmeter](https://www.deviantart.com/fediafedia/art/Big-Sur-RC1-for-Rainmeter-846882462)
 </div>
 
+## Get started
+
+1. Install [Rainmeter](https://www.rainmeter.net/)
+2. Get our [latest release](https://github.com/creewick/MontereyRainmeter/releases)
+3. Run `Monterey.rmskin`
+4. If you're updating, remove the tick from **Apply included layout**
+
 ## What will you get
 
 ### Widgets
 
 <img src="@Resources/Images/Banners/Widgets.png" width="100%" />
-
 
 So far we have 7 widgets available
 
@@ -83,13 +89,6 @@ So far we support 3 languages
 * Russian
 * Ukrainian
 * English
-
-## Get started
-
-1. Install [Rainmeter](https://www.rainmeter.net/)
-2. Get our [latest release](https://github.com/creewick/MontereyRainmeter/releases)
-3. To change widget settings, right-click it and select "Edit"
-4. To add widgets and change global settings, right-click any widget and select "Edit widgets"
 
 ## Special thanks
 
