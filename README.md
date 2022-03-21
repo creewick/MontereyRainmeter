@@ -110,6 +110,6 @@ So far we support 4 languages
 ## You may also want to
 * Center your taskbar buttons with [TaskbarX](https://chrisandriessen.nl/taskbarx)
 * Install MacOS-like menu bar - [Droptop Four](https://github.com/Droptop-Four)
-* Round you screen corners - [Rounded corners](https://forum.rainmeter.net/viewtopic.php?t=25780#p201917)
+* Round your screen corners - [Rounded corners](https://forum.rainmeter.net/viewtopic.php?t=25780#p201917)
 
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Лицензия Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>
