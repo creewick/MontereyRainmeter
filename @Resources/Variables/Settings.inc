@@ -1,2 +1,2 @@
 [Variables]
-Tab=About
+Tab=Widgets
