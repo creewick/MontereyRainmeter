@@ -1,9 +1,3 @@
-; Provides a widget base with a background shape
-;
-; Required variables:
-; #Theme# - Name of the theme
-; #WidgetSize# - Size of the widget
-
 [Rainmeter]
 DefaultUpdateDivider=-1
 RightMouseUpAction=[!SetVariable Context "Widget"][!SkinCustomMenu]
@@ -20,7 +14,8 @@ WidgetCenterX=(#WidgetPadding# + #WidgetWidth# / 2)
 WidgetCenterY=(#WidgetPadding# + #WidgetHeight# / 2)
 
 @Include=#@#Variables\Global.inc
-@Include2=#@#Scripts\Themes\#Theme#.inc
-@Include3=#@#Scripts\Sizes\#WidgetSize#.inc
-@Include4=#@#Scripts\Includes\Context.inc
-@Include5=#@#Scripts\Contexts\Widget.inc
+@Include2=#@#Languages\#Language#\Widget.inc
+@Include3=#@#Scripts\Themes\#Theme#.inc
+@Include4=#@#Scripts\Sizes\#WidgetSize#.inc
+@Include5=#@#Scripts\Includes\Context.inc
+@Include6=#@#Scripts\Contexts\Widget.inc
