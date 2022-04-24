@@ -1,31 +1,32 @@
 [Variables]
-ClockfaceSize = (#WidgetHeight# * (1 - 2 * #ClockfacePadding#))
-ClockhandWidth = (#WidgetHeight# * 0.025)
-HourHandHeight = (#WidgetHeight# * 0.17)
-MinuteHandHeight = (#WidgetHeight# * 0.34)
-SecondHandHeight = (#WidgetHeight# * 0.39)
+ClockfaceSize=(#WidgetHeight# * (1 - 2 * #ClockfacePadding#))
+ClockhandWidth=(#WidgetHeight# * 0.025)
+HourHandHeight=(#WidgetHeight# * 0.17)
+MinuteHandHeight=(#WidgetHeight# * 0.34)
+SecondHandHeight=(#WidgetHeight# * 0.39)
 SecondsAngle=0
 MinutesAngle=0
 HoursAngle=0
-Time=0
 
 [Time]
 Measure=Time
-UpdateDivider=1
-OnChangeAction=[!CommandMeasure TimeAnimation "Stop 1"][!SetVariable Time [#CURRENTSECTION#:]][!CommandMeasure TimeAnimation "Execute 1"]
-
-[TimeAnimation]
-Measure=Plugin
-Plugin=ActionTimer
-ActionList1=Repeat Tick, 100, 10
-ActionList2=Tick
-Tick=[!SetVariable SecondsAngle ((#Time#%60)*6)][!SetVariable MinutesAngle ((#Time#%3600)/10)][!SetVariable HoursAngle ((#Time#%43200)/120)][!UpdateMeterGroup Meters][!Redraw][!SetVariable Time (#Time#+0.1)]
-DynamicVariables=1
+TimeZone=#Timezone#
+AverageSize=(#BatterySaverMode# = 0 && #ShowSeconds# = 1 ? 10 : 1)
+UpdateDivider=(#BatterySaverMode# = 0 && #ShowSeconds# = 1 ? 1 : 10)
+OnUpdateAction=[!SetVariable SecondsAngle (([#CURRENTSECTION#:]%60)*6)][!SetVariable MinutesAngle (([#CURRENTSECTION#:]%3600)/10)][!SetVariable HoursAngle (([#CURRENTSECTION#:]%43200)/120)]
 
 [ClockCircleColor]
 Measure=String
-String=#IsDark#
-Substitute="0":"ffffffa0","1":"ffffff20"
+String=#DarkMode#
+Substitute="0":"ffffff80","1":"40404080"
+DynamicVariables=1
+
+[SetHandsColor]
+Measure=String
+String=#DarkMode#
+IfMatch=0
+IfMatchAction=[!SetVariable ForegroundColor "000000"]
+IfNotMatchAction[!SetVariable ForegroundColor "ffffff"]
 DynamicVariables=1
 
 [ClockCircle]
@@ -35,7 +36,7 @@ DynamicVariables=1
 
 [Clockface]
 Meter=Image
-ImageName=#@#Images\Clock\face-#IsDark#.png
+ImageName=#@#Images\Clock\face-#DarkMode#.png
 X=(#WidgetCenterX# - #ClockfaceSize# / 2)
 Y=(#WidgetCenterY# - #ClockfaceSize# / 2)
 W=#ClockfaceSize#
@@ -53,6 +54,7 @@ Meter=Shape
 Group=Meters
 Container=Container
 DynamicVariables=1
+UpdateDivider=(#BatterySaverMode# = 0 && #ShowSeconds# = 1 ? 1 : 10)
 
 [HourHand]
 Meter=Shape
