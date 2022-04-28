@@ -15,13 +15,14 @@ Formula=1+#BatterySaverMode#
 Measure=Plugin
 Plugin=UsageMonitor
 Alias=CPU
-UpdateDivider=1
-DynamicVariables=1
+UpdateDivider=10
+MinValue=0
+MaxValue=100
+OnChangeAction=[!UpdateMeasure CPURounded]
 
 [CPURounded]
 Measure=Calc
 Formula=Round(CPUMonitor,0)
-UpdateDivider=1
 MinValue=0
 MaxValue=100
 IfCondition=(CPUMonitor < #YellowStarts#)
@@ -44,8 +45,8 @@ Measure=Plugin
 Plugin=ActionTimer
 ActionList1=Repeat AddStep, 100, 10
 ActionList2=Update
-AddStep=[!SetVariable CPUValue ([#CPUValue]+([&CPURounded:]-[#CPUValue])/2)][!UpdateMeasure CPUMeasure][!UpdateMeterGroup Meters][!Redraw]
-Update=[!SetVariable CPUValue [&CPURounded:]][!UpdateMeasure CPUMeasure][!UpdateMeterGroup Meters][!Redraw]
+AddStep=[!SetVariable CPUValue ([#CPUValue]+([&CPURounded:]-[#CPUValue])/2)][!UpdateMeasure CPUMeasure]
+Update=[!SetVariable CPUValue [&CPURounded:]][!UpdateMeasure CPUMeasure]
 DynamicVariables=1
 
 [RAMMonitor]
@@ -53,13 +54,14 @@ Measure=Plugin
 Plugin=UsageMonitor
 Category=Memory
 Counter=% Committed Bytes In Use
-UpdateDivider=1
-DynamicVariables=1
+UpdateDivider=10
+MinValue=0
+MaxValue=100
+OnChangeAction=[!UpdateMeasure RAMRounded]
 
 [RAMRounded]
 Measure=Calc
 Formula=Round(RAMMonitor,0)
-UpdateDivider=1
 MinValue=0
 MaxValue=100
 IfCondition=(RAMMonitor < #YellowStarts#)
@@ -82,8 +84,8 @@ Measure=Plugin
 Plugin=ActionTimer
 ActionList1=Repeat AddStep, 100, 10
 ActionList2=Update
-AddStep=[!SetVariable RAMValue ([#RAMValue]+([&RAMRounded:]-[#RAMValue])/2)][!UpdateMeasure RAMMeasure][!UpdateMeterGroup Meters][!Redraw]
-Update=[!SetVariable RAMValue [&RAMRounded:]][!UpdateMeasure RAMMeasure][!UpdateMeterGroup Meters][!Redraw]
+AddStep=[!SetVariable RAMValue ([#RAMValue]+([&RAMRounded:]-[#RAMValue])/2)][!UpdateMeasure RAMMeasure]
+Update=[!SetVariable RAMValue [&RAMRounded:]][!UpdateMeasure RAMMeasure]
 DynamicVariables=1
 
 [DiskMonitor]
@@ -91,13 +93,14 @@ Measure=Plugin
 Plugin=UsageMonitor
 Category=LogicalDisk
 Counter=% Disk Time
-UpdateDivider=1
-DynamicVariables=1
+UpdateDivider=10
+MinValue=0
+MaxValue=100
+OnChangeAction=[!UpdateMeasure DiskRounded]
 
 [DiskRounded]
 Measure=Calc
 Formula=Round(DiskMonitor,0)
-UpdateDivider=1
 MinValue=0
 MaxValue=100
 IfCondition=(DiskMonitor < #YellowStarts#)
@@ -120,8 +123,8 @@ Measure=Plugin
 Plugin=ActionTimer
 ActionList1=Repeat AddStep, 100, 10
 ActionList2=Update
-AddStep=[!SetVariable DiskValue ([#DiskValue]+([&DiskRounded:]-[#DiskValue])/2)][!UpdateMeasure DiskMeasure][!UpdateMeterGroup Meters][!Redraw]
-Update=[!SetVariable DiskValue [&DiskRounded:]][!UpdateMeasure DiskMeasure][!UpdateMeterGroup Meters][!Redraw]
+AddStep=[!SetVariable DiskValue ([#DiskValue]+([&DiskRounded:]-[#DiskValue])/2)][!UpdateMeasure DiskMeasure]
+Update=[!SetVariable DiskValue [&DiskRounded:]][!UpdateMeasure DiskMeasure]
 DynamicVariables=1
 
 [NetBytes]
@@ -131,7 +134,9 @@ Category=Network Interface
 Counter=Bytes total/sec
 MinValue=0
 MaxValue=100
-UpdateDivider=1
+UpdateDivider=10
+OnChangeAction=[!UpdateMeasure NetRounded]
+
 
 [NetWidth]
 Measure=Plugin
@@ -140,14 +145,14 @@ Category=Network Interface
 Counter=Current bandwidth
 MinValue=0
 MaxValue=100
-UpdateDivider=1
+UpdateDivider=10
+OnChangeAction=[!UpdateMeasure NetRounded]
 
 [NetRounded]
 Measure=Calc
 Formula=Round(Clamp(NetBytes * 8 / NetWidth * 100, 0, 100),0)
 MinValue=0
 MaxValue=100
-UpdateDivider=1
 IfCondition=(NetMeasure < #YellowStarts#)
 IfTrueAction=[!SetVariable NetColor #GreenColor#]
 IfCondition2=(NetMeasure >= #YellowStarts#) && (NetMeasure < #RedStarts#)
@@ -168,6 +173,6 @@ Measure=Plugin
 Plugin=ActionTimer
 ActionList1=Repeat AddStep, 100, 10
 ActionList2=Update
-AddStep=[!SetVariable NetValue ([#NetValue]+([&NetRounded:]-[#NetValue])/2)][!UpdateMeasure NetMeasure][!UpdateMeterGroup Meters][!Redraw]
-Update=[!SetVariable NetValue [&NetRounded:]][!UpdateMeasure NetMeasure][!UpdateMeterGroup Meters][!Redraw]
+AddStep=[!SetVariable NetValue ([#NetValue]+([&NetRounded:]-[#NetValue])/2)][!UpdateMeasure NetMeasure]
+Update=[!SetVariable NetValue [&NetRounded:]][!UpdateMeasure NetMeasure]
 DynamicVariables=1
