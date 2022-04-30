@@ -15,7 +15,7 @@ Formula=1+#BatterySaverMode#
 Measure=Plugin
 Plugin=UsageMonitor
 Alias=CPU
-UpdateDivider=10
+UpdateDivider=(#BatterySaverMode# = 0 ? 10 : 20)
 MinValue=0
 MaxValue=100
 OnChangeAction=[!UpdateMeasure CPURounded]
@@ -54,7 +54,7 @@ Measure=Plugin
 Plugin=UsageMonitor
 Category=Memory
 Counter=% Committed Bytes In Use
-UpdateDivider=10
+UpdateDivider=(#BatterySaverMode# = 0 ? 10 : 20)
 MinValue=0
 MaxValue=100
 OnChangeAction=[!UpdateMeasure RAMRounded]
@@ -93,14 +93,14 @@ Measure=Plugin
 Plugin=UsageMonitor
 Category=LogicalDisk
 Counter=% Disk Time
-UpdateDivider=10
+UpdateDivider=(#BatterySaverMode# = 0 ? 10 : 20)
 MinValue=0
 MaxValue=100
 OnChangeAction=[!UpdateMeasure DiskRounded]
 
 [DiskRounded]
 Measure=Calc
-Formula=Round(DiskMonitor,0)
+Formula=Round(Clamp(DiskMonitor,0,100),0)
 MinValue=0
 MaxValue=100
 IfCondition=(DiskMonitor < #YellowStarts#)
@@ -134,9 +134,8 @@ Category=Network Interface
 Counter=Bytes total/sec
 MinValue=0
 MaxValue=100
-UpdateDivider=10
+UpdateDivider=(#BatterySaverMode# = 0 ? 10 : 20)
 OnChangeAction=[!UpdateMeasure NetRounded]
-
 
 [NetWidth]
 Measure=Plugin
@@ -145,7 +144,7 @@ Category=Network Interface
 Counter=Current bandwidth
 MinValue=0
 MaxValue=100
-UpdateDivider=10
+UpdateDivider=3600
 OnChangeAction=[!UpdateMeasure NetRounded]
 
 [NetRounded]

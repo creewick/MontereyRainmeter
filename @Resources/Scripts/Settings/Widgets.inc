@@ -21,7 +21,7 @@ Y=(45+20)
 [Widget1Title]
 Meter=String
 Text=#tClock#
-FontSize=12
+FontSize=11
 FontFace=#FontFace#
 FontColor=#ForegroundColor#
 FontWeight=400
@@ -64,7 +64,7 @@ OnChangeAction=[!UpdateMeter Widget1AddText][!Redraw]
 [Widget1AddText]
 Meter=String
 MeasureName=Widget1Opened
-FontSize=8
+FontSize=7
 FontFace=#FontFace#
 FontColor=#ForegroundColor#
 FontWeight=600
@@ -73,7 +73,7 @@ DynamicVariables=1
 StringAlign=Center
 StringCase=Upper
 X=(#SidebarWidth#+260)
-Y=(45+38)
+Y=(45+39)
 
 [Widget2Icon]
 Meter=Image
@@ -151,7 +151,7 @@ OnChangeAction=[!UpdateMeter Widget3AddText][!Redraw]
 Meter=String
 MeasureName=Widget3Opened
 MeterStyle=Widget1AddText
-Y=(45+118)
+Y=(45+119)
 
 [Widget4Icon]
 Meter=Image
@@ -195,7 +195,7 @@ Meter=String
 MeasureName=Widget4Opened
 MeterStyle=Widget1AddText
 X=(#SidebarWidth#+580)
-Y=(45+118)
+Y=(45+119)
 
 [Widget5Icon]
 Meter=Image
@@ -234,7 +234,7 @@ OnChangeAction=[!UpdateMeter Widget5AddText][!Redraw]
 Meter=String
 MeasureName=Widget5Opened
 MeterStyle=Widget1AddText
-Y=(45+198)
+Y=(45+199)
 
 [Widget6Icon]
 Meter=Image
@@ -278,7 +278,7 @@ Meter=String
 MeasureName=Widget6Opened
 MeterStyle=Widget1AddText
 X=(#SidebarWidth#+580)
-Y=(45+198)
+Y=(45+199)
 
 [Widget7Icon]
 Meter=Image
@@ -317,7 +317,7 @@ OnChangeAction=[!UpdateMeter Widget7AddText][!Redraw]
 Meter=String
 MeasureName=Widget7Opened
 MeterStyle=Widget1AddText
-Y=(45+278)
+Y=(45+279)
 
 [Widget8Icon]
 Meter=Image
@@ -361,7 +361,7 @@ Meter=String
 MeasureName=Widget8Opened
 MeterStyle=Widget1AddText
 X=(#SidebarWidth#+580)
-Y=(45+278)
+Y=(45+279)
 
 [Widget9Icon]
 Meter=Image
@@ -400,4 +400,4 @@ OnChangeAction=[!UpdateMeter Widget9AddText][!Redraw]
 Meter=String
 MeasureName=Widget9Opened
 MeterStyle=Widget1AddText
-Y=(45+358)
+Y=(45+359)

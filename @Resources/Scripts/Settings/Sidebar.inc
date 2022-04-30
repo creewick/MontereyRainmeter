@@ -37,56 +37,18 @@ MeterStyle=MenuItemIcon
 ImageName=#@#Images\Settings\Add.png
 Y=(17+35*1)
 
-[SettingsGroup]
+[Settings]
 Meter=String
 MeterStyle=MenuItem
 Text=#tSettings#
-FontSize=8
-FontWeight=800
-FontColor=#ForegroundColor#80
-StringCase=Upper
 Y=(10+35*2)
-Padding=16,16,16,8
+LeftMouseUpAction=[!WriteKeyValue Variables Tab "Settings" "#@#Variables\Settings.inc"][!Refresh]
 
-[Theme]
-Meter=String
-MeterStyle=MenuItem
-Text=#tTheme#
-Y=(10+35*3)
-LeftMouseUpAction=[!WriteKeyValue Variables Tab "Theme" "#@#Variables\Settings.inc"][!Refresh]
-
-[ThemeIcon]
+[SettingsIcon]
 Meter=Image
 MeterStyle=MenuItemIcon
-ImageName=#@#Images\Settings\Theme.png
-Y=(17+35*3)
-
-[Region]
-Meter=String
-MeterStyle=MenuItem
-Text=#tRegion#
-Y=(10+35*4)
-LeftMouseUpAction=[!WriteKeyValue Variables Tab "Region" "#@#Variables\Settings.inc"][!Refresh]
-
-[RegionIcon]
-Meter=Image
-MeterStyle=MenuItemIcon
-ImageName=#@#Images\Settings\Region.png
-Y=(17+35*4)
-
-[Advanced]
-Meter=String
-MeterStyle=MenuItem
-Text=#tAdvanced#
-Y=(10+35*5)
-LeftMouseUpAction=[!WriteKeyValue Variables Tab "Advanced" "#@#Variables\Settings.inc"][!Refresh]
-
-[AdvancedIcon]
-Meter=Image
-MeterStyle=MenuItemIcon
-ImageName=#@#Images\Settings\Advanced.png
-Y=(17+35*5)
-
+ImageName=#@#Images\Settings\Settings.png
+Y=(17+35*2)
 
 [About]
 Meter=String
