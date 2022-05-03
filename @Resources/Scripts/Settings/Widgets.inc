@@ -178,7 +178,7 @@ Y=(45+120)
 Meter=Shape
 MeterStyle=Widget1Add
 X=(#SidebarWidth#+540)
-LeftMouseUpAction=[!ToggleConfig "Monterey\Widgets\Weather" "Medium.ini"]
+LeftMouseUpAction=[!ToggleConfig "Monterey\Widgets\Weather" "#MonitorWidgetSize#.ini"]
 Y=(45+115)
 
 [Widget4Opened]
@@ -219,7 +219,7 @@ Y=(45+200)
 Meter=Shape
 MeterStyle=Widget1Add
 Y=(45+195)
-LeftMouseUpAction=[!ToggleConfig "Monterey\Widgets\Notes" "Medium.ini"]
+LeftMouseUpAction=[!ToggleConfig "Monterey\Widgets\Notes" "#MonitorWidgetSize#.ini"]
 
 [Widget5Opened]
 Measure=Plugin
@@ -261,7 +261,7 @@ Y=(45+200)
 Meter=Shape
 MeterStyle=Widget1Add
 X=(#SidebarWidth#+540)
-LeftMouseUpAction=[!ToggleConfig "Monterey\Widgets\Music" "Medium.ini"]
+LeftMouseUpAction=[!ToggleConfig "Monterey\Widgets\Music" "#MonitorWidgetSize#.ini"]
 Y=(45+195)
 
 [Widget6Opened]
@@ -302,7 +302,7 @@ Y=(45+280)
 Meter=Shape
 MeterStyle=Widget1Add
 Y=(45+275)
-LeftMouseUpAction=[!ToggleConfig "Monterey\Widgets\Reminders" "Medium.ini"]
+LeftMouseUpAction=[!ToggleConfig "Monterey\Widgets\Reminders" "#MonitorWidgetSize#.ini"]
 
 [Widget7Opened]
 Measure=Plugin
@@ -345,7 +345,7 @@ Meter=Shape
 MeterStyle=Widget1Add
 X=(#SidebarWidth#+540)
 Y=(45+275)
-LeftMouseUpAction=[!ToggleConfig "Monterey\Widgets\Volume" "Medium.ini"]
+LeftMouseUpAction=[!ToggleConfig "Monterey\Widgets\Volume" "#MonitorWidgetSize#.ini"]
 
 [Widget8Opened]
 Measure=Plugin
@@ -385,7 +385,7 @@ Y=(45+360)
 Meter=Shape
 MeterStyle=Widget1Add
 Y=(45+355)
-LeftMouseUpAction=[!ToggleConfig "Monterey\Widgets\Timer" "Medium.ini"]
+LeftMouseUpAction=[!ToggleConfig "Monterey\Widgets\Timer" "#MonitorWidgetSize#.ini"]
 
 [Widget9Opened]
 Measure=Plugin

@@ -76,7 +76,7 @@ Y=370
 [Value3]
 Meter=String
 MeterStyle=ThemeLabel
-Text=#WidgetRadius#
+Text=#RadiusBase#
 FontSize=10
 Padding=2,2,2,2
 StringAlign=Center
@@ -89,7 +89,7 @@ LeftMouseUpAction=[!CommandMeasure "Input3" "ExecuteBatch ALL"]
 [Input3]
 Measure=Plugin
 Plugin=InputText
-DefaultValue=#WidgetRadius#
+DefaultValue=#RadiusBase#
 FontFace=#FontFace#
 FontSize=10
 FontColor=#ForegroundColor#
@@ -99,7 +99,7 @@ X=(#SidebarWidth#+190-40)
 W=80
 StringAlign=Center
 DynamicVariables=1
-Command1=[!WriteKeyValue Variables WidgetRadius "$UserInput$" "#@#Variables\Global.inc"][!RefreshGroup Monterey]
+Command1=[!WriteKeyValue Variables RadiusBase "$UserInput$" "#@#Variables\Global.inc"][!RefreshGroup Monterey]
 
 [Label4]
 Meter=String

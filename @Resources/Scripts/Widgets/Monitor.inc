@@ -11,6 +11,24 @@ NetValue=0
 Measure=Calc
 Formula=1+#BatterySaverMode#
 
+[NoneMeasure]
+Measure=Calc
+Formula=0
+
+[BatteryMeasure]
+Measure=Plugin
+Plugin=PowerPlugin
+PowerState=Percent
+UpdateDivider=(60 * 5)
+MinValue=0
+MaxValue=100
+IfCondition=((100 - BatteryMeasure) < #YellowStarts#)
+IfTrueAction=[!SetVariable BatteryColor #GreenColor#]
+IfCondition2=((100 - BatteryMeasure) >= #YellowStarts#) && ((100 - BatteryMeasure) < #RedStarts#)
+IfTrueAction2=[!SetVariable BatteryColor #YellowColor#]
+IfCondition3=((100 - BatteryMeasure) >= #RedStarts#)
+IfTrueAction3=[!SetVariable BatteryColor #RedColor#]
+
 [CPUMonitor]
 Measure=Plugin
 Plugin=UsageMonitor
