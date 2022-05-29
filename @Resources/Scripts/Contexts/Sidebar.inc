@@ -1,0 +1,2 @@
+[Variables]
+SidebarContextTitle=Toggle Sidebar

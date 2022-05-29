@@ -34,21 +34,21 @@ Meter=Image
 MeterStyle=Light
 ImageName=#@#Images\Settings\auto.png
 X=(#SidebarWidth#+310)
-LeftMouseUpAction=[!WriteKeyValue Variables Theme "Auto" "#@#Variables\Global.inc"][!ActivateConfig "Monterey\Widgets\etc\Processes" "Processes.ini"][!RefreshGroup Monterey]
+LeftMouseUpAction=[!WriteKeyValue Variables Theme "Auto" "#@#Variables\Global.inc"][!ActivateConfig "Monterey\Extras\Processes" "Processes.ini"][!RefreshGroup Monterey]
 
 [Color]
 Meter=Image
 MeterStyle=Light
 ImageName=#@#Images\Settings\color.png
 X=(#SidebarWidth#+390)
-LeftMouseUpAction=[!WriteKeyValue Variables Theme "Color" "#@#Variables\Global.inc"][!ActivateConfig "Monterey\Widgets\etc\Processes" "Processes.ini"][!RefreshGroup Monterey]
+LeftMouseUpAction=[!WriteKeyValue Variables Theme "Color" "#@#Variables\Global.inc"][!ActivateConfig "Monterey\Extras\Processes" "Processes.ini"][!RefreshGroup Monterey]
 
 [Blur]
 Meter=Image
 MeterStyle=Light
 ImageName=#@#Images\Settings\blur.png
 X=(#SidebarWidth#+470)
-LeftMouseUpAction=[!WriteKeyValue Variables Theme "Blur" "#@#Variables\Global.inc"][!ActivateConfig "Monterey\Widgets\etc\Processes" "Processes.ini"][!RefreshGroup Monterey]
+LeftMouseUpAction=[!WriteKeyValue Variables Theme "Blur" "#@#Variables\Global.inc"][!ActivateConfig "Monterey\Extras\Processes" "Processes.ini"][!RefreshGroup Monterey]
 
 [Border]
 Meter=Shape

@@ -1,2 +1,2 @@
 [Variables]
-Tab=Settings
+Tab=Widgets
