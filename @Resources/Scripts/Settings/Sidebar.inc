@@ -37,18 +37,31 @@ MeterStyle=MenuItemIcon
 ImageName=#@#Images\Settings\Add.png
 Y=(17+35*1)
 
+[Extras]
+Meter=String
+MeterStyle=MenuItem
+Text=#tExtras#
+Y=(10+35*2)
+LeftMouseUpAction=[!WriteKeyValue Variables Tab "Extras" "#@#Variables\Settings.inc"][!Refresh]
+
+[ExtrasIcon]
+Meter=Image
+MeterStyle=MenuItemIcon
+ImageName=#@#Images\Settings\Extras.png
+Y=(17+35*2)
+
 [Settings]
 Meter=String
 MeterStyle=MenuItem
 Text=#tSettings#
-Y=(10+35*2)
+Y=(10+35*3)
 LeftMouseUpAction=[!WriteKeyValue Variables Tab "Settings" "#@#Variables\Settings.inc"][!Refresh]
 
 [SettingsIcon]
 Meter=Image
 MeterStyle=MenuItemIcon
 ImageName=#@#Images\Settings\Settings.png
-Y=(17+35*2)
+Y=(17+35*3)
 
 [About]
 Meter=String
