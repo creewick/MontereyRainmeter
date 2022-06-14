@@ -1,14 +1,20 @@
+[ThemeSelector]
+Meter=Shape
+Shape=Rectangle 20,20,(#WidgetWidth# - #SidebarWidth# - 40),115,6 | Fill Color #ForegroundColor#05 | StrokeWidth 0
+X=#SidebarWidth#
+Y=55
+DynamicVariables=1
+
 [ThemeLabel]
 Meter=String
-Text=#tTheme#:
+Text=#tTheme#
 FontFace=#FontFace#
-FontWeight=200
+FontWeight=400
 FontColor=#ForegroundColor#
-FontSize=10
+FontSize=11
 AntiAlias=1
-StringAlign=Right
-X=(#SidebarWidth#+140)
-Y=(95)
+X=(#SidebarWidth#+30)
+Y=(85)
 DynamicVariables=1
 OnUpdateAction=[!SetOption "#Theme#Border" Hidden 0][!SetOption "#Theme#Label" FontWeight 600]
 ClipString=2
@@ -17,8 +23,8 @@ W=120
 [Light]
 Meter=Image
 ImageName=#@#Images\Settings\light.png
-X=(#SidebarWidth#+150)
-Y=(70)
+X=(#SidebarWidth#+30)
+Y=(120)
 W=60
 LeftMouseUpAction=[!WriteKeyValue Variables Theme "Light" "#@#Variables\Global.inc"][!RefreshGroup Monterey]
 
@@ -26,36 +32,36 @@ LeftMouseUpAction=[!WriteKeyValue Variables Theme "Light" "#@#Variables\Global.i
 Meter=Image
 MeterStyle=Light
 ImageName=#@#Images\Settings\dark.png
-X=(#SidebarWidth#+230)
+X=(#SidebarWidth#+100)
 LeftMouseUpAction=[!WriteKeyValue Variables Theme "Dark" "#@#Variables\Global.inc"][!RefreshGroup Monterey]
 
 [Auto]
 Meter=Image
 MeterStyle=Light
 ImageName=#@#Images\Settings\auto.png
-X=(#SidebarWidth#+310)
-LeftMouseUpAction=[!WriteKeyValue Variables Theme "Auto" "#@#Variables\Global.inc"][!ActivateConfig "Monterey\Extras\Processes" "Processes.ini"][!RefreshGroup Monterey]
+X=(#SidebarWidth#+170)
+LeftMouseUpAction=[!WriteKeyValue Variables Theme "Auto" "#@#Variables\Global.inc"][!ActivateConfig "Monterey\Extras\ThemeUpdater" "ThemeUpdater.ini"][!RefreshGroup Monterey]
 
 [Color]
 Meter=Image
 MeterStyle=Light
 ImageName=#@#Images\Settings\color.png
-X=(#SidebarWidth#+390)
-LeftMouseUpAction=[!WriteKeyValue Variables Theme "Color" "#@#Variables\Global.inc"][!ActivateConfig "Monterey\Extras\Processes" "Processes.ini"][!RefreshGroup Monterey]
+X=(#SidebarWidth#+240)
+LeftMouseUpAction=[!WriteKeyValue Variables Theme "Color" "#@#Variables\Global.inc"][!ActivateConfig "Monterey\Extras\ThemeUpdater" "ThemeUpdater.ini"][!RefreshGroup Monterey]
 
 [Blur]
 Meter=Image
 MeterStyle=Light
 ImageName=#@#Images\Settings\blur.png
-X=(#SidebarWidth#+470)
-LeftMouseUpAction=[!WriteKeyValue Variables Theme "Blur" "#@#Variables\Global.inc"][!ActivateConfig "Monterey\Extras\Processes" "Processes.ini"][!RefreshGroup Monterey]
+X=(#SidebarWidth#+310)
+LeftMouseUpAction=[!WriteKeyValue Variables Theme "Blur" "#@#Variables\Global.inc"][!ActivateConfig "Monterey\Extras\ThemeUpdater" "ThemeUpdater.ini"][!RefreshGroup Monterey]
 
 [Border]
 Meter=Shape
 Shape=Rectangle 0,0,60,40,5 | Fill Color 00000000 | StrokeWidth 1.5 | Stroke Color #ForegroundColor#
 DynamicVariables=1
-X=(#SidebarWidth#+150)
-Y=(70)
+X=(#SidebarWidth#+30)
+Y=(120)
 Hidden=1
 
 [LightBorder]
@@ -65,32 +71,33 @@ MeterStyle=Border
 [DarkBorder]
 Meter=Shape
 MeterStyle=Border
-X=(#SidebarWidth#+230)
+X=(#SidebarWidth#+100)
 
 [AutoBorder]
 Meter=Shape
 MeterStyle=Border
-X=(#SidebarWidth#+310)
+X=(#SidebarWidth#+170)
 
 [ColorBorder]
 Meter=Shape
 MeterStyle=Border
-X=(#SidebarWidth#+390)
+X=(#SidebarWidth#+240)
 
 [BlurBorder]
 Meter=Shape
 MeterStyle=Border
-X=(#SidebarWidth#+470)
+X=(#SidebarWidth#+310)
 
 [Label]
 Meter=String
+FontWeight=400
 FontFace=#FontFace#
 FontColor=#ForegroundColor#
 FontSize=10
 AntiAlias=1
 StringAlign=Center
-X=(#SidebarWidth#+180)
-Y=(120)
+X=(#SidebarWidth#+60)
+Y=(165)
 W=(60)
 DynamicVariables=1
 
@@ -103,26 +110,22 @@ Text=#tLightTheme#
 Meter=String
 MeterStyle=Label
 Text=#tDarkTheme#
-X=(#SidebarWidth#+260)
+X=(#SidebarWidth#+130)
 
 [AutoLabel]
 Meter=String
 MeterStyle=Label
 Text=#tAutoTheme#
-X=(#SidebarWidth#+340)
+X=(#SidebarWidth#+200)
 
 [ColorLabel]
 Meter=String
 MeterStyle=Label
 Text=#tColorTheme#
-X=(#SidebarWidth#+420)
+X=(#SidebarWidth#+270)
 
 [BlurLabel]
 Meter=String
 MeterStyle=Label
 Text=#tBlurTheme#
-X=(#SidebarWidth#+500)
-
-[Line2]
-Meter=Shape
-Shape=Rectangle (#SidebarWidth# + 20),(155),(#WidgetWidth#-#SidebarWidth#-40),0 | StrokeWidth 0.5 | Stroke Color 808080
+X=(#SidebarWidth#+340)
