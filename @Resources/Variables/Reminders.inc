@@ -1,6 +1,8 @@
 [Variables]
-ListName=Напоминания
-Item1=Первое
-Item2=Второе
-Item3=Третье
-Item4=Четвертое
+ListName=asdsad
+Item1=3
+Item2=1
+Item3=2
+Item4=4
+Item5=5
+Item6=

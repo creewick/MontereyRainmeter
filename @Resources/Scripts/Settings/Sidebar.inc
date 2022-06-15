@@ -139,7 +139,7 @@ Y=(25+30*8.5)
 [SupportText]
 Meter=String
 MeterStyle=WidgetsText
-LeftMouseUpAction=[]
+LeftMouseUpAction=["https://forms.gle/ZtCrtG44SFG8eaQKA"]
 Text=#tSupport#
 Y=(25+30*8.5)
 

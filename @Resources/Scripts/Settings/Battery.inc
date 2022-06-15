@@ -54,14 +54,22 @@ X=(#SidebarWidth#+30)
 Y=(125)
 DynamicVariables=1
 
+[BatteryAutoOpened]
+Measure=Plugin
+Plugin=ConfigActive
+ConfigName=Monterey\Extras\AutoLowPowerMode
+UpdateDivider=1
+OnChangeAction=[!Refresh]
+
 [BatteryAutoFalse]
 Meter=Shape
 Shape=Rectangle 0,0,38,24,12 | Fill Color 808080 | StrokeWidth 0
 Shape2=Rectangle 2,2,20,20,10 | Fill Color ffffff | StrokeWidth 0
 Y=(123)
 X=(#WidgetWidth# - 30 - 40)
-Hidden=(#BatterySaverMode# = 1)
-LeftMouseUpAction=[!WriteKeyValue Variables BatterySaverMode 1 "#@#Variables\Global.inc"][!RefreshGroup Monterey]
+Hidden=([&BatteryAutoOpened:] <> -1)
+DynamicVariables=1
+LeftMouseUpAction=[!ToggleConfig "Monterey\Extras\AutoLowPowerMode" "AutoLowPowerMode.ini"]
 
 [BatteryAutoTrue]
 Meter=Shape
@@ -69,8 +77,9 @@ Shape=Rectangle 0,0,38,24,12 | Fill Color 33cc66 | StrokeWidth 0
 Shape2=Rectangle 16,2,20,20,10 | Fill Color ffffff | StrokeWidth 0
 Y=(123)
 X=(#WidgetWidth# - 30 - 40)
-Hidden=(#BatterySaverMode# = 0)
-LeftMouseUpAction=[!WriteKeyValue Variables BatterySaverMode 0 "#@#Variables\Global.inc"][!RefreshGroup Monterey]
+Hidden=([&BatteryAutoOpened:] <> 1)
+DynamicVariables=1
+LeftMouseUpAction=[!ToggleConfig "Monterey\Extras\AutoLowPowerMode" "AutoLowPowerMode.ini"]
 
 [BatteryHelp]
 Meter=String
