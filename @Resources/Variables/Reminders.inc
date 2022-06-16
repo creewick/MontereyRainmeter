@@ -1,5 +1,5 @@
 [Variables]
-ListName=asdsad
+ListName=Reminders
 Item1=3
 Item2=1
 Item3=2

@@ -1,3 +1,3 @@
-cd %USERPROFILE%\Documents\Rainmeter\Skins\Monterey\@Resources\Scripts\Extras\Unlock
+cd %1
 schtasks /Create /TN "RainmeterUnlockPCAnimation" /XML "task.xml"
 pause
