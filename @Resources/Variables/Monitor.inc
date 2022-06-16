@@ -10,3 +10,5 @@ RedColor=eb5546
 
 YellowStarts=75
 RedStarts=90
+Meter5=Battery
+Meter6=None
