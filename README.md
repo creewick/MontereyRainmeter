@@ -92,7 +92,7 @@ Widgets appears in one of 4 predefined themes
 * ⬛ Dark
 * 🔲 Auto
 * 🟪 Color
-* 💎 Blur
+* 💎 Blur (Windows 11 only)
 
 ### Languages
 
