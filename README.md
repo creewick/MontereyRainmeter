@@ -29,49 +29,23 @@
 
 We have 9 widgets available
 
-* 🕒 **Clock**
-
-  Shows current time of any timezone, with or without seconds
-  
-* 🗓️ **Calendar**
-
-  Shows current month view, with Monday or Sunday as first day of week
-  
-* 🎵 **Music**
-
-  Allows you to control music player<br/>
-  Supported players: WMP, AIMP, CAD, iTunes, Spotify, YouTube, Winamp
-
-* ☀️ **Weather**
-
-  Shows hourly and daily forecast.<br/>
-  You can change the forecast by entering your city name
-
-* 📊 **Monitoring**
-
-  Shows current CPU, RAM, Disk, Network and Battery levels
-
-* 🎚️ **Volume**
-
-  Allows you to control system volume, volume per app, mute apps and switch output devices
-
-* 📝 **Notes**
-
-  Gives you a quick access to your most important text information
-  
-* ✅ **Reminders**
-
-  A basic to-do list with counter
-  
-* ⌛ **Timer**
-
-  A basic countdown with an alarm sound
+|Icon|Widget|Description|
+|-|-|-|
+|<img src="@Resources/Images/Icons/Clock.png" />|**Clock**|Shows current time of any timezone, with or without seconds|
+|<img src="@Resources/Images/Icons/Calendar.png" />|**Calendar**|Shows current month view, with Monday or Sunday as first day of week|
+|<img src="@Resources/Images/Icons/Music.png" />|**Music**|Allows you to control music player<br/>Supported players: WMP, AIMP, CAD, iTunes, Spotify, YouTube, Winamp|
+|<img src="@Resources/Images/Icons/Weather.png" />|**Weather**|Shows hourly and daily forecast.<br/>You can change the forecast by entering your city name|
+|<img src="@Resources/Images/Icons/Monitor.png" />|**Monitor**|Shows current CPU, RAM, Disk, Network and Battery levels|
+|<img src="@Resources/Images/Icons/Volume.png" />|**Volume**|Allows you to control system volume, volume per app, mute apps and switch output devices|
+|<img src="@Resources/Images/Icons/Notes.png" />|**Notes**|Gives you a quick access to your most important text information|
+|<img src="@Resources/Images/Icons/Reminders.png" />|**Reminders**|A basic to-do list with counter|
+|<img src="@Resources/Images/Icons/Timer.png" />|**Timer**|A basic countdown with an alarm sound|
   
 <img src="@Resources/Images/Banners/sizes.png" width="500px" align="right" />
 
 ### Sizes
 
-Each of them comes in 4 sizes, you can switch between them in the context menu
+Each widget comes in 4 sizes, you can switch between them in the context menu
 
 * 1️⃣ Small
 * 2️⃣ Medium
@@ -80,19 +54,11 @@ Each of them comes in 4 sizes, you can switch between them in the context menu
 
 ### Themes
 
-Widgets appears in one of 4 predefined themes
+Widgets appears in one of 5 predefined themes
 
-<img src="@Resources/Images/Settings/blur.png" align="right" />
-<img src="@Resources/Images/Settings/color.png" align="right" />
-<img src="@Resources/Images/Settings/auto.png" align="right" />
-<img src="@Resources/Images/Settings/dark.png" align="right" />
-<img src="@Resources/Images/Settings/light.png" align="right" />
-
-* ⬜ Light
-* ⬛ Dark
-* 🔲 Auto
-* 🟪 Color
-* 💎 Blur (Windows 11 only)
+|Light|Dark|Auto|Color|Blur|
+|-|-|-|-|-|
+|<img src="@Resources/Images/Settings/light.png" />|<img src="@Resources/Images/Settings/dark.png" />|<img src="@Resources/Images/Settings/auto.png" />|<img src="@Resources/Images/Settings/color.png" />|<img src="@Resources/Images/Settings/blur.png" />|
 
 ### Languages
 
