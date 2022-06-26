@@ -47,43 +47,51 @@ We have 9 widgets available
 
 Each widget comes in 4 sizes, you can switch between them in the context menu
 
-* 1️⃣ Small
-* 2️⃣ Medium
-* 3️⃣ Wide
-* 4️⃣ Large
+|Name|Size|
+|-|-|
+|Small|1x1|
+|Medium|2x2|
+|Wide|4x2|
+|Large|4x4|
 
 ### Themes
 
 Widgets appears in one of 5 predefined themes
 
-|Light|Dark|Auto|Color|Blur|
+|Light|Dark|Auto|Color|Blur *|
 |-|-|-|-|-|
 |<img src="@Resources/Images/Settings/light.png" />|<img src="@Resources/Images/Settings/dark.png" />|<img src="@Resources/Images/Settings/auto.png" />|<img src="@Resources/Images/Settings/color.png" />|<img src="@Resources/Images/Settings/blur.png" />|
 
+_* Currently works well only on Windows 11_
 ### Languages
 
 So far we support 4 languages
 
-* Russian
-* Ukrainian
-* English
-* German
+| |Language|
+|-|-|
+|<img src="https://github.com/yammadev/flag-icons/blob/master/png/RU@2x.png?raw=true" width="20px" />| Russian |
+|<img src="https://github.com/yammadev/flag-icons/blob/master/png/UA@2x.png?raw=true" width="20px" />| Ukrainian |
+|<img src="https://github.com/yammadev/flag-icons/blob/master/png/US@2x.png?raw=true" width="20px" />| English |
+|<img src="https://github.com/yammadev/flag-icons/blob/master/png/DE@2x.png?raw=true" width="20px" />| German |
 
 ## Special thanks
 
-* fediaFedia - Big Sur for Rainmeter
-* Socks the Fox - Chameleon plugin
-* i2002 - MediaPlayer plugin
-* khanhas - AppVolume plugin
-* jsmorley - ConfigActive plugin
-* fawy - English, Ukrainian translations
-* Active Color - helped with pesisting settings
-* ikarus1969 - German translation
-* Tetrify - Unlock animation idea
+| User | Credit |
+|-|-|
+| [fediaFedia](https://github.com/fediaFedia) | [Big Sur for Rainmeter](https://www.deviantart.com/fediafedia/art/Big-Sur-RC1-for-Rainmeter-846882462) |
+| [socks-the-fox](https://github.com/socks-the-fox) | [Chameleon plugin](https://github.com/socks-the-fox/Chameleon) |
+| [i2002](https://github.com/i2002) | [MediaPlayer plugin](https://github.com/i2002/RainmeterMediaPlayer) |
+| [khanhas](https://github.com/khanhas) | [AppVolume plugin](https://github.com/khanhas/AppVolumePlugin) |
+| [jsmorley](https://github.com/jsmorley) | [ConfigActive plugin](https://github.com/jsmorley/ConfigActive) |
+| [fawyWolf](https://github.com/FawyWolf) | English, Ukrainian translations |
+| [ikarus1969](https://github.com/ikarus1969) | German translation |
+| [ActiveColor](https://deviantart.com/activecolors) | helped with persisting settings, code review |
+| [kalukal](https://www.deviantart.com/kalukal) | Unlock animation idea |
 
-## You may also want to
-* Center your taskbar buttons with [TaskbarX](https://chrisandriessen.nl/taskbarx)
-* Install MacOS-like menu bar - [Droptop Four](https://github.com/Droptop-Four)
-* Round your screen corners - [Rounded corners](https://forum.rainmeter.net/viewtopic.php?t=25780#p201917)
+## Works good with
+* [Centered taskbar icons - TaskbarX](https://chrisandriessen.nl/taskbarx)
+* [MacOS menu bar - Droptop Four](https://github.com/Droptop-Four)
+* [Rounded screen corners](https://forum.rainmeter.net/viewtopic.php?t=25780#p201917)
+* [MacOS dock and menu bar - MyDockFinder](https://store.steampowered.com/app/1787090/MyDockFinder)
 
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Лицензия Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>
