@@ -12,14 +12,12 @@
 2. Get our [latest release](https://github.com/creewick/MontereyRainmeter/releases)
 3. Run `Monterey.rmskin`
 
-## Documentation
+## Wiki
 
-<div align="center">
+### [User guide](https://github.com/creewick/MontereyRainmeter/wiki/User-guide)
+### [Performance Index](https://github.com/creewick/MontereyRainmeter/wiki/Performance-Index)
+### [Documentation](https://github.com/creewick/MontereyRainmeter/wiki/Documentation)
   
-|[User guide](https://github.com/creewick/MontereyRainmeter/wiki/User-guide)|[Send feedback](https://forms.gle/ZtCrtG44SFG8eaQKA)|[Performance Index](https://github.com/creewick/MontereyRainmeter/wiki/Performance-Index)|
-|-|-|-|
-  
-</div>
 
 ## What will you get
 
