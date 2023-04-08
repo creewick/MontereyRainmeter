@@ -18,6 +18,7 @@ public class AppearanceSettings
     public bool SystemTheme { get; set; }
     public bool Transparency { get; set; }
     public string AccentColor { get; set; }
+    public bool SystemAccentColor { get; set; }
     public bool GridSnap { get; set; }
     public int WidgetSize { get; set; }
     public int WidgetPadding { get; set; }

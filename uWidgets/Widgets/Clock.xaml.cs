@@ -6,14 +6,13 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Threading;
 using uWidgets.Models;
-using uWidgets.Themes;
 
 namespace uWidgets.Widgets;
 
 public partial class Clock : Widget
 {
-    public Clock(WidgetLayout layout, Settings settings, ITheme theme, Locale locale) 
-        : base(layout, settings, theme, locale)
+    public Clock(WidgetLayout layout, Settings settings, Locale locale) 
+        : base(layout, settings, locale)
     {
         InitializeComponent();
         
@@ -39,9 +38,7 @@ public partial class Clock : Widget
             
             DataContext = new ClockViewModel
             {
-                ForegroundColor = theme.GetForegroundColor().ToString(),
                 SecondHandThickness = Math.Min(Width, Height) > 100 ? 7 : 12,
-                AccentColor = theme.GetAccentColor().ToString(),
                 AnalogPadding = Math.Min(Width, Height) * 0.07,
                 DigitalPadding = Math.Min(Width, Height) * 0.15,
             };
@@ -64,7 +61,7 @@ public partial class Clock : Widget
         {
             var hours = clockSettings.ShowAMPM ? "hh" : "HH";
             var seconds = clockSettings.ShowSeconds ? ":ss" : "";
-            var ampm = clockSettings.ShowAMPM ? " a" : "";
+            var ampm = clockSettings.ShowAMPM ? " tt" : "";
             
             Time.Text = now.ToString($"{hours}:mm{seconds}{ampm}");
             Date.Text = now.ToString("dddd, d MMMM", new CultureInfo(settings.Region.Language));

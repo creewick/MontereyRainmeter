@@ -1,5 +1,4 @@
 using System;
-using System.Drawing;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
@@ -8,16 +7,16 @@ using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Effects;
 using uWidgets.Models;
-using uWidgets.Themes;
 using Wpf.Ui.Appearance;
 using Wpf.Ui.Common;
+using Application = System.Windows.Application;
 
 namespace uWidgets.Widgets;
 
 public abstract class Widget : Window
 {
 
-    protected Widget(WidgetLayout layout, Settings settings, ITheme theme, Locale locale)
+    protected Widget(WidgetLayout layout, Settings settings, Locale locale)
     {
         MinWidth = settings.WidgetSize;
         MinHeight = settings.WidgetSize;
@@ -31,7 +30,7 @@ public abstract class Widget : Window
         Background = new SolidColorBrush(Colors.Transparent);
         ContextMenu = GetContextMenu(settings, locale);
         MouseLeftButtonDown += (_, e) => DragWidget(e, settings);
-        SourceInitialized += (_, _) => DrawBackground(theme, settings);
+        SourceInitialized += (_, _) => DrawBackground(settings);
         SourceInitialized += (_, _) => DisableSnapping();
     }
 
@@ -84,15 +83,13 @@ public abstract class Widget : Window
         return IntPtr.Zero;
     }
     
-    private void DrawBackground(ITheme theme, Settings settings)
+    private void DrawBackground(Settings settings)
     {
-        Background = new SolidColorBrush(Colors.Transparent);
-        
-        if (settings.Appearance.Transparency) ApplyTransparency(theme, settings);
+        if (settings.Appearance.Transparency) ApplyTransparency(settings);
 
         var border = new Border
         {
-            Background = new SolidColorBrush(theme.GetBackgroundColor()),
+            Background = new SolidColorBrush((Color)Application.Current.Resources["ApplicationBackgroundColor"]),
             CornerRadius = new CornerRadius(settings.Appearance.WidgetRadius)
         };
         
@@ -101,7 +98,7 @@ public abstract class Widget : Window
         border.Child = content;
     }
 
-    private void ApplyTransparency(ITheme theme, Settings settings)
+    private void ApplyTransparency(Settings settings)
     {
         var corners = settings.WidgetRadius switch
         {
@@ -110,7 +107,6 @@ public abstract class Widget : Window
             _ => WindowCornerPreference.Round
         };
 
-        Theme.Apply(theme.GetThemeType());
         Wpf.Ui.Extensions.WindowExtensions.ApplyCorners(this, corners);
         Wpf.Ui.Appearance.Background.Apply(this, BackgroundType.Acrylic);
     }

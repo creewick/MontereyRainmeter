@@ -4,22 +4,21 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using uWidgets.Models;
-using uWidgets.Themes;
 using uWidgets.Utilities;
 
 namespace uWidgets.Widgets;
 
 public partial class Calendar : Widget
 {
-    public Calendar(WidgetLayout layout, Settings settings, ITheme theme, Locale locale) 
-        : base(layout, settings, theme, locale)
+    public Calendar(WidgetLayout layout, Settings settings, Locale locale) 
+        : base(layout, settings,locale)
     {
         InitializeComponent();
-        FillMonthCalendar(settings, theme);
+        FillMonthCalendar(settings);
         Show();
     }
 
-    private void FillMonthCalendar(Settings settings, ITheme theme)
+    private void FillMonthCalendar(Settings settings)
     {
         
         var now = DateTime.Now.Date;
@@ -29,7 +28,6 @@ public partial class Calendar : Widget
 
         MonthCalendar.RowDefinitions.Add(new RowDefinition());
         MonthName.Text = now.ToString("MMMM", new CultureInfo(settings.Region.Language)).ToUpper();
-        MonthName.Foreground = new SolidColorBrush(theme.GetAccentColor());
         
         MonthCalendar.RowDefinitions.Add(new RowDefinition());
 
@@ -41,7 +39,6 @@ public partial class Calendar : Widget
                 {
                     Text = weekDay.ToString(),
                     FontFamily = font,
-                    Foreground = new SolidColorBrush(theme.GetForegroundColor()),
                     Opacity = weekDay < 5 ? 1 : 0.5
                 }
             }, weekDay, 1);
@@ -63,7 +60,6 @@ public partial class Calendar : Widget
                 {
                     Text = day.ToString(),
                     FontFamily = font,
-                    Foreground = new SolidColorBrush(theme.GetForegroundColor()),
                     Opacity = column < 5 ? 1 : 0.5,
                 }
             }, column, row);

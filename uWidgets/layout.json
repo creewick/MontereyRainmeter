@@ -6,7 +6,8 @@
     "Columns": 2,
     "Rows": 2,
     "Settings": {
-      "Analog": true
+      "Analog": true,
+      "ShowSeconds": true
     }
   },
   {
@@ -16,7 +17,9 @@
     "Columns": 4,
     "Rows": 2,
     "Settings": {
-      "Analog": false
+      "Analog": false,
+      "ShowAMPM": true,
+      "ShowSeconds": true
     }
   },
   {
