@@ -13,6 +13,10 @@
       "Name": "Deutsch"
     },
     {
+      "Code": "es",
+      "Name": "Español"
+    },
+    {
       "Code": "ua",
       "Name": "Український"
     },
@@ -23,6 +27,10 @@
     {
       "Code": "vi",
       "Name": "Tiếng Việt"
+    },
+    {
+      "Code": "ko",
+      "Name": "한국어"
     }
   ],
   "Locale": {
@@ -81,10 +89,30 @@
       "Size": "Kích thước",
       "Small": "Nhỏ",
       "Medium": "Trung bình",
-      "Wide": "Rộng",
-      "Large": "Lớn",
+      "Wide": "Độ Rộng",
+      "Large": "Độ Lớn",
       "RemoveWidget": "Xóa tiện ích",
       "EditWidgets": "Chỉnh sửa tiện ích"
+    },
+    "es": {
+      "Edit": "Editar",
+      "Size": "Tamaño",
+      "Small": "Pequeño",
+      "Medium": "Mediano",
+      "Wide": "Ancho",
+      "Large": "Grande",
+      "RemoveWidget": "Eliminar widget",
+      "EditWidgets": "Editar widgets"
+    },
+    "ko": {
+      "Edit": "편집",
+      "Size": "크기",
+      "Small": "작은",
+      "Medium": "중간",
+      "Wide": "넓은",
+      "Large": "큰",
+      "RemoveWidget": "위젯 제거",
+      "EditWidgets": "위젯 편집"
     }
   }
 }

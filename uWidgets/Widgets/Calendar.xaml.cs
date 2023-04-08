@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -14,11 +15,11 @@ public partial class Calendar : Widget
         : base(layout, settings, theme, locale)
     {
         InitializeComponent();
-        FillMonthCalendar(theme);
+        FillMonthCalendar(settings, theme);
         Show();
     }
 
-    private void FillMonthCalendar(ITheme theme)
+    private void FillMonthCalendar(Settings settings, ITheme theme)
     {
         
         var now = DateTime.Now.Date;
@@ -27,7 +28,7 @@ public partial class Calendar : Widget
         var row = 1;
 
         MonthCalendar.RowDefinitions.Add(new RowDefinition());
-        MonthName.Text = now.ToString("MMMM").ToUpper();
+        MonthName.Text = now.ToString("MMMM", new CultureInfo(settings.Region.Language)).ToUpper();
         MonthName.Foreground = new SolidColorBrush(theme.GetAccentColor());
         
         MonthCalendar.RowDefinitions.Add(new RowDefinition());

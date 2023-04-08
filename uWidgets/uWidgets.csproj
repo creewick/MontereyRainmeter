@@ -15,9 +15,6 @@
       <None Update="layout.json">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
-      <None Update="Widgets\ClockLocale.json">
-        <DependentUpon>Clock.xaml</DependentUpon>
-      </None>
       <None Update="locale.json">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>

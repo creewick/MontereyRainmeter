@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
@@ -22,13 +23,14 @@ public partial class Clock : Widget
 
         var timer = new DispatcherTimer();
         timer.Interval = TimeSpan.FromMilliseconds(100);
-        timer.Tick += (_,_) => OnTick(clockSettings);
+        timer.Tick += (_,_) => OnTick(settings, clockSettings);
         timer.Start();
 
         SizeChanged += (_, _) =>
         {
             var small = Math.Min(Width, Height) < 100;
             Strokes.Visibility = small ? Visibility.Hidden : Visibility.Visible;
+            Seconds.Visibility = clockSettings.ShowSeconds ? Visibility.Visible : Visibility.Hidden;
             Numbers.RenderTransform = small ? new ScaleTransform(1.1, 1.1, 500, 500) : new ScaleTransform();
             foreach (TextBlock number in Numbers.Children)
             {
@@ -48,7 +50,7 @@ public partial class Clock : Widget
         Show();
     }
 
-    private void OnTick(ClockSettings clockSettings)
+    private void OnTick(Settings settings, ClockSettings clockSettings)
     {
         var now = DateTime.Now;
         
@@ -60,8 +62,12 @@ public partial class Clock : Widget
         }
         else
         {
-            Time.Text = now.ToString("HH:mm:ss");
-            Date.Text = now.ToString("dddd, MMMM d");
+            var hours = clockSettings.ShowAMPM ? "hh" : "HH";
+            var seconds = clockSettings.ShowSeconds ? ":ss" : "";
+            var ampm = clockSettings.ShowAMPM ? " a" : "";
+            
+            Time.Text = now.ToString($"{hours}:mm{seconds}{ampm}");
+            Date.Text = now.ToString("dddd, d MMMM", new CultureInfo(settings.Region.Language));
         }
     }
 }

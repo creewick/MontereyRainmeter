@@ -4,6 +4,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:uWidgets.Widgets"
+        xmlns:forms="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms.Primitives"
         mc:Ignorable="d"
         Title="Calendar">
     <Window.Resources>
@@ -24,7 +25,7 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Viewbox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="7" HorizontalAlignment="Left">
-            <TextBlock Name="MonthName" TextAlignment="Left" />
+            <TextBlock Padding="8,4,4,4" Name="MonthName" TextAlignment="Left" />
         </Viewbox>
     </Grid>
 </local:Widget>
