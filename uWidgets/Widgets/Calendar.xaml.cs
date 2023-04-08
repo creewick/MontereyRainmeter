@@ -3,15 +3,16 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Shapes;
 using uWidgets.Models;
 using uWidgets.Utilities;
 
 namespace uWidgets.Widgets;
 
-public partial class Calendar : Widget
+public partial class Calendar
 {
-    public Calendar(WidgetLayout layout, Settings settings, Locale locale) 
-        : base(layout, settings,locale)
+    public Calendar(WidgetLayout layout, Settings settings, LocaleStrings localeStrings) 
+        : base(layout, settings,localeStrings)
     {
         InitializeComponent();
         FillMonthCalendar(settings);
@@ -20,7 +21,6 @@ public partial class Calendar : Widget
 
     private void FillMonthCalendar(Settings settings)
     {
-        
         var now = DateTime.Now.Date;
         var daysCount = DateTime.DaysInMonth(now.Year, now.Month);
         var font = (FontFamily)Application.Current.Resources["SfProMedium"];
@@ -54,13 +54,22 @@ public partial class Calendar : Widget
                 row++;
             }
 
+            if (day == now.Day)
+            {
+                MonthCalendar.With(new Ellipse
+                {
+                    Fill = (Brush)Application.Current.Resources["AccentFillColorDefaultBrush"]
+                }, column, row);
+            }
+
             MonthCalendar.With(new Viewbox
             {
                 Child = new TextBlock
                 {
                     Text = day.ToString(),
                     FontFamily = font,
-                    Opacity = column < 5 ? 1 : 0.5,
+                    Foreground = new SolidColorBrush(day == now.Day ? Colors.White : (Color)Application.Current.Resources["TextFillColorPrimary"]),
+                    Opacity = column < 5 || day == now.Day ? 1 : 0.5,
                 }
             }, column, row);
         }

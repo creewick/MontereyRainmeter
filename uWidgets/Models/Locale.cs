@@ -2,10 +2,10 @@ using System.Collections.Generic;
 
 namespace uWidgets.Models;
 
-public class Localization
+public class Locale
 {
     public List<Language> Languages { get; set; }
-    public Dictionary<string, Locale> Locale { get; set; }   
+    public Dictionary<string, LocaleStrings> LocaleStrings { get; set; }   
 }
 
 public class Language
@@ -14,7 +14,7 @@ public class Language
     public string Name { get; set; }
 }
 
-public class Locale
+public class LocaleStrings
 {
     public string Edit { get; set; }
     public string Size { get; set; }

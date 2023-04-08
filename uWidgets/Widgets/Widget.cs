@@ -5,57 +5,85 @@ using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
-using System.Windows.Media.Effects;
 using uWidgets.Models;
 using Wpf.Ui.Appearance;
-using Wpf.Ui.Common;
 using Application = System.Windows.Application;
+using ContextMenu = uWidgets.Models.ContextMenu;
+using MenuItem = uWidgets.Models.MenuItem;
 
 namespace uWidgets.Widgets;
 
 public abstract class Widget : Window
 {
+    public WidgetLayout Layout { get; }
+    public Settings Settings { get; }
+    public LocaleStrings LocaleStrings { get; }
 
-    protected Widget(WidgetLayout layout, Settings settings, Locale locale)
+    protected Widget(WidgetLayout layout, Settings settings, LocaleStrings localeStrings)
     {
+        Layout = layout;
+        Settings = settings;
+        LocaleStrings = localeStrings;
+        
+        Left = layout.X;
+        Top = layout.Y;
         MinWidth = settings.WidgetSize;
         MinHeight = settings.WidgetSize;
         Width = settings.WidgetSize * layout.Columns + settings.WidgetPadding * (layout.Columns - 1);
         Height = settings.WidgetSize * layout.Rows + settings.WidgetPadding * (layout.Rows - 1);
-        Left = layout.X;
-        Top = layout.Y;
-        ShowInTaskbar = false;
         WindowStyle = WindowStyle.None;
         AllowsTransparency = true;
+        ShowInTaskbar = false;
         Background = new SolidColorBrush(Colors.Transparent);
-        ContextMenu = GetContextMenu(settings, locale);
-        MouseLeftButtonDown += (_, e) => DragWidget(e, settings);
-        SourceInitialized += (_, _) => DrawBackground(settings);
-        SourceInitialized += (_, _) => DisableSnapping();
-    }
-
-    private ContextMenu GetContextMenu(Settings settings, Locale locale)
-    {
-        var menu = new ContextMenu();
-        menu.Items.Add(new MenuItem { Header = locale.Edit, IsEnabled = false });
-        menu.Items.Add(new Separator());
-        menu.Items.Add(new MenuItem { Header = locale.Size, IsEnabled = false });
-        menu.Items.Add(new MenuItem { Header = locale.Small, Command = new RelayCommand(() => ResizeGrid(1, 1, settings)) });
-        menu.Items.Add(new MenuItem { Header = locale.Medium, Command = new RelayCommand(() => ResizeGrid(2, 2, settings)) });
-        menu.Items.Add(new MenuItem { Header = locale.Wide, Command = new RelayCommand(() => ResizeGrid(4, 2, settings)) });
-        menu.Items.Add(new MenuItem { Header = locale.Large, Command = new RelayCommand(() => ResizeGrid(4, 4, settings)) });
-        menu.Items.Add(new Separator());
-        menu.Items.Add(new MenuItem { Header = locale.RemoveWidget, Command = new RelayCommand(Close) });
-        menu.Items.Add(new Separator());
-        menu.Items.Add(new MenuItem { Header = locale.EditWidgets, IsEnabled = false });
+        ContextMenu = GetContextMenu();
         
-        return menu;
+        MouseLeftButtonDown += OnMouseLeftButtonDown;
+        SourceInitialized += OnSourceInitialized;
     }
 
-    private void ResizeGrid(int columns, int rows, Settings settings)
+    private void OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
     {
-        Width = settings.WidgetSize * columns + settings.WidgetPadding * (columns - 1);
-        Height = settings.WidgetSize * rows + settings.WidgetPadding * (rows - 1);
+        var screen = Screen.FromHandle(new WindowInteropHelper(this).Handle);
+        
+        if (e.ButtonState != MouseButtonState.Pressed) return;
+        
+        DragMove();
+        LimitToScreenBounds(screen);
+
+        if (Settings.Appearance.GridSnap)
+        {
+            SnapToGrid(Settings, screen);
+        }
+    }
+
+    private void OnSourceInitialized(object? sender, EventArgs e)
+    {
+        if (Settings.Appearance.Transparency)
+        {
+            ApplyTransparency();
+        }
+        DrawBackground();
+        DisableSnapping();
+    }
+    
+    private ContextMenu GetContextMenu() => new(
+        new MenuItem(LocaleStrings.Edit, null, false),
+        new Separator(),
+        new MenuItem(LocaleStrings.Size, null, false),
+        new MenuItem(LocaleStrings.Small, () => ResizeGrid(1, 1)),
+        new MenuItem(LocaleStrings.Medium, () => ResizeGrid(2, 2)),
+        new MenuItem(LocaleStrings.Wide, () => ResizeGrid(4, 2)),
+        new MenuItem(LocaleStrings.Large, () => ResizeGrid(4, 4)),
+        new Separator(),
+        new MenuItem(LocaleStrings.RemoveWidget, Close),
+        new Separator(),
+        new MenuItem(LocaleStrings.EditWidgets, null, false)
+    );
+
+    private void ResizeGrid(int columns, int rows)
+    {
+        Width = Settings.WidgetSize * columns + Settings.WidgetPadding * (columns - 1);
+        Height = Settings.WidgetSize * rows + Settings.WidgetPadding * (rows - 1);
     }
 
     private void DisableSnapping()
@@ -83,14 +111,12 @@ public abstract class Widget : Window
         return IntPtr.Zero;
     }
     
-    private void DrawBackground(Settings settings)
+    private void DrawBackground()
     {
-        if (settings.Appearance.Transparency) ApplyTransparency(settings);
-
         var border = new Border
         {
             Background = new SolidColorBrush((Color)Application.Current.Resources["ApplicationBackgroundColor"]),
-            CornerRadius = new CornerRadius(settings.Appearance.WidgetRadius)
+            CornerRadius = new CornerRadius(Settings.Appearance.WidgetRadius)
         };
         
         var content = Content as UIElement;
@@ -98,9 +124,9 @@ public abstract class Widget : Window
         border.Child = content;
     }
 
-    private void ApplyTransparency(Settings settings)
+    private void ApplyTransparency()
     {
-        var corners = settings.WidgetRadius switch
+        var corners = Settings.WidgetRadius switch
         {
             0 => WindowCornerPreference.DoNotRound,
             < 8 => WindowCornerPreference.RoundSmall,
@@ -109,18 +135,6 @@ public abstract class Widget : Window
 
         Wpf.Ui.Extensions.WindowExtensions.ApplyCorners(this, corners);
         Wpf.Ui.Appearance.Background.Apply(this, BackgroundType.Acrylic);
-    }
-
-    private void DragWidget(MouseButtonEventArgs e, Settings settings)
-    {
-        var screen = Screen.FromHandle(new WindowInteropHelper(this).Handle);
-        
-        if (e.ButtonState != MouseButtonState.Pressed) return;
-        
-        DragMove();
-        LimitToScreenBounds(screen);
-
-        if (settings.Appearance.GridSnap) SnapToGrid(settings, screen);
     }
 
     private void LimitToScreenBounds(Screen screen)

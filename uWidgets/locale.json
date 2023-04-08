@@ -33,7 +33,7 @@
       "Name": "한국어"
     }
   ],
-  "Locale": {
+  "LocaleStrings": {
     "ru": {
       "Edit": "Изменить",
       "Size": "Размер",

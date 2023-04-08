@@ -15,23 +15,17 @@ public static class ThemeBuilder
 
     public static void Apply(AppearanceSettings settings)
     {
-        if (settings.SystemTheme)
-        {
+        if (settings.SystemTheme) 
             settings.DarkTheme = DarkThemes.Contains(Theme.GetSystemTheme());
-        }
 
         var themeType = settings.DarkTheme ? ThemeType.Dark : ThemeType.Light;
         var accentColor = (Color)ColorConverter.ConvertFromString(settings.AccentColor);
 
-        Theme.Apply(themeType);
-
         if (settings.SystemAccentColor)
-        {
             Accent.ApplySystemAccent();
-        }
         else
-        {
             Accent.Apply(accentColor, themeType);
-        }
+
+        Theme.Apply(themeType);
     }
 }

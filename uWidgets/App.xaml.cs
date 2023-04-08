@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text.Json;
 using System.Windows;
 using uWidgets.Models;
 using uWidgets.Utilities;
 using uWidgets.Widgets;
-using Localization = uWidgets.Models.Localization;
 
 namespace uWidgets;
 
-public partial class App : Application
+public partial class App
 {
     private const string SettingsFileName = "appsettings.json";
     private const string LayoutFileName = "layout.json";
@@ -23,24 +20,28 @@ public partial class App : Application
         
         // Workaround to make Wpf.Ui.Appearance.Theme.Apply work
         Current.MainWindow = new Window();
-        
-        var settingsJson = ReadAllText(SettingsFileName);
-        var settings = JsonSerializer.Deserialize<Settings>(settingsJson) ?? throw new FileFormatException();
+
+        var settings = DeserializeFromFile<Settings>(SettingsFileName);
+
         ThemeBuilder.Apply(settings.Appearance);
 
-        var layoutJson = ReadAllText(LayoutFileName);
-        var layout = JsonSerializer.Deserialize<IEnumerable<WidgetLayout>>(layoutJson) ?? throw new FileFormatException();
+        var layout = DeserializeFromFile<List<WidgetLayout>>(LayoutFileName);
+        var locale = DeserializeFromFile<Locale>(LocaleFileName);
+        var localeStrings = locale.LocaleStrings[settings.Region.Language];
 
-        var localeJson = ReadAllText(LocaleFileName);
-        var localization = JsonSerializer.Deserialize<Localization>(localeJson) ?? throw new FileFormatException();
-        var locale = localization.Locale[settings.Region.Language] ?? throw new ArgumentException(nameof(settings.Region.Language));
-
-        var widgets = layout.Select(widgetLayout => WidgetFactory.GetWidget(widgetLayout, settings, locale)).ToList();
+        layout.ForEach(widgetLayout => WidgetFactory.GetWidget(widgetLayout, settings, localeStrings));
     }
-    
-    private static string ReadAllText(string fileName)
+
+    private static T DeserializeFromFile<T>(string fileName)
     {
-        var path = Path.Combine(Directory.GetCurrentDirectory(), fileName);
-        return File.ReadAllText(path);
+        var path = Path.Combine(
+            Directory.GetCurrentDirectory(),
+            fileName
+        );
+
+        var file = File.ReadAllText(path);
+
+        return JsonSerializer.Deserialize<T>(file) 
+               ?? throw new FileFormatException();
     }
 }
