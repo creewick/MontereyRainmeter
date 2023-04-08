@@ -8,8 +8,6 @@ using System.Windows.Media;
 using uWidgets.Models;
 using Wpf.Ui.Appearance;
 using Application = System.Windows.Application;
-using ContextMenu = uWidgets.Models.ContextMenu;
-using MenuItem = uWidgets.Models.MenuItem;
 
 namespace uWidgets.Widgets;
 
@@ -66,18 +64,18 @@ public abstract class Widget : Window
         DisableSnapping();
     }
     
-    private ContextMenu GetContextMenu() => new(
-        new MenuItem(LocaleStrings.Edit, null, false),
+    private ContextMenu GetContextMenu() => new ContextMenu().With(
+        new MenuItem().With(LocaleStrings.Edit, null, false),
         new Separator(),
-        new MenuItem(LocaleStrings.Size, null, false),
-        new MenuItem(LocaleStrings.Small, () => ResizeGrid(1, 1)),
-        new MenuItem(LocaleStrings.Medium, () => ResizeGrid(2, 2)),
-        new MenuItem(LocaleStrings.Wide, () => ResizeGrid(4, 2)),
-        new MenuItem(LocaleStrings.Large, () => ResizeGrid(4, 4)),
+        new MenuItem().With(LocaleStrings.Size, null, false),
+        new MenuItem().With(LocaleStrings.Small, () => ResizeGrid(1, 1)),
+        new MenuItem().With(LocaleStrings.Medium, () => ResizeGrid(2, 2)),
+        new MenuItem().With(LocaleStrings.Wide, () => ResizeGrid(4, 2)),
+        new MenuItem().With(LocaleStrings.Large, () => ResizeGrid(4, 4)),
         new Separator(),
-        new MenuItem(LocaleStrings.RemoveWidget, Close),
+        new MenuItem().With(LocaleStrings.RemoveWidget, Close),
         new Separator(),
-        new MenuItem(LocaleStrings.EditWidgets, null, false)
+        new MenuItem().With(LocaleStrings.EditWidgets, null, false)
     );
 
     private void ResizeGrid(int columns, int rows)

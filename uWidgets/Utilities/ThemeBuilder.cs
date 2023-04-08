@@ -21,11 +21,12 @@ public static class ThemeBuilder
         var themeType = settings.DarkTheme ? ThemeType.Dark : ThemeType.Light;
         var accentColor = (Color)ColorConverter.ConvertFromString(settings.AccentColor);
 
+        Theme.Apply(themeType);
+        
         if (settings.SystemAccentColor)
             Accent.ApplySystemAccent();
         else
             Accent.Apply(accentColor, themeType);
 
-        Theme.Apply(themeType);
     }
 }
