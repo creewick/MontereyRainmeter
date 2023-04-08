@@ -1,0 +1,30 @@
+<local:Widget x:Class="uWidgets.Widgets.Calendar"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:uWidgets.Widgets"
+        mc:Ignorable="d"
+        Title="Calendar">
+    <Window.Resources>
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="FontFamily" Value="{StaticResource SfProMedium}"/>
+            <Setter Property="TextAlignment" Value="Center" />
+            <Setter Property="Padding" Value="4" />
+        </Style>
+    </Window.Resources>
+    <Grid Name="MonthCalendar" Margin="8, 12">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Viewbox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="7" HorizontalAlignment="Left">
+            <TextBlock Name="MonthName" TextAlignment="Left" />
+        </Viewbox>
+    </Grid>
+</local:Widget>

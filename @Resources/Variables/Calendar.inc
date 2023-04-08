@@ -1,2 +1,0 @@
-[Variables]
-SundayWeek=0

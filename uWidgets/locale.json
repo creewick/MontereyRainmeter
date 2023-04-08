@@ -1,0 +1,90 @@
+{
+  "Languages": [
+    {
+      "Code": "ru",
+      "Name": "Русский"
+    },
+    {
+      "Code": "en",
+      "Name": "English"
+    },
+    {
+      "Code": "de",
+      "Name": "Deutsch"
+    },
+    {
+      "Code": "ua",
+      "Name": "Український"
+    },
+    {
+      "Code": "pl",
+      "Name": "Polski"
+    },
+    {
+      "Code": "vi",
+      "Name": "Tiếng Việt"
+    }
+  ],
+  "Locale": {
+    "ru": {
+      "Edit": "Изменить",
+      "Size": "Размер",
+      "Small": "Малый",
+      "Medium": "Средний",
+      "Wide": "Широкий",
+      "Large": "Большой",
+      "RemoveWidget": "Удалить виджет",
+      "EditWidgets": "Изменить виджеты"
+    },
+    "en": {
+      "Edit": "Edit",
+      "Size": "Size",
+      "Small": "Small",
+      "Medium": "Medium",
+      "Wide": "Wide",
+      "Large": "Large",
+      "RemoveWidget": "Remove Widget",
+      "EditWidgets": "Edit Widgets"
+    },
+    "ua": {
+      "Edit": "Змінити",
+      "Size": "Розмір",
+      "Small": "Малий",
+      "Medium": "Середній",
+      "Wide": "Широкий",
+      "Large": "Великий",
+      "RemoveWidget": "Видалити віджет",
+      "EditWidgets": "Змінити віджети"
+    },
+    "de": {
+      "Edit": "Bearbeiten",
+      "Size": "Größe",
+      "Small": "Klein",
+      "Medium": "Mittel",
+      "Wide": "Breit",
+      "Large": "Groß",
+      "RemoveWidget": "Widget entfernen",
+      "EditWidgets": "Widgets bearbeiten"
+    },
+    "pl": {
+      "Edit": "Edytuj",
+      "Size": "Rozmiar",
+      "Small": "Mały",
+      "Medium": "Średni",
+      "Wide": "Szeroki",
+      "Large": "Duży",
+      "RemoveWidget": "Usuń widżet",
+      "EditWidgets": "Edytuj widżety"
+    },
+    "vi": {
+      "Edit": "Chỉnh sửa",
+      "Size": "Kích thước",
+      "Small": "Nhỏ",
+      "Medium": "Trung bình",
+      "Wide": "Rộng",
+      "Large": "Lớn",
+      "RemoveWidget": "Xóa tiện ích",
+      "EditWidgets": "Chỉnh sửa tiện ích"
+    }
+  }
+}

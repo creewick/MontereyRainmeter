@@ -1,0 +1,29 @@
+[
+  {
+    "Name": "Clock",
+    "X": 100,
+    "Y": 100,
+    "Columns": 2,
+    "Rows": 2,
+    "Settings": {
+      "Analog": true
+    }
+  },
+  {
+    "Name": "Clock",
+    "X": 100,
+    "Y": 100,
+    "Columns": 4,
+    "Rows": 2,
+    "Settings": {
+      "Analog": false
+    }
+  },
+  {
+    "Name": "Calendar",
+    "X": 50,
+    "Y": 50,
+    "Columns": 2,
+    "Rows": 2
+  }
+]

@@ -1,1 +1,0 @@
-echo 0 > State.txt
