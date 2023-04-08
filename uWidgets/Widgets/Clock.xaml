@@ -58,7 +58,7 @@
                 <RowDefinition Height="3*" />
             </Grid.RowDefinitions>
             <Viewbox Grid.Row="0">
-                <TextBlock Name="Date" HorizontalAlignment="Stretch" VerticalAlignment="Top" TextAlignment="Center" FontFamily="{StaticResource SfProRegular}" Foreground="{DynamicResource AccentFillColorDefaultBrush}" />
+                <TextBlock Name="Date" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" TextAlignment="Center" FontFamily="{StaticResource SfProRegular}" Foreground="{DynamicResource AccentFillColorDefaultBrush}" />
             </Viewbox>
             <Viewbox Grid.Row="1">
                 <TextBlock Name="Time" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextAlignment="Center" FontFamily="{StaticResource SfProRegular}" Foreground="{DynamicResource TextFillColorPrimaryBrush}" />

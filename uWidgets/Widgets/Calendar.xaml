@@ -13,18 +13,32 @@
             <Setter Property="Padding" Value="4" />
         </Style>
     </Window.Resources>
-    <Grid Name="MonthCalendar" Margin="8, 12">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-        <Viewbox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="7" HorizontalAlignment="Left">
-            <TextBlock Name="MonthName" Padding="8,4,4,4" TextAlignment="Left" Foreground="{DynamicResource AccentFillColorDefaultBrush}" />
-        </Viewbox>
+    <Grid>
+        <Grid Name="TodaySmall" Margin="0,8, 0, 4">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="3*" />
+            </Grid.RowDefinitions>
+            <Viewbox Grid.Row="0">
+                <TextBlock Name="WeekDay" Padding="0" Foreground="{DynamicResource AccentFillColorDefaultBrush}" />
+            </Viewbox>
+            <Viewbox Grid.Row="1" >
+                <TextBlock Name="DayNumber" Padding="0" FontFamily="{StaticResource SfProLight}" />
+            </Viewbox>
+        </Grid>
+        <Grid Name="MonthCalendar" Margin="8, 12">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Viewbox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="7" HorizontalAlignment="Left">
+                <TextBlock Name="MonthName" Padding="8,4,4,4" TextAlignment="Left" Foreground="{DynamicResource AccentFillColorDefaultBrush}" />
+            </Viewbox>
+        </Grid>
     </Grid>
 </local:Widget>

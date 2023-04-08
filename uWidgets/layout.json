@@ -18,8 +18,8 @@
     "Rows": 2,
     "Settings": {
       "Analog": false,
-      "ShowAMPM": true,
-      "ShowSeconds": true
+      "ShowAMPM": false,
+      "ShowSeconds": false
     }
   },
   {

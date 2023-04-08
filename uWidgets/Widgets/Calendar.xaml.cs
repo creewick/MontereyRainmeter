@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Windows;
@@ -19,13 +20,28 @@ public partial class Calendar
     {
         cultureInfo = new CultureInfo(Settings.Region.Language);
         InitializeComponent();
-        FillMonthCalendar(DateTime.Now.Date);
+        FillMonthCalendar(DateTime.Now.Date.AddDays(1));
+        
+        SizeChanged += OnSizeChanged;
+        MouseDoubleClick += (_,_) => Process.Start("explorer.exe", @"shell:AppsFolder\microsoft.windowscommunicationsapps_8wekyb3d8bbwe!microsoft.windowslive.calendar");
+
         Show();
+    }
+
+    private void OnSizeChanged(object sender, SizeChangedEventArgs e)
+    {
+        var small = Math.Min(Width, Height) < 100;
+        MonthCalendar.Visibility = small ? Visibility.Hidden : Visibility.Visible;
+        TodaySmall.Visibility = small ? Visibility.Visible : Visibility.Hidden;
     }
 
     private void FillMonthCalendar(DateTime now)
     {
         var weekDays = GetWeekDays().ToList();
+        var weekDay = cultureInfo.DateTimeFormat.GetDayName(now.DayOfWeek);
+        if (weekDay.Length > 10) weekDay = cultureInfo.DateTimeFormat.GetAbbreviatedDayName(now.DayOfWeek);
+        WeekDay.Text = char.ToUpper(weekDay[0]) + weekDay[1..];
+        DayNumber.Text = now.Day.ToString();
         FillMonthName(now);
         FillWeekDays(weekDays);
         FillDays(now, weekDays);
@@ -43,7 +59,7 @@ public partial class Calendar
 
         for (var i = 0; i < weekDays.Count; i++)
         {
-            var name = cultureInfo.DateTimeFormat.GetDayName(weekDays[i]).ToUpper()[..1];
+            var name = cultureInfo.DateTimeFormat.GetShortestDayName(weekDays[i]).ToUpper();
             var element = GetViewBox(name, IsWeekend(weekDays[i]));
 
             MonthCalendar.Children.Add(element);

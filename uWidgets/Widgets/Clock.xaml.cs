@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.Globalization;
 using System.Text.Json;
 using System.Windows;
@@ -31,7 +32,8 @@ public partial class Clock
         timer.Start();
 
         SizeChanged += OnSizeChanged;
-        
+        MouseDoubleClick += (_,_) => Process.Start("explorer.exe", @"shell:AppsFolder\Microsoft.WindowsAlarms_8wekyb3d8bbwe!App");
+
         Show();
     }
 
@@ -40,6 +42,9 @@ public partial class Clock
         var small = Math.Min(Width, Height) < 100;
         Strokes.Visibility = small ? Visibility.Hidden : Visibility.Visible;
         Seconds.Visibility = ClockSettings.ShowSeconds ? Visibility.Visible : Visibility.Hidden;
+        Date.Visibility = small ? Visibility.Hidden : Visibility.Visible;
+        DigitalClock.RowDefinitions[0].Height = small ? new GridLength(0) : new GridLength(1, GridUnitType.Star);
+        
         Numbers.RenderTransform = small ? new ScaleTransform(1.1, 1.1, 500, 500) : new ScaleTransform();
         foreach (TextBlock number in Numbers.Children)
         {
@@ -76,12 +81,18 @@ public partial class Clock
             var ampm = ClockSettings.ShowAMPM 
                 ? DateTimeFormat.AMPM 
                 : string.Empty;
-
-            var date = now.ToString(DateTimeFormat.Date, new CultureInfo(Settings.Region.Language));
-            date = char.ToUpper(date[0]) + date[1..];
             
             Time.Text = now.ToString($"{hours}{minutes}{seconds}{ampm}");
-            Date.Text = date;
+            
+            if (Width > 200)
+            {
+                var date = now.ToString(DateTimeFormat.Date, new CultureInfo(Settings.Region.Language));
+                Date.Text = char.ToUpper(date[0]) + date[1..];
+            }
+            else
+            {
+                Date.Text = now.ToString(DateTimeFormat.DateShort, new CultureInfo(Settings.Region.Language));
+            }
         }
     }
 }
