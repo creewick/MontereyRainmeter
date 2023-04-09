@@ -19,7 +19,7 @@ public partial class Clock
     {
         InitializeComponent();
         
-        ClockSettings = layout.Settings.Deserialize<ClockSettings>() 
+        ClockSettings = layout.Settings?.Deserialize<ClockSettings>() 
                         ?? throw new FormatException(nameof(ClockSettings));
 
         if (ClockSettings.Analog)
@@ -27,9 +27,15 @@ public partial class Clock
         else
             DigitalClock.Visibility = Visibility.Visible;
 
-        var timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(100) };
+        var timer = new DispatcherTimer
+        {
+            Interval = ClockSettings.Analog
+                ? ClockSettings.ShowSeconds ? TimeSpan.FromSeconds(0.1) : TimeSpan.FromSeconds(5)
+                : TimeSpan.FromSeconds(1)
+        };
         timer.Tick += OnTick;
         timer.Start();
+        OnTick(null, null);
 
         SizeChanged += OnSizeChanged;
         MouseDoubleClick += (_,_) => Process.Start("explorer.exe", @"shell:AppsFolder\Microsoft.WindowsAlarms_8wekyb3d8bbwe!App");
@@ -59,7 +65,7 @@ public partial class Clock
         };
     }
     
-    private void OnTick(object? sender, EventArgs e)
+    private void OnTick(object? sender, EventArgs? e)
     {
         var now = DateTime.Now;
         

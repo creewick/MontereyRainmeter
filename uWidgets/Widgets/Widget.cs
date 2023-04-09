@@ -16,6 +16,9 @@ public abstract class Widget : Window
     public WidgetLayout Layout { get; }
     public Settings Settings { get; }
     public LocaleStrings LocaleStrings { get; }
+    public delegate void UpdateLayoutHandler();
+    public event UpdateLayoutHandler UpdateLayoutEvent;
+
 
     protected Widget(WidgetLayout layout, Settings settings, LocaleStrings localeStrings)
     {
@@ -52,6 +55,10 @@ public abstract class Widget : Window
         {
             SnapToGrid(Settings, screen);
         }
+
+        Layout.X = (int)Left;
+        Layout.Y = (int)Top;
+        UpdateLayoutEvent.Invoke();
     }
 
     private void OnSourceInitialized(object? sender, EventArgs e)
@@ -111,10 +118,14 @@ public abstract class Widget : Window
     
     private void DrawBackground()
     {
+        var transparent = Settings.Appearance.Transparency;
+        var color = (Color)Application.Current.Resources["ApplicationBackgroundColor"];
+        if (transparent) color.A = 64;
+        
         var border = new Border
         {
-            Background = new SolidColorBrush((Color)Application.Current.Resources["ApplicationBackgroundColor"]),
-            CornerRadius = new CornerRadius(Settings.Appearance.WidgetRadius)
+            Background = new SolidColorBrush(color),
+            CornerRadius = new CornerRadius(transparent ? 0 : Settings.Appearance.WidgetRadius)
         };
         
         var content = Content as UIElement;

@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using uWidgets.Models;
 
 namespace uWidgets.Widgets;
@@ -20,7 +21,11 @@ public partial class Calendar
     {
         cultureInfo = new CultureInfo(Settings.Region.Language);
         InitializeComponent();
-        FillMonthCalendar(DateTime.Now.Date.AddDays(1));
+        
+        var timer = new DispatcherTimer { Interval = TimeSpan.FromMinutes(1) };
+        timer.Tick += OnTick;
+        timer.Start();
+        OnTick(null, null);
         
         SizeChanged += OnSizeChanged;
         MouseDoubleClick += (_,_) => Process.Start("explorer.exe", @"shell:AppsFolder\microsoft.windowscommunicationsapps_8wekyb3d8bbwe!microsoft.windowslive.calendar");
@@ -35,16 +40,40 @@ public partial class Calendar
         TodaySmall.Visibility = small ? Visibility.Visible : Visibility.Hidden;
     }
 
-    private void FillMonthCalendar(DateTime now)
+    private void OnTick(object? sender, EventArgs? e)
     {
+        var now = DateTime.Now.Date;
         var weekDays = GetWeekDays().ToList();
-        var weekDay = cultureInfo.DateTimeFormat.GetDayName(now.DayOfWeek);
-        if (weekDay.Length > 10) weekDay = cultureInfo.DateTimeFormat.GetAbbreviatedDayName(now.DayOfWeek);
-        WeekDay.Text = char.ToUpper(weekDay[0]) + weekDay[1..];
-        DayNumber.Text = now.Day.ToString();
+        
+        ClearMonthCalendar();
+        UpdateSmallView(now);
         FillMonthName(now);
         FillWeekDays(weekDays);
         FillDays(now, weekDays);
+    }
+
+    private void UpdateSmallView(DateTime now)
+    {
+        var weekDay = cultureInfo.DateTimeFormat.GetDayName(now.DayOfWeek);
+        if (weekDay.Length > 10) 
+            weekDay = cultureInfo.DateTimeFormat.GetAbbreviatedDayName(now.DayOfWeek);
+        
+        WeekDay.Text = char.ToUpper(weekDay[0]) + weekDay[1..];
+        DayNumber.Text = now.Day.ToString();
+    }
+
+    private void ClearMonthCalendar()
+    {
+        MonthCalendar.Children
+            .Cast<UIElement>()
+            .Where(x => Grid.GetRow(x) > 0)
+            .ToList()
+            .ForEach(x => MonthCalendar.Children.Remove(x));
+        
+        MonthCalendar.RowDefinitions
+            .Cast<RowDefinition>()
+            .ToList()
+            .ForEach(x => MonthCalendar.RowDefinitions.Remove(x));
     }
 
     private void FillMonthName(DateTime now)
@@ -97,15 +126,28 @@ public partial class Calendar
 
     private void FillTodayCircle(int column, int row)
     {
-        var ellipse = new Ellipse
+        var viewBox = new Viewbox
         {
-            Fill = (Brush)Application.Current.Resources["AccentFillColorDefaultBrush"]
+            Child = new Canvas
+            {
+                Width = 100,
+                Height = 100,
+                Children =
+                {
+                    new Ellipse
+                    {
+                        Fill = (Brush)Application.Current.Resources["AccentFillColorDefaultBrush"],
+                        Width = 100,
+                        Height = 100
+                    }
+                }
+            }
         };
-
-        MonthCalendar.Children.Add(ellipse);
+        
+        MonthCalendar.Children.Add(viewBox);
                 
-        Grid.SetColumn(ellipse, column);
-        Grid.SetRow(ellipse, row);
+        Grid.SetColumn(viewBox, column);
+        Grid.SetRow(viewBox, row);
     }
 
     private IEnumerable<DayOfWeek> GetWeekDays()
