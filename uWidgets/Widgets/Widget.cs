@@ -89,6 +89,10 @@ public abstract class Widget : Window
     {
         Width = Settings.WidgetSize * columns + Settings.WidgetPadding * (columns - 1);
         Height = Settings.WidgetSize * rows + Settings.WidgetPadding * (rows - 1);
+
+        Layout.Columns = columns;
+        Layout.Rows = rows;
+        UpdateLayoutEvent.Invoke();
     }
 
     private void DisableSnapping()
