@@ -6,11 +6,13 @@ namespace uWidgets.Infrastructure.Files;
 
 public class FileHandler<T> : IFileHandler<T>
 {
+    private readonly string filename;
     private readonly string path;
     private T? data;
-
+    
     public FileHandler(string filename)
     {
+        this.filename = filename;
         path = Path.Combine(Directory.GetCurrentDirectory(), filename);
     }
 

@@ -1,9 +1,11 @@
+using System;
 using System.Text.Json;
 
 namespace uWidgets.Infrastructure.Models;
 
 public class WidgetLayout
 {
+    public Guid Id { get; set; }
     public string Name { get; set; }
     public int X { get; set; }
     public int Y { get; set; }

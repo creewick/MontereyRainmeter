@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Windows;
 using Microsoft.Extensions.DependencyInjection;
-using uWidgets.Infrastructure;
 using uWidgets.Infrastructure.Files;
 using uWidgets.Infrastructure.Models;
 using uWidgets.Utilities;
@@ -21,13 +20,11 @@ public partial class App
         // Workaround to make Wpf.Ui.Appearance.Theme.Apply work
         Current.MainWindow = new Window();
 
-        var settings = serviceProvider.GetRequiredService<IFileHandler<AppSettings>>().Get();
-        
-        ThemeBuilder.Apply(settings.Appearance);
+        var settingsHandler = serviceProvider.GetRequiredService<IFileHandler<AppSettings>>();
 
-        var widgets = serviceProvider.GetRequiredService<WidgetFactory>().GetWidgets();
+        ThemeBuilder.Apply(settingsHandler.Get().Appearance);
 
-        widgets.ForEach(widget => widget.UpdateLayoutEvent += () => { });
+        serviceProvider.GetRequiredService<WidgetFactory>().GetWidgets();
     }
 
     private static IServiceProvider ConfigureServices()

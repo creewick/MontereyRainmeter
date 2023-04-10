@@ -21,22 +21,23 @@ public class WidgetFactory : IWidgetFactory
 
     public List<Widget> GetWidgets()
     {
-        var appSettings = settingsManager.Get();
-        var localeStrings = localeManager.Get().LocaleStrings[appSettings.Region.Language];
-        
         return layoutManager
             .Get()
-            .Select(layout => CreateWidget(appSettings, layout, localeStrings))
+            .Select(layout => CreateWidget(settingsManager, layoutManager, localeManager, layout))
             .ToList();
     }
 
-    private static Widget CreateWidget(AppSettings appSettings, WidgetLayout widgetLayout, LocaleStrings localeStrings)
+    private static Widget CreateWidget(
+        IFileHandler<AppSettings> settingsManager, 
+        IFileHandler<List<WidgetLayout>> layoutManager, 
+        IFileHandler<AppLocale> localeManager, 
+        WidgetLayout widgetLayout) 
     {
         return widgetLayout.Name switch
         {
-            "Clock" => new Clock.Clock(widgetLayout, appSettings, localeStrings),
-            "Calendar" => new Calendar.Calendar(widgetLayout, appSettings, localeStrings),
-            "Weather" => new Weather.Weather(widgetLayout, appSettings, localeStrings),
+            "Clock" => new Clock.Clock(settingsManager, layoutManager, localeManager, widgetLayout.Id),
+            "Calendar" => new Calendar.Calendar(settingsManager, layoutManager, localeManager, widgetLayout.Id),
+            "Weather" => new Weather.Weather(settingsManager, layoutManager, localeManager, widgetLayout.Id),
             _ => throw new ArgumentException(nameof(widgetLayout.Name))
         };
     }

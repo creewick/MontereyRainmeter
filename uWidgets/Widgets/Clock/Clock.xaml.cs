@@ -1,11 +1,14 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
+using System.Linq;
 using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Threading;
+using uWidgets.Infrastructure.Files;
 using uWidgets.Infrastructure.Models;
 using uWidgets.Utilities;
 
@@ -15,12 +18,16 @@ public partial class Clock
 {
     public ClockSettings ClockSettings;
 
-    public Clock(WidgetLayout widgetLayout, AppSettings appSettings, LocaleStrings localeStrings) 
-        : base(widgetLayout, appSettings, localeStrings)
+    public Clock(
+        IFileHandler<AppSettings> settingsManager, 
+        IFileHandler<List<WidgetLayout>> layoutManager, 
+        IFileHandler<AppLocale> localeManager, 
+        Guid id)
+        : base(settingsManager, layoutManager, localeManager, id)
     {
         InitializeComponent();
         
-        ClockSettings = widgetLayout.Settings?.Deserialize<ClockSettings>() 
+        ClockSettings = layoutManager.Get().First(x => x.Id == Id).Settings?.Deserialize<ClockSettings>() 
                         ?? throw new FormatException(nameof(ClockSettings));
 
         if (ClockSettings.Analog)
@@ -46,16 +53,17 @@ public partial class Clock
 
     private void OnSizeChanged(object sender, SizeChangedEventArgs e)
     {
-        var small = Math.Min(Width, Height) <= AppSettings.WidgetSize;
+        var widgetSize = SettingsManager.Get().WidgetSize;
+        var small = Math.Min(Width, Height) <= widgetSize;
         Strokes.Visibility = small ? Visibility.Hidden : Visibility.Visible;
         Seconds.Visibility = ClockSettings.ShowSeconds ? Visibility.Visible : Visibility.Hidden;
         Date.Visibility = small ? Visibility.Hidden : Visibility.Visible;
 
-        DigitalClock.RowDefinitions[0].Height = Height <= AppSettings.WidgetSize 
+        DigitalClock.RowDefinitions[0].Height = Height <= widgetSize
             ? new GridLength(0) 
             : new GridLength(1, GridUnitType.Star);
 
-        (DigitalClock.Children[1] as Viewbox).VerticalAlignment = Height <= AppSettings.WidgetSize
+        (DigitalClock.Children[1] as Viewbox).VerticalAlignment = Height <= widgetSize
             ? VerticalAlignment.Center
             : VerticalAlignment.Top;
 
@@ -97,16 +105,17 @@ public partial class Clock
                 : string.Empty;
             
             Time.Text = now.ToString($"{hours}{minutes}{seconds}{ampm}");
-            
-            var medium = Width <= AppSettings.WidgetSize * 2 + AppSettings.WidgetPadding;
+
+            var settings = SettingsManager.Get();
+            var medium = Width <= settings.WidgetSize * 2 + settings.WidgetPadding;
 
             if (medium)
             {
-                Date.Text = now.ToString(DateTimeFormat.DateShort, new CultureInfo(AppSettings.Region.Language));
+                Date.Text = now.ToString(DateTimeFormat.DateShort, new CultureInfo(settings.Region.Language));
             }
             else
             {
-                var date = now.ToString(DateTimeFormat.Date, new CultureInfo(AppSettings.Region.Language));
+                var date = now.ToString(DateTimeFormat.Date, new CultureInfo(settings.Region.Language));
                 Date.Text = char.ToUpper(date[0]) + date[1..];
             }
         }

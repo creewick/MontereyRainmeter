@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
+using uWidgets.Infrastructure.Files;
 using uWidgets.Infrastructure.Models;
 
 namespace uWidgets.Widgets.Weather;
@@ -17,12 +18,16 @@ public partial class Weather
     public WeatherSettings WeatherSettings;
     public Dictionary<string, string> WeatherLocaleStrings;
     
-    public Weather(WidgetLayout widgetLayout, AppSettings appSettings, LocaleStrings localeStrings) 
-        : base(widgetLayout, appSettings, localeStrings)
+    public Weather(
+        IFileHandler<AppSettings> settingsManager, 
+        IFileHandler<List<WidgetLayout>> layoutManager, 
+        IFileHandler<AppLocale> localeManager, 
+        Guid id)
+        : base(settingsManager, layoutManager, localeManager, id)
     {
         InitializeComponent();
 
-        WeatherSettings = widgetLayout.Settings?.Deserialize<WeatherSettings>() 
+        WeatherSettings = LayoutManager.Get().First(x => x.Id == Id).Settings?.Deserialize<WeatherSettings>() 
                           ?? throw new FormatException(nameof(WeatherSettings));
         
         // WeatherLocaleStrings = App.DeserializeFromFile<Dictionary<string, Dictionary<string, string>>>("Widgets/Weather/WeatherLocale.json")[appSettings.Region.Language];
@@ -76,10 +81,12 @@ public partial class Weather
 
     private void OnSizeChange(object sender, SizeChangedEventArgs e)
     {
-        var small = Width <= AppSettings.WidgetSize && Height <= AppSettings.WidgetSize;
-        var smallWide = Height <= AppSettings.WidgetSize && Width > Height;
-        var notWide = Width <= AppSettings.WidgetSize * 2 + AppSettings.WidgetPadding;
-        var smallHeight = Height <= AppSettings.WidgetSize;
+        var settings = SettingsManager.Get();
+        
+        var small = Width <= settings.WidgetSize && Height <= settings.WidgetSize;
+        var smallWide = Height <= settings.WidgetSize && Width > Height;
+        var notWide = Width <= settings.WidgetSize * 2 + settings.WidgetPadding;
+        var smallHeight = Height <= settings.WidgetSize;
 
         Grid.SetRowSpan(CityName, small || smallWide ? 2 : 1);
         Grid.SetColumnSpan(CityName, notWide ? 2 : 1);
