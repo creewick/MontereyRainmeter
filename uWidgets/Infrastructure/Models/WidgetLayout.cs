@@ -1,6 +1,6 @@
 using System.Text.Json;
 
-namespace uWidgets.Models;
+namespace uWidgets.Infrastructure.Models;
 
 public class WidgetLayout
 {

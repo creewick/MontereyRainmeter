@@ -1,17 +1,43 @@
 using System;
-using uWidgets.Models;
+using System.Collections.Generic;
+using System.Linq;
+using uWidgets.Infrastructure.Files;
+using uWidgets.Infrastructure.Models;
 
 namespace uWidgets.Widgets;
 
-public static class WidgetFactory
+public class WidgetFactory : IWidgetFactory
 {
-    public static Widget GetWidget(WidgetLayout layout, Settings settings, LocaleStrings localeStrings)
+    private readonly IFileHandler<AppSettings> settingsManager;
+    private readonly IFileHandler<List<WidgetLayout>> layoutManager;
+    private readonly IFileHandler<AppLocale> localeManager;
+
+    public WidgetFactory(IFileHandler<AppSettings> settingsManager, IFileHandler<List<WidgetLayout>> layoutManager, IFileHandler<AppLocale> localeManager)
     {
-        return layout.Name switch
+        this.settingsManager = settingsManager;
+        this.layoutManager = layoutManager;
+        this.localeManager = localeManager;
+    }
+
+    public List<Widget> GetWidgets()
+    {
+        var appSettings = settingsManager.Get();
+        var localeStrings = localeManager.Get().LocaleStrings[appSettings.Region.Language];
+        
+        return layoutManager
+            .Get()
+            .Select(layout => CreateWidget(appSettings, layout, localeStrings))
+            .ToList();
+    }
+
+    private static Widget CreateWidget(AppSettings appSettings, WidgetLayout widgetLayout, LocaleStrings localeStrings)
+    {
+        return widgetLayout.Name switch
         {
-            "Clock" => new Clock(layout, settings, localeStrings),
-            "Calendar" => new Calendar(layout, settings, localeStrings),
-            _ => throw new ArgumentException(nameof(layout.Name))
+            "Clock" => new Clock.Clock(widgetLayout, appSettings, localeStrings),
+            "Calendar" => new Calendar.Calendar(widgetLayout, appSettings, localeStrings),
+            "Weather" => new Weather.Weather(widgetLayout, appSettings, localeStrings),
+            _ => throw new ArgumentException(nameof(widgetLayout.Name))
         };
     }
 }

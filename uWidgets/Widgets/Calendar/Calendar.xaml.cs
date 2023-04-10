@@ -8,18 +8,18 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
 using System.Windows.Threading;
-using uWidgets.Models;
+using uWidgets.Infrastructure.Models;
 
-namespace uWidgets.Widgets;
+namespace uWidgets.Widgets.Calendar;
 
 public partial class Calendar
 {
     private readonly CultureInfo cultureInfo;
     
-    public Calendar(WidgetLayout layout, Settings settings, LocaleStrings localeStrings) 
-        : base(layout, settings,localeStrings)
+    public Calendar(WidgetLayout widgetLayout, AppSettings appSettings, LocaleStrings localeStrings) 
+        : base(widgetLayout, appSettings,localeStrings)
     {
-        cultureInfo = new CultureInfo(Settings.Region.Language);
+        cultureInfo = new CultureInfo(AppSettings.Region.Language);
         InitializeComponent();
         
         var timer = new DispatcherTimer { Interval = TimeSpan.FromMinutes(1) };
@@ -35,10 +35,11 @@ public partial class Calendar
 
     private void OnSizeChanged(object sender, SizeChangedEventArgs e)
     {
-        var small = Math.Min(Width, Height) < 100;
+        var small = Math.Min(Width, Height) <= AppSettings.WidgetSize;
         MonthCalendar.Visibility = small ? Visibility.Hidden : Visibility.Visible;
         TodaySmall.Visibility = small ? Visibility.Visible : Visibility.Hidden;
     }
+
 
     private void OnTick(object? sender, EventArgs? e)
     {
@@ -79,7 +80,7 @@ public partial class Calendar
     private void FillMonthName(DateTime now)
     {
         MonthCalendar.RowDefinitions.Add(new RowDefinition());
-        MonthName.Text = now.ToString("MMMM", new CultureInfo(Settings.Region.Language)).ToUpper();
+        MonthName.Text = now.ToString("MMMM", new CultureInfo(AppSettings.Region.Language)).ToUpper();
     }
 
     private void FillWeekDays(List<DayOfWeek> weekDays)
@@ -136,7 +137,7 @@ public partial class Calendar
                 {
                     new Ellipse
                     {
-                        Fill = (Brush)Application.Current.Resources["AccentFillColorDefaultBrush"],
+                        Fill = (Brush)System.Windows.Application.Current.Resources["AccentFillColorDefaultBrush"],
                         Width = 100,
                         Height = 100
                     }
@@ -171,7 +172,7 @@ public partial class Calendar
             Opacity = isWeekend && !today ? 0.5 : 1,
             Foreground = today 
                 ? new SolidColorBrush(Colors.White) 
-                : (Brush)Application.Current.Resources["TextFillColorPrimaryBrush"]
+                : (Brush)System.Windows.Application.Current.Resources["TextFillColorPrimaryBrush"]
         }
     };
 }

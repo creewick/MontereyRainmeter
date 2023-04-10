@@ -1,4 +1,4 @@
-namespace uWidgets.Models;
+namespace uWidgets.Utilities;
 
 public static class DateTimeFormat
 {

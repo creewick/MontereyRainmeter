@@ -1,6 +1,6 @@
 using System.Linq;
 using System.Windows.Media;
-using uWidgets.Models;
+using uWidgets.Infrastructure.Models;
 using Wpf.Ui.Appearance;
 
 namespace uWidgets.Utilities;

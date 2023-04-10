@@ -1,6 +1,6 @@
-namespace uWidgets.Models;
+namespace uWidgets.Infrastructure.Models;
 
-public class Settings
+public class AppSettings
 {
     public AppearanceSettings Appearance { get; set; }
     public BatterySettings Battery { get; set; }

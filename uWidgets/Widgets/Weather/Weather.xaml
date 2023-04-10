@@ -1,0 +1,117 @@
+<local:Widget x:Class="uWidgets.Widgets.Weather.Weather"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:uWidgets.Widgets"
+        mc:Ignorable="d"
+        Title="Weather">
+    <Grid>
+        <Grid Margin="0, 12">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <Viewbox Name="CityName" Grid.Column="0" Grid.Row="0" Margin="16,0">
+                <TextBlock FontFamily="{StaticResource SfProSemibold}">Weather</TextBlock>
+            </Viewbox>
+            <Viewbox Name="CurrentTemp" Grid.Column="0" Grid.Row="1" Margin="16,0">
+                <TextBlock FontFamily="{StaticResource SfProLight}">00°</TextBlock>
+            </Viewbox>
+            <Viewbox Grid.Column="0" Grid.Row="4" />
+            <Viewbox Name="CurrentIcon" Grid.Column="1" Grid.Row="0" Margin="16,0">
+                <TextBlock FontFamily="{StaticResource SfProMedium}">⛅️</TextBlock>
+            </Viewbox>
+            <Viewbox Name="CurrentDescription" Grid.Column="1" Grid.Row="1" Margin="16,0">
+                <TextBlock FontFamily="{StaticResource SfProMedium}">Weather</TextBlock>
+            </Viewbox>
+            <Viewbox Name="CurrentMinMax" Grid.Column="1" Grid.Row="2" Margin="16,0">
+                <TextBlock FontFamily="{StaticResource SfProMedium}">↓ 00° ↑ 00°</TextBlock>
+            </Viewbox>
+            <Grid Name="HourlyTempBlock" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Grid.RowSpan="4">
+                <Grid.Resources>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Padding" Value="2" />
+                    </Style>
+                </Grid.Resources>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Viewbox Grid.Column="0" Grid.Row="0" Margin="2">
+                    <TextBlock FontFamily="{StaticResource SfProMedium}" Opacity="0.5">00</TextBlock>
+                </Viewbox>
+                <Viewbox Grid.Column="0" Grid.Row="1">
+                    <TextBlock FontFamily="{StaticResource SfProMedium}">⛅️</TextBlock>
+                </Viewbox>
+                <Viewbox Grid.Column="0" Grid.Row="2">
+                    <TextBlock FontFamily="{StaticResource SfProMedium}">7°</TextBlock>
+                </Viewbox>
+                <Viewbox Grid.Column="1" Grid.Row="0" Margin="2">
+                    <TextBlock FontFamily="{StaticResource SfProMedium}" Opacity="0.5">01</TextBlock>
+                </Viewbox>
+                <Viewbox Grid.Column="1" Grid.Row="1">
+                    <TextBlock FontFamily="{StaticResource SfProMedium}">⛅️</TextBlock>
+                </Viewbox>
+                <Viewbox Grid.Column="1" Grid.Row="2">
+                    <TextBlock FontFamily="{StaticResource SfProMedium}">7°</TextBlock>
+                </Viewbox>
+                <Viewbox Grid.Column="2" Grid.Row="0" Margin="2">
+                    <TextBlock FontFamily="{StaticResource SfProMedium}" Opacity="0.5">02</TextBlock>
+                </Viewbox>
+                <Viewbox Grid.Column="2" Grid.Row="1">
+                    <TextBlock FontFamily="{StaticResource SfProMedium}">⛅️</TextBlock>
+                </Viewbox>
+                <Viewbox Grid.Column="2" Grid.Row="2">
+                    <TextBlock FontFamily="{StaticResource SfProMedium}">7°</TextBlock>
+                </Viewbox>
+                <Viewbox Grid.Column="3" Grid.Row="0" Margin="2">
+                    <TextBlock FontFamily="{StaticResource SfProMedium}" Opacity="0.5">03</TextBlock>
+                </Viewbox>
+                <Viewbox Grid.Column="3" Grid.Row="1">
+                    <TextBlock FontFamily="{StaticResource SfProMedium}">⛅️</TextBlock>
+                </Viewbox>
+                <Viewbox Grid.Column="3" Grid.Row="2">
+                    <TextBlock FontFamily="{StaticResource SfProMedium}">7°</TextBlock>
+                </Viewbox>
+                <Viewbox Grid.Column="4" Grid.Row="0" Margin="2">
+                    <TextBlock FontFamily="{StaticResource SfProMedium}" Opacity="0.5">04</TextBlock>
+                </Viewbox>
+                <Viewbox Grid.Column="4" Grid.Row="1">
+                    <TextBlock FontFamily="{StaticResource SfProMedium}">⛅️</TextBlock>
+                </Viewbox>
+                <Viewbox Grid.Column="4" Grid.Row="2">
+                    <TextBlock FontFamily="{StaticResource SfProMedium}">7°</TextBlock>
+                </Viewbox>
+                <Viewbox Grid.Column="5" Grid.Row="0" Margin="2">
+                    <TextBlock FontFamily="{StaticResource SfProMedium}" Opacity="0.5">05</TextBlock>
+                </Viewbox>
+                <Viewbox Grid.Column="5" Grid.Row="1">
+                    <TextBlock FontFamily="{StaticResource SfProMedium}">⛅️</TextBlock>
+                </Viewbox>
+                <Viewbox Grid.Column="5" Grid.Row="2">
+                    <TextBlock FontFamily="{StaticResource SfProMedium}">7°</TextBlock>
+                </Viewbox>
+            </Grid>
+        </Grid>
+    </Grid>
+</local:Widget>

@@ -6,20 +6,21 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Threading;
-using uWidgets.Models;
+using uWidgets.Infrastructure.Models;
+using uWidgets.Utilities;
 
-namespace uWidgets.Widgets;
+namespace uWidgets.Widgets.Clock;
 
 public partial class Clock
 {
     public ClockSettings ClockSettings;
-    
-    public Clock(WidgetLayout layout, Settings settings, LocaleStrings localeStrings) 
-        : base(layout, settings, localeStrings)
+
+    public Clock(WidgetLayout widgetLayout, AppSettings appSettings, LocaleStrings localeStrings) 
+        : base(widgetLayout, appSettings, localeStrings)
     {
         InitializeComponent();
         
-        ClockSettings = layout.Settings?.Deserialize<ClockSettings>() 
+        ClockSettings = widgetLayout.Settings?.Deserialize<ClockSettings>() 
                         ?? throw new FormatException(nameof(ClockSettings));
 
         if (ClockSettings.Analog)
@@ -45,21 +46,28 @@ public partial class Clock
 
     private void OnSizeChanged(object sender, SizeChangedEventArgs e)
     {
-        var small = Math.Min(Width, Height) < 100;
+        var small = Math.Min(Width, Height) <= AppSettings.WidgetSize;
         Strokes.Visibility = small ? Visibility.Hidden : Visibility.Visible;
         Seconds.Visibility = ClockSettings.ShowSeconds ? Visibility.Visible : Visibility.Hidden;
         Date.Visibility = small ? Visibility.Hidden : Visibility.Visible;
-        DigitalClock.RowDefinitions[0].Height = small ? new GridLength(0) : new GridLength(1, GridUnitType.Star);
-        
+
+        DigitalClock.RowDefinitions[0].Height = Height <= AppSettings.WidgetSize 
+            ? new GridLength(0) 
+            : new GridLength(1, GridUnitType.Star);
+
+        (DigitalClock.Children[1] as Viewbox).VerticalAlignment = Height <= AppSettings.WidgetSize
+            ? VerticalAlignment.Center
+            : VerticalAlignment.Top;
+
         Numbers.RenderTransform = small ? new ScaleTransform(1.1, 1.1, 500, 500) : new ScaleTransform();
         foreach (TextBlock number in Numbers.Children)
         {
-            number.FontFamily = (FontFamily)Application.Current.Resources[small ? "SfProLight" : "SfProMedium"];
+            number.FontFamily = (FontFamily)System.Windows.Application.Current.Resources[small ? "SfProLight" : "SfProMedium"];
         }
             
         DataContext = new ClockViewModel
         {
-            SecondHandThickness = Math.Min(Width, Height) > 100 ? 7 : 12,
+            SecondHandThickness = small ? 12 : 7,
             AnalogPadding = Math.Min(Width, Height) * 0.07,
             DigitalPadding = Math.Min(Width, Height) * 0.15,
         };
@@ -90,14 +98,16 @@ public partial class Clock
             
             Time.Text = now.ToString($"{hours}{minutes}{seconds}{ampm}");
             
-            if (Width > 200)
+            var medium = Width <= AppSettings.WidgetSize * 2 + AppSettings.WidgetPadding;
+
+            if (medium)
             {
-                var date = now.ToString(DateTimeFormat.Date, new CultureInfo(Settings.Region.Language));
-                Date.Text = char.ToUpper(date[0]) + date[1..];
+                Date.Text = now.ToString(DateTimeFormat.DateShort, new CultureInfo(AppSettings.Region.Language));
             }
             else
             {
-                Date.Text = now.ToString(DateTimeFormat.DateShort, new CultureInfo(Settings.Region.Language));
+                var date = now.ToString(DateTimeFormat.Date, new CultureInfo(AppSettings.Region.Language));
+                Date.Text = char.ToUpper(date[0]) + date[1..];
             }
         }
     }

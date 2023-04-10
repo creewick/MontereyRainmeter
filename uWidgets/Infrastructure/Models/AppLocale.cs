@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 
-namespace uWidgets.Models;
+namespace uWidgets.Infrastructure.Models;
 
-public class Locale
+public class AppLocale
 {
     public List<Language> Languages { get; set; }
     public Dictionary<string, LocaleStrings> LocaleStrings { get; set; }   

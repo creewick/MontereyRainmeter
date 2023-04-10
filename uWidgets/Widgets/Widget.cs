@@ -1,37 +1,35 @@
 using System;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Forms;
 using System.Windows.Input;
-using System.Windows.Interop;
 using System.Windows.Media;
-using uWidgets.Models;
+using uWidgets.Infrastructure.Models;
+using uWidgets.UI.ContextMenu;
+using uWidgets.Utilities;
 using Wpf.Ui.Appearance;
-using Application = System.Windows.Application;
 
 namespace uWidgets.Widgets;
 
 public abstract class Widget : Window
 {
-    public WidgetLayout Layout { get; }
-    public Settings Settings { get; }
-    public LocaleStrings LocaleStrings { get; }
-    public delegate void UpdateLayoutHandler();
-    public event UpdateLayoutHandler UpdateLayoutEvent;
+    protected WidgetLayout WidgetLayout { get; }
+    protected AppSettings AppSettings { get; }
+    protected LocaleStrings LocaleStrings { get; }
+    public event Events.UpdateLayoutHandler UpdateLayoutEvent;
 
-
-    protected Widget(WidgetLayout layout, Settings settings, LocaleStrings localeStrings)
+    protected Widget(WidgetLayout widgetLayout, AppSettings appSettings, LocaleStrings localeStrings)
     {
-        Layout = layout;
-        Settings = settings;
+        WidgetLayout = widgetLayout;
+        AppSettings = appSettings;
         LocaleStrings = localeStrings;
         
-        Left = layout.X;
-        Top = layout.Y;
-        MinWidth = settings.WidgetSize;
-        MinHeight = settings.WidgetSize;
-        Width = settings.WidgetSize * layout.Columns + settings.WidgetPadding * (layout.Columns - 1);
-        Height = settings.WidgetSize * layout.Rows + settings.WidgetPadding * (layout.Rows - 1);
+        Left = widgetLayout.X;
+        Top = widgetLayout.Y;
+        MinWidth = appSettings.WidgetSize;
+        MinHeight = appSettings.WidgetSize;
+        Width = appSettings.WidgetSize * widgetLayout.Columns + appSettings.WidgetPadding * (widgetLayout.Columns - 1);
+        Height = appSettings.WidgetSize * widgetLayout.Rows + appSettings.WidgetPadding * (widgetLayout.Rows - 1);
         WindowStyle = WindowStyle.None;
         AllowsTransparency = true;
         ShowInTaskbar = false;
@@ -44,92 +42,88 @@ public abstract class Widget : Window
 
     private void OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
     {
-        var screen = Screen.FromHandle(new WindowInteropHelper(this).Handle);
-        
         if (e.ButtonState != MouseButtonState.Pressed) return;
         
         DragMove();
-        LimitToScreenBounds(screen);
-
-        if (Settings.Appearance.GridSnap)
-        {
-            SnapToGrid(Settings, screen);
-        }
-
-        Layout.X = (int)Left;
-        Layout.Y = (int)Top;
+        AfterMoveChecks();
+        
         UpdateLayoutEvent.Invoke();
+    }
+
+    private void AfterMoveChecks()
+    {
+        LimitToScreenBounds();
+
+        if (AppSettings.Appearance.GridSnap) 
+            SnapToGrid();
+
+        WidgetLayout.X = (int)Left;
+        WidgetLayout.Y = (int)Top;
     }
 
     private void OnSourceInitialized(object? sender, EventArgs e)
     {
-        if (Settings.Appearance.Transparency)
-        {
+        if (AppSettings.Appearance.Transparency) 
             ApplyTransparency();
-        }
+        
         DrawBackground();
-        DisableSnapping();
+        this.DisableSnapping();
+        this.RemoveFromAltTab();
     }
-    
-    private ContextMenu GetContextMenu() => new ContextMenu().With(
-        new MenuItem().With(LocaleStrings.Edit, null, false),
-        new Separator(),
-        new MenuItem().With(LocaleStrings.Size, null, false),
-        new MenuItem().With(LocaleStrings.Small, () => ResizeGrid(1, 1)),
-        new MenuItem().With(LocaleStrings.Medium, () => ResizeGrid(2, 2)),
-        new MenuItem().With(LocaleStrings.Wide, () => ResizeGrid(4, 2)),
-        new MenuItem().With(LocaleStrings.Large, () => ResizeGrid(4, 4)),
-        new Separator(),
-        new MenuItem().With(LocaleStrings.RemoveWidget, Close),
-        new Separator(),
-        new MenuItem().With(LocaleStrings.EditWidgets, null, false)
-    );
+
+    private ContextMenu GetContextMenu()
+    {
+        return new ContextMenuBuilder()
+            .With(LocaleStrings.Edit, null, false)
+            .With(new Separator())
+            .With(LocaleStrings.Size, null, false)
+            .With(LocaleStrings.Small, () => ResizeGrid(1, 1))
+            .With(LocaleStrings.Medium, () => ResizeGrid(2, 2))
+            .With(LocaleStrings.Wide, () => ResizeGrid(4, 2))
+            .With(LocaleStrings.Large, () => ResizeGrid(4, 4))
+            .With(new Separator())
+            .With(LocaleStrings.RemoveWidget, Close)
+            .With(new Separator())
+            .With(LocaleStrings.EditWidgets, null, false)
+            .Build();
+    }
 
     private void ResizeGrid(int columns, int rows)
     {
-        Width = Settings.WidgetSize * columns + Settings.WidgetPadding * (columns - 1);
-        Height = Settings.WidgetSize * rows + Settings.WidgetPadding * (rows - 1);
+        var oldWidth = Width;
+        var oldHeight = Height;
+        var newWidth = AppSettings.WidgetSize * columns + AppSettings.WidgetPadding * (columns - 1);
+        var newHeight = AppSettings.WidgetSize * rows + AppSettings.WidgetPadding * (rows - 1);
+        var steps = 20;
+        
+        for (var i = 0; i <= steps; i++)
+        {
+            Width = oldWidth + (newWidth - oldWidth) * i / steps;
+            Height = oldHeight + (newHeight - oldHeight) * i / steps;
+            Thread.Sleep(1);
+        }
 
-        Layout.Columns = columns;
-        Layout.Rows = rows;
+        Width = newWidth;
+        Height = newHeight;
+
+        WidgetLayout.Columns = columns;
+        WidgetLayout.Rows = rows;
+        
+        AfterMoveChecks();
+        
         UpdateLayoutEvent.Invoke();
-    }
-
-    private void DisableSnapping()
-    {
-        var source = PresentationSource.FromVisual(this) as HwndSource;
-        source?.AddHook(DisableSnappingHook);
-    }
-    
-    private const int WM_SYSCOMMAND = 0x112;
-    private const int SC_MOVE = 0xF010;
-    private const int WM_MOUSELEAVE = 0x2A2;
-    
-    private IntPtr DisableSnappingHook(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
-    {
-        if (msg == WM_SYSCOMMAND)
-        {
-            if ((wParam.ToInt32() & ~0x0F) == SC_MOVE)
-                ResizeMode = ResizeMode.NoResize;
-        }
-        else if (msg == WM_MOUSELEAVE)
-        {
-            ResizeMode = ResizeMode.CanResize;
-        }
-
-        return IntPtr.Zero;
     }
     
     private void DrawBackground()
     {
-        var transparent = Settings.Appearance.Transparency;
-        var color = (Color)Application.Current.Resources["ApplicationBackgroundColor"];
+        var transparent = AppSettings.Appearance.Transparency;
+        var color = (Color)System.Windows.Application.Current.Resources["ApplicationBackgroundColor"];
         if (transparent) color.A = 64;
         
         var border = new Border
         {
             Background = new SolidColorBrush(color),
-            CornerRadius = new CornerRadius(transparent ? 0 : Settings.Appearance.WidgetRadius)
+            CornerRadius = new CornerRadius(transparent ? 0 : AppSettings.Appearance.WidgetRadius)
         };
         
         var content = Content as UIElement;
@@ -139,7 +133,7 @@ public abstract class Widget : Window
 
     private void ApplyTransparency()
     {
-        var corners = Settings.WidgetRadius switch
+        var corners = AppSettings.WidgetRadius switch
         {
             0 => WindowCornerPreference.DoNotRound,
             < 8 => WindowCornerPreference.RoundSmall,
@@ -150,19 +144,35 @@ public abstract class Widget : Window
         Wpf.Ui.Appearance.Background.Apply(this, BackgroundType.Acrylic);
     }
 
-    private void LimitToScreenBounds(Screen screen)
+    private void LimitToScreenBounds()
     {
+        var screen = this.GetCurrentScreen();
+        
         if (Top < 0) Top = 0;
         if (Left < 0) Left = 0;
         if (Top + Height > screen.Bounds.Height) Top = screen.Bounds.Height - Height;
         if (Left + Width > screen.Bounds.Width) Left = screen.Bounds.Width - Width;
     }
 
-    private void SnapToGrid(Settings settings, Screen screen)
+    private void SnapToGrid()
     {
-        var gridSize = settings.WidgetSize + settings.WidgetPadding;
+        var screen = this.GetCurrentScreen();
+        var gridSize = AppSettings.WidgetSize + AppSettings.WidgetPadding;
         
-        Left = Math.Round(Left / gridSize) * gridSize + screen.Bounds.Width % gridSize - gridSize;
-        Top = Math.Round(Top / gridSize) * gridSize + settings.WidgetPadding;
+        var oldLeft = Left;
+        var oldTop = Top;
+        var newLeft = Math.Round(Left / gridSize) * gridSize + screen.Bounds.Width % gridSize - gridSize;
+        var newTop = Math.Round(Top / gridSize) * gridSize + AppSettings.WidgetPadding;
+        const int steps = 10;
+        
+        for (var i = 0; i <= steps; i++)
+        {
+            Left = oldLeft + (newLeft - oldLeft) * i / steps;
+            Top = oldTop + (newTop - oldTop) * i / steps;
+            Thread.Sleep(5);
+        }
+
+        Left = newLeft;
+        Top = newTop;
     }
 }

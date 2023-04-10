@@ -1,4 +1,4 @@
-namespace uWidgets.Widgets;
+namespace uWidgets.Widgets.Clock;
 
 public class ClockSettings
 {

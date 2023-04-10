@@ -15,7 +15,7 @@
     "X": 100,
     "Y": 100,
     "Columns": 4,
-    "Rows": 2,
+    "Rows": 1,
     "Settings": {
       "Analog": false,
       "ShowAMPM": false,

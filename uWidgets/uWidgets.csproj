@@ -9,19 +9,32 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <None Update="appsettings.json">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
       <None Update="layout.json">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
       <None Update="locale.json">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
+      <None Update="appsettings.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="Widgets\Weather\WeatherLocale.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 
     <ItemGroup>
-      <Page Update="Widgets\Clock.xaml">
+      <Page Update="Widgets\Calendar\Calendar.xaml">
+        <Generator>MSBuild:Compile</Generator>
+        <XamlRuntime>Wpf</XamlRuntime>
+        <SubType>Designer</SubType>
+      </Page>
+      <Page Update="Widgets\Clock\Clock.xaml">
+        <Generator>MSBuild:Compile</Generator>
+        <XamlRuntime>Wpf</XamlRuntime>
+        <SubType>Designer</SubType>
+      </Page>
+      <Page Update="Widgets\Weather\Weather.xaml">
         <Generator>MSBuild:Compile</Generator>
         <XamlRuntime>Wpf</XamlRuntime>
         <SubType>Designer</SubType>
@@ -29,29 +42,36 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Update="Widgets\ClockViewModel.cs">
-        <DependentUpon>Clock.xaml</DependentUpon>
-      </Compile>
-      <Compile Update="Widgets\ClockSettings.cs">
-        <DependentUpon>Clock.xaml</DependentUpon>
-      </Compile>
-    </ItemGroup>
-
-    <ItemGroup>
       <None Remove="Fonts\SF-Pro-Display-Light.otf" />
-      <Resource Include="Fonts\SF-Pro-Display-Light.otf" />
       <None Remove="Fonts\SF-Pro-Display-Medium.otf" />
-      <Resource Include="Fonts\SF-Pro-Display-Medium.otf" />
       <None Remove="Fonts\SF-Pro-Display-Regular.otf" />
-      <Resource Include="Fonts\SF-Pro-Display-Regular.otf" />
       <None Remove="Fonts\SF-Pro-Display-Semibold.otf" />
-      <Resource Include="Fonts\SF-Pro-Display-Semibold.otf" />
       <None Remove="Fonts\Arial-Rounded-Bold.otf" />
-      <Resource Include="Fonts\Arial-Rounded-Bold.otf" />
     </ItemGroup>
 
     <ItemGroup>
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
       <PackageReference Include="WPF-UI" Version="2.0.3" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ApplicationDefinition Include="Application\App.xaml">
+        <Generator>MSBuild:Compile</Generator>
+        <XamlRuntime>Wpf</XamlRuntime>
+        <SubType>Designer</SubType>
+      </ApplicationDefinition>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="UI\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Resource Include="UI\Fonts\Arial-Rounded-Bold.otf" />
+      <Resource Include="UI\Fonts\SF-Pro-Display-Light.otf" />
+      <Resource Include="UI\Fonts\SF-Pro-Display-Medium.otf" />
+      <Resource Include="UI\Fonts\SF-Pro-Display-Regular.otf" />
+      <Resource Include="UI\Fonts\SF-Pro-Display-Semibold.otf" />
     </ItemGroup>
 
 </Project>

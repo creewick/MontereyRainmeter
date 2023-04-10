@@ -1,12 +1,13 @@
-<widgets:Widget x:Class="uWidgets.Widgets.Clock"
+<widgets:Widget x:Class="uWidgets.Widgets.Clock.Clock"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:widgets="clr-namespace:uWidgets.Widgets"
+        xmlns:clock="clr-namespace:uWidgets.Widgets.Clock"
         Title="Clock">
     <Window.DataContext>
-        <widgets:ClockViewModel />
+        <clock:ClockViewModel />
     </Window.DataContext>
     <Grid>
         <Viewbox Name="AnalogClock" Stretch="Uniform" Visibility="Hidden" Margin="{Binding AnalogPadding}">
@@ -54,14 +55,14 @@
         </Viewbox>
         <Grid Name="DigitalClock" Visibility="Hidden" Margin="{Binding DigitalPadding}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
+                <RowDefinition Height="1*" />
                 <RowDefinition Height="3*" />
             </Grid.RowDefinitions>
-            <Viewbox Grid.Row="0">
-                <TextBlock Name="Date" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" TextAlignment="Center" FontFamily="{StaticResource SfProRegular}" Foreground="{DynamicResource AccentFillColorDefaultBrush}" />
+            <Viewbox Grid.Row="0" VerticalAlignment="Bottom">
+                <TextBlock Name="Date" HorizontalAlignment="Stretch" FontFamily="{StaticResource SfProRegular}" Foreground="{DynamicResource AccentFillColorDefaultBrush}" />
             </Viewbox>
-            <Viewbox Grid.Row="1">
-                <TextBlock Name="Time" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextAlignment="Center" FontFamily="{StaticResource SfProRegular}" Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
+            <Viewbox Grid.Row="1" VerticalAlignment="Top">
+                <TextBlock Name="Time" HorizontalAlignment="Stretch" FontFamily="{StaticResource SfProRegular}" Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
             </Viewbox>
         </Grid>
     </Grid>
