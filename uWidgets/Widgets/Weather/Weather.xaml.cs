@@ -1,15 +1,17 @@
 using System;
 using System.Collections.Generic;
-using System.Globalization;
+using System.IO;
 using System.Linq;
-using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
-using uWidgets.Infrastructure.Files;
-using uWidgets.Infrastructure.Models;
+using uWidgets.Configuration.FileHandlers;
+using uWidgets.Configuration.Interfaces;
+using uWidgets.Widgets.Weather.Interfaces;
+using uWidgets.Widgets.Weather.Models;
+using uWidgets.Widgets.Weather.Services;
 
 namespace uWidgets.Widgets.Weather;
 
@@ -17,69 +19,79 @@ public partial class Weather
 {
     public WeatherSettings WeatherSettings;
     public Dictionary<string, string> WeatherLocaleStrings;
+    public IWeatherProvider WeatherProvider;
+    public DispatcherTimer Timer;
     
-    public Weather(
-        IFileHandler<AppSettings> settingsManager, 
-        IFileHandler<List<WidgetLayout>> layoutManager, 
-        IFileHandler<AppLocale> localeManager, 
-        Guid id)
+    public Weather(ISettingsManager settingsManager, ILayoutManager layoutManager, ILocaleManager localeManager, IWeatherProvider weatherProvider, Guid id)
         : base(settingsManager, layoutManager, localeManager, id)
     {
+        WeatherProvider = weatherProvider;
+
         InitializeComponent();
-
-        WeatherSettings = LayoutManager.Get().First(x => x.Id == Id).Settings?.Deserialize<WeatherSettings>() 
-                          ?? throw new FormatException(nameof(WeatherSettings));
-        
-        // WeatherLocaleStrings = App.DeserializeFromFile<Dictionary<string, Dictionary<string, string>>>("Widgets/Weather/WeatherLocale.json")[appSettings.Region.Language];
-        
-        var timer = new DispatcherTimer
-        {
-            Interval = TimeSpan.FromMinutes(WeatherSettings.RefreshRateMinutes)
-        };
-        timer.Tick += (_,_) => OnTick();
-        timer.Start();
+        OnSettingsChange();
+        OnSizeChange();
         OnTick();
-
-        SizeChanged += OnSizeChange;
+        
+        SizeChanged += (_,_) => OnSizeChange();
         Show();
+    }
+
+    private void OnSettingsChange()
+    {
+        WeatherSettings = LayoutManager.Get(Id).Settings?.Deserialize<WeatherSettings>() 
+                          ?? throw new FormatException(nameof(WeatherSettings));
+
+        var language = SettingsManager.Get().Region.Language;
+        
+        WeatherLocaleStrings = new FileHandler<Dictionary<string, string>>(
+            Path.Combine("Widgets", "Weather", "Locales", $"{language}.json")
+        ).Get();
+
+        Timer?.Stop();
+        Timer = new DispatcherTimer { Interval = TimeSpan.FromMinutes(WeatherSettings.RefreshRateMinutes) };
+        Timer.Tick += (_,_) => OnTick();
+        Timer.Start();
     }
 
     private async Task OnTick()
     {
-        using var httpClient = new HttpClient();
+        var forecast = await WeatherProvider.GetForecast(WeatherSettings.Latitude, WeatherSettings.Longitude);
 
-        var latitude = WeatherSettings.Latitude.ToString("0.##", CultureInfo.InvariantCulture);
-        var longitude = WeatherSettings.Longitude.ToString("0.##", CultureInfo.InvariantCulture);
-        
-        var url = $"https://api.open-meteo.com/v1/forecast?" +
-                  $"latitude={latitude}&" +
-                  $"longitude={longitude}&" +
-                  $"hourly=temperature_2m,weathercode&" +
-                  $"daily=temperature_2m_min,temperature_2m_max,weathercode&" +
-                  $"timezone=auto";
+        var today = DateTime.Now.Date;
+        var nowHourly = forecast.Hourly.First(x => x.DateTime == today.AddHours(DateTime.Now.Hour));
+        var nowDaily = forecast.Daily.First(x => x.DateTime == today);
 
-        
-        var response = await httpClient.GetAsync(url);
+        var weatherCode = Enum.GetName(typeof(WeatherCode), nowHourly.WeatherCode) ?? string.Empty;
 
-        if (!response.IsSuccessStatusCode) return;
-        
-        var json = await response.Content.ReadAsStringAsync();
+        CityNameText.Text = WeatherSettings.LocationName;
+        CurrentTempText.Text = $"{nowHourly.Temperature:0}°";
+        CurrentIconImage.Source = WeatherCodeImageProvider.GetImage(nowHourly.WeatherCode);
+        CurrentDescriptionText.Text = WeatherLocaleStrings.TryGetValue(weatherCode, out var text) ? text : string.Empty;
+        CurrentMinMaxText.Text = $"↓ {nowDaily.Min:0}° ↑ {nowDaily.Max:0}°";
 
-        var result = JsonSerializer.Deserialize<WeatherResponse>(json);
+        var hourly = forecast.Hourly.Skip(forecast.Hourly.IndexOf(nowHourly)).ToList();
 
-        if (result == null) return;
-
-        var hourly = result.Hourly.Snapshots.First(x => x.DateTime == DateTime.Now.Date.AddHours(DateTime.Now.Hour));
-        var daily = result.Daily.Snapshots.First(x => x.DateTime == DateTime.Now.Date);
-
-        (CityName.Child as TextBlock)!.Text = WeatherSettings.LocationName;
-        (CurrentTemp.Child as TextBlock)!.Text = $"{hourly.Temperature:0}°";
-        (CurrentDescription.Child as TextBlock)!.Text = WeatherLocaleStrings[Enum.GetName(typeof(WeatherCode), hourly.WeatherCode)];
-        (CurrentMinMax.Child as TextBlock)!.Text = $"↓ {daily.Min:0}° ↑ {daily.Max:0}°";
+        Hour1.Text = $"{hourly[1].DateTime.Hour:D2}";
+        IconImage1.Source = WeatherCodeImageProvider.GetImage(hourly[1].WeatherCode);
+        Temp1.Text = $"{hourly[1].Temperature:0}°";
+        Hour2.Text = $"{hourly[2].DateTime.Hour:D2}";
+        IconImage2.Source = WeatherCodeImageProvider.GetImage(hourly[2].WeatherCode);
+        Temp2.Text = $"{hourly[2].Temperature:0}°";
+        Hour3.Text = $"{hourly[3].DateTime.Hour:D2}";
+        IconImage3.Source = WeatherCodeImageProvider.GetImage(hourly[3].WeatherCode);
+        Temp3.Text = $"{hourly[3].Temperature:0}°";
+        Hour4.Text = $"{hourly[4].DateTime.Hour:D2}";
+        IconImage4.Source = WeatherCodeImageProvider.GetImage(hourly[4].WeatherCode);
+        Temp4.Text = $"{hourly[4].Temperature:0}°";
+        Hour5.Text = $"{hourly[5].DateTime.Hour:D2}";
+        IconImage5.Source = WeatherCodeImageProvider.GetImage(hourly[5].WeatherCode);
+        Temp5.Text = $"{hourly[5].Temperature:0}°";
+        Hour6.Text = $"{hourly[6].DateTime.Hour:D2}";
+        IconImage6.Source = WeatherCodeImageProvider.GetImage(hourly[6].WeatherCode);
+        Temp6.Text = $"{hourly[6].Temperature:0}°";
     }
-
-
-    private void OnSizeChange(object sender, SizeChangedEventArgs e)
+    
+    private void OnSizeChange()
     {
         var settings = SettingsManager.Get();
         

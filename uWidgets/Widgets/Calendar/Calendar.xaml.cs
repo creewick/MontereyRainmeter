@@ -8,45 +8,50 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
 using System.Windows.Threading;
-using uWidgets.Infrastructure.Files;
-using uWidgets.Infrastructure.Models;
+using uWidgets.Configuration.Interfaces;
+using uWidgets.Configuration.Models;
+using uWidgets.WidgetManagement.Models;
 
 namespace uWidgets.Widgets.Calendar;
 
 public partial class Calendar
 {
-    private readonly CultureInfo cultureInfo;
+    private CultureInfo cultureInfo;
+    private DispatcherTimer timer;
     
-    public Calendar(
-        IFileHandler<AppSettings> settingsManager, 
-        IFileHandler<List<WidgetLayout>> layoutManager, 
-        IFileHandler<AppLocale> localeManager, 
-        Guid id)
+    public Calendar(ISettingsManager settingsManager, ILayoutManager layoutManager, ILocaleManager localeManager, Guid id)
         : base(settingsManager, layoutManager, localeManager, id)
     {
-        cultureInfo = new CultureInfo(SettingsManager.Get().Region.Language);
         InitializeComponent();
+        OnSettingsChanged();
+        OnSizeChanged();
         
-        var timer = new DispatcherTimer { Interval = TimeSpan.FromMinutes(1) };
-        timer.Tick += OnTick;
+        timer?.Stop();
+        timer = new DispatcherTimer { Interval = TimeSpan.FromMinutes(1) };
+        timer.Tick += (_,_) => OnTick();
         timer.Start();
-        OnTick(null, null);
+        OnTick();
         
-        SizeChanged += OnSizeChanged;
+        SizeChanged += (_,_) => OnSizeChanged();
         MouseDoubleClick += (_,_) => Process.Start("explorer.exe", @"shell:AppsFolder\microsoft.windowscommunicationsapps_8wekyb3d8bbwe!microsoft.windowslive.calendar");
 
         Show();
     }
 
-    private void OnSizeChanged(object sender, SizeChangedEventArgs e)
+    private void OnSizeChanged()
     {
         var small = Math.Min(Width, Height) <= SettingsManager.Get().WidgetSize;
+
         MonthCalendar.Visibility = small ? Visibility.Hidden : Visibility.Visible;
         TodaySmall.Visibility = small ? Visibility.Visible : Visibility.Hidden;
     }
 
-
-    private void OnTick(object? sender, EventArgs? e)
+    private void OnSettingsChanged()
+    {
+        cultureInfo = new CultureInfo(SettingsManager.Get().Region.Language);
+    }
+    
+    private void OnTick()
     {
         var now = DateTime.Now.Date;
         var weekDays = GetWeekDays().ToList();
@@ -142,7 +147,7 @@ public partial class Calendar
                 {
                     new Ellipse
                     {
-                        Fill = (Brush)System.Windows.Application.Current.Resources["AccentFillColorDefaultBrush"],
+                        Fill = (Brush)Application.Current.Resources["AccentFillColorDefaultBrush"],
                         Width = 100,
                         Height = 100
                     }
@@ -177,7 +182,7 @@ public partial class Calendar
             Opacity = isWeekend && !today ? 0.5 : 1,
             Foreground = today 
                 ? new SolidColorBrush(Colors.White) 
-                : (Brush)System.Windows.Application.Current.Resources["TextFillColorPrimaryBrush"]
+                : (Brush)Application.Current.Resources["TextFillColorPrimaryBrush"]
         }
     };
 }

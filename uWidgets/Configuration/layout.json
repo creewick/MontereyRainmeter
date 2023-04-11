@@ -1,0 +1,41 @@
+[
+  {
+    "Id": "6076c5a9-3a20-46f6-bc4f-8464a2ca0f76",
+    "Name": "Clock",
+    "X": 100,
+    "Y": 100,
+    "Columns": 2,
+    "Rows": 2,
+    "Settings": {
+      "Analog": true,
+      "ShowSeconds": true
+    }
+  },
+  {
+    "Id": "898c1712-a0f7-465a-8074-ef6a76fb60ab",
+    "Name": "Clock",
+    "X": 100,
+    "Y": 100,
+    "Columns": 4,
+    "Rows": 1,
+    "Settings": {
+      "Analog": false,
+      "ShowAMPM": false,
+      "ShowSeconds": false
+    }
+  },
+  {
+    "Id": "898c1712-a0f7-465a-8075-ef6a76fb60ab",
+    "Name": "Weather",
+    "X": 100,
+    "Y": 100,
+    "Columns": 4,
+    "Rows": 1,
+    "Settings": {
+      "LocationName": "Алматы",
+      "Latitude": 43.26,
+      "Longitude": 76.93,
+      "RefreshRateMinutes": 60
+    }
+  }
+]

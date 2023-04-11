@@ -1,9 +1,10 @@
-<local:Widget x:Class="uWidgets.Widgets.Calendar.Calendar"
+<models:Widget x:Class="uWidgets.Widgets.Calendar.Calendar"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:uWidgets.Widgets"
+        xmlns:models="clr-namespace:uWidgets.WidgetManagement.Models"
         mc:Ignorable="d"
         Title="Calendar">
     <Window.Resources>
@@ -41,4 +42,4 @@
             </Viewbox>
         </Grid>
     </Grid>
-</local:Widget>
+</models:Widget>

@@ -9,16 +9,94 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <None Update="layout.json">
+      <None Update="Configuration\appsettings.json">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
-      <None Update="locale.json">
+      <None Update="Configuration\layout.json">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
-      <None Update="appsettings.json">
+      <None Update="Configuration\Locales\de.json">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
-      <None Update="Widgets\Weather\WeatherLocale.json">
+      <None Update="Configuration\Locales\en.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="Configuration\Locales\es.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="Configuration\Locales\ko.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="Configuration\Locales\pl.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="Configuration\Locales\ru.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="Configuration\Locales\ua.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="Configuration\Locales\vi.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="Widgets\Weather\Locales\en.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="Widgets\Weather\Locales\ru.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="Widgets\Weather\Images\clear.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="Widgets\Weather\Images\clear-night.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="Widgets\Weather\Images\cloudy.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="Widgets\Weather\Images\drizzle.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="Widgets\Weather\Images\drizzle-night.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="Widgets\Weather\Images\fog.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="Widgets\Weather\Images\haze.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="Widgets\Weather\Images\heavy-rain.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="Widgets\Weather\Images\heavy-snow.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="Widgets\Weather\Images\partly-cloudy.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="Widgets\Weather\Images\partly-cloudy-night.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="Widgets\Weather\Images\rain.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="Widgets\Weather\Images\snow.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="Widgets\Weather\Images\snow-rain.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="Widgets\Weather\Images\sunrise.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="Widgets\Weather\Images\sunset.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="Widgets\Weather\Images\thunder.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="Widgets\Weather\Images\wind.png">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
     </ItemGroup>
@@ -55,23 +133,15 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ApplicationDefinition Include="Application\App.xaml">
-        <Generator>MSBuild:Compile</Generator>
-        <XamlRuntime>Wpf</XamlRuntime>
-        <SubType>Designer</SubType>
-      </ApplicationDefinition>
+      <Resource Include="UserInterface\Fonts\Arial-Rounded-Bold.otf" />
+      <Resource Include="UserInterface\Fonts\SF-Pro-Display-Light.otf" />
+      <Resource Include="UserInterface\Fonts\SF-Pro-Display-Medium.otf" />
+      <Resource Include="UserInterface\Fonts\SF-Pro-Display-Regular.otf" />
+      <Resource Include="UserInterface\Fonts\SF-Pro-Display-Semibold.otf" />
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="UI\" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Resource Include="UI\Fonts\Arial-Rounded-Bold.otf" />
-      <Resource Include="UI\Fonts\SF-Pro-Display-Light.otf" />
-      <Resource Include="UI\Fonts\SF-Pro-Display-Medium.otf" />
-      <Resource Include="UI\Fonts\SF-Pro-Display-Regular.otf" />
-      <Resource Include="UI\Fonts\SF-Pro-Display-Semibold.otf" />
+      <Folder Include="Widgets\Weather\Images\" />
     </ItemGroup>
 
 </Project>
