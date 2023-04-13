@@ -1,11 +1,11 @@
 <windowTypes:WidgetBase x:Class="uWidgets.Widgets.Weather.Weather"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:windowTypes="clr-namespace:uWidgets.UserInterface.WindowTypes"
-        mc:Ignorable="d"
-        Title="Weather">
+                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                        xmlns:windowTypes="clr-namespace:uWidgets.WindowManagement.WindowTypes"
+                        mc:Ignorable="d"
+                        Title="Weather">
     <Grid>
         <Grid Name="General">
             <Grid.ColumnDefinitions>
@@ -23,14 +23,17 @@
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
             <Viewbox Name="CityName" Grid.Column="0" Grid.Row="0">
-                <TextBlock Name="CityNameText" FontFamily="{StaticResource SfProSemibold}" Foreground="{DynamicResource AccentFillColorDefaultBrush}">██████</TextBlock>
+                <TextBlock Name="CityNameText" FontFamily="{StaticResource SfProSemibold}"
+                           Foreground="{DynamicResource AccentFillColorDefaultBrush}">
+                    ██████
+                </TextBlock>
             </Viewbox>
             <Viewbox Name="CurrentTemp" Grid.Column="0" Grid.Row="1">
                 <TextBlock Name="CurrentTempText" FontFamily="{StaticResource SfProLight}">––°</TextBlock>
             </Viewbox>
             <Viewbox Grid.Column="0" Grid.Row="4" />
             <Viewbox Name="CurrentIcon" Grid.Column="1" Grid.Row="0">
-                <Image Name="CurrentIconImage"></Image>
+                <Image Name="CurrentIconImage" />
             </Viewbox>
             <Viewbox Name="CurrentDescription" Grid.Column="1" Grid.Row="1">
                 <TextBlock Name="CurrentDescriptionText" FontFamily="{StaticResource SfProMedium}">████</TextBlock>
@@ -38,7 +41,7 @@
             <Viewbox Name="CurrentMinMax" Grid.Column="1" Grid.Row="2">
                 <TextBlock Name="CurrentMinMaxText" FontFamily="{StaticResource SfProMedium}">↓ ––° ↑ ––°</TextBlock>
             </Viewbox>
-            <Grid Name="HourlyTempBlock" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Grid.RowSpan="4">
+            <Grid Name="HourlyTempBlock" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Grid.RowSpan="4" Margin="-18, 0">
                 <Grid.Resources>
                     <Style TargetType="{x:Type TextBlock}">
                         <Setter Property="Padding" Value="2" />
@@ -61,55 +64,73 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <Viewbox Grid.Column="0" Grid.Row="0" Margin="2">
-                    <TextBlock Name="Hour1" FontFamily="{StaticResource SfProMedium}" Foreground="{DynamicResource AccentFillColorDefaultBrush}">––</TextBlock>
+                    <TextBlock Name="Hour1" FontFamily="{StaticResource SfProMedium}"
+                               Foreground="{DynamicResource AccentFillColorDefaultBrush}">
+                        ––
+                    </TextBlock>
                 </Viewbox>
                 <Viewbox Grid.Column="0" Grid.Row="1">
-                    <Image Name="IconImage1"></Image>
+                    <Image Name="IconImage1" />
                 </Viewbox>
                 <Viewbox Grid.Column="0" Grid.Row="2">
                     <TextBlock Name="Temp1" FontFamily="{StaticResource SfProMedium}">––°</TextBlock>
                 </Viewbox>
                 <Viewbox Grid.Column="1" Grid.Row="0" Margin="2">
-                    <TextBlock Name="Hour2" FontFamily="{StaticResource SfProMedium}" Foreground="{DynamicResource AccentFillColorDefaultBrush}">––</TextBlock>
+                    <TextBlock Name="Hour2" FontFamily="{StaticResource SfProMedium}"
+                               Foreground="{DynamicResource AccentFillColorDefaultBrush}">
+                        ––
+                    </TextBlock>
                 </Viewbox>
                 <Viewbox Grid.Column="1" Grid.Row="1">
-                    <Image Name="IconImage2"></Image>
+                    <Image Name="IconImage2" />
                 </Viewbox>
                 <Viewbox Grid.Column="1" Grid.Row="2">
                     <TextBlock Name="Temp2" FontFamily="{StaticResource SfProMedium}">––°</TextBlock>
                 </Viewbox>
                 <Viewbox Grid.Column="2" Grid.Row="0" Margin="2">
-                    <TextBlock Name="Hour3" FontFamily="{StaticResource SfProMedium}" Foreground="{DynamicResource AccentFillColorDefaultBrush}">––</TextBlock>
+                    <TextBlock Name="Hour3" FontFamily="{StaticResource SfProMedium}"
+                               Foreground="{DynamicResource AccentFillColorDefaultBrush}">
+                        ––
+                    </TextBlock>
                 </Viewbox>
                 <Viewbox Grid.Column="2" Grid.Row="1">
-                    <Image Name="IconImage3"></Image>
+                    <Image Name="IconImage3" />
                 </Viewbox>
                 <Viewbox Grid.Column="2" Grid.Row="2">
                     <TextBlock Name="Temp3" FontFamily="{StaticResource SfProMedium}">––°</TextBlock>
                 </Viewbox>
                 <Viewbox Grid.Column="3" Grid.Row="0" Margin="2">
-                    <TextBlock Name="Hour4" FontFamily="{StaticResource SfProMedium}" Foreground="{DynamicResource AccentFillColorDefaultBrush}">––</TextBlock>
+                    <TextBlock Name="Hour4" FontFamily="{StaticResource SfProMedium}"
+                               Foreground="{DynamicResource AccentFillColorDefaultBrush}">
+                        ––
+                    </TextBlock>
                 </Viewbox>
                 <Viewbox Grid.Column="3" Grid.Row="1">
-                    <Image Name="IconImage4"></Image>
+                    <Image Name="IconImage4" />
                 </Viewbox>
                 <Viewbox Grid.Column="3" Grid.Row="2">
                     <TextBlock Name="Temp4" FontFamily="{StaticResource SfProMedium}">––°</TextBlock>
                 </Viewbox>
                 <Viewbox Grid.Column="4" Grid.Row="0" Margin="2">
-                    <TextBlock Name="Hour5" FontFamily="{StaticResource SfProMedium}" Foreground="{DynamicResource AccentFillColorDefaultBrush}">––</TextBlock>
+                    <TextBlock Name="Hour5" FontFamily="{StaticResource SfProMedium}"
+                               Foreground="{DynamicResource AccentFillColorDefaultBrush}">
+                        ––
+                    </TextBlock>
                 </Viewbox>
                 <Viewbox Grid.Column="4" Grid.Row="1">
-                    <Image Name="IconImage5"></Image>
+                    <Image Name="IconImage5" />
                 </Viewbox>
                 <Viewbox Grid.Column="4" Grid.Row="2">
                     <TextBlock Name="Temp5" FontFamily="{StaticResource SfProMedium}">––°</TextBlock>
                 </Viewbox>
                 <Viewbox Grid.Column="5" Grid.Row="0" Margin="2">
-                    <TextBlock Name="Hour6" FontFamily="{StaticResource SfProMedium}" Foreground="{DynamicResource AccentFillColorDefaultBrush}">––</TextBlock>
+                    <TextBlock Name="Hour6" FontFamily="{StaticResource SfProMedium}"
+                               Foreground="{DynamicResource AccentFillColorDefaultBrush}">
+                        ––
+                    </TextBlock>
                 </Viewbox>
                 <Viewbox Grid.Column="5" Grid.Row="1">
-                    <Image Name="IconImage6"></Image>
+                    <Image Name="IconImage6" />
                 </Viewbox>
                 <Viewbox Grid.Column="5" Grid.Row="2">
                     <TextBlock Name="Temp6" FontFamily="{StaticResource SfProMedium}">––°</TextBlock>

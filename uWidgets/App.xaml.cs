@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows;
 using Microsoft.Extensions.DependencyInjection;
 using uWidgets.Configuration.Interfaces;
@@ -8,7 +7,6 @@ using uWidgets.Configuration.Models;
 using uWidgets.Configuration.Providers;
 using uWidgets.UserInterface.Interfaces;
 using uWidgets.UserInterface.Services;
-using uWidgets.UserInterface.WindowTypes;
 using uWidgets.Widgets.Weather.Interfaces;
 using uWidgets.Widgets.Weather.Services;
 using uWidgets.WindowManagement.Factories;
@@ -36,7 +34,7 @@ public partial class App
         services.AddSingleton<AppSettings>(provider => provider.GetRequiredService<ISettingsProvider>().Get());
         services.AddSingleton<ILayoutProvider, LayoutProvider>();
         services.AddSingleton<List<WidgetLayout>>(provider => provider.GetRequiredService<ILayoutProvider>().Get());
-        services.AddSingleton<ILocaleProvider>(provider => 
+        services.AddSingleton<ILocaleProvider>(provider =>
             new LocaleProvider(provider
                 .GetRequiredService<ISettingsProvider>()
                 .Get().Region.Language));

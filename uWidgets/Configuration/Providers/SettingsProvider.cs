@@ -6,5 +6,7 @@ namespace uWidgets.Configuration.Providers;
 
 public class SettingsProvider : FileHandler<AppSettings>, ISettingsProvider
 {
-    public SettingsProvider() : base(Path.Combine("Configuration", "appsettings.json")) { }
+    public SettingsProvider() : base(Path.Combine("Configuration", "appsettings.json"))
+    {
+    }
 }

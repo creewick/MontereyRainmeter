@@ -9,22 +9,23 @@ namespace uWidgets.UserInterface.Services;
 
 public class ThemeService : IThemeService
 {
-    private AppearanceSettings Settings { get; }
-
-    public ThemeService(AppSettings settings)
+    private static readonly SystemThemeType[] DarkThemes =
     {
-        Settings = settings.Appearance;
-    }
-    
-    private static readonly SystemThemeType[] DarkThemes = {
         SystemThemeType.Glow,
         SystemThemeType.Dark,
         SystemThemeType.CapturedMotion
     };
 
+    public ThemeService(AppSettings settings)
+    {
+        Settings = settings.Appearance;
+    }
+
+    private AppearanceSettings Settings { get; }
+
     public void Apply()
     {
-        if (Settings.SystemTheme) 
+        if (Settings.SystemTheme)
             Settings.DarkTheme = DarkThemes.Contains(Theme.GetSystemTheme());
 
         var themeType = Settings.DarkTheme ? ThemeType.Dark : ThemeType.Light;
@@ -32,7 +33,7 @@ public class ThemeService : IThemeService
 
         Application.Current.MainWindow = new Window();
         Theme.Apply(themeType);
-        
+
         if (Settings.SystemAccentColor)
             Accent.ApplySystemAccent();
         else

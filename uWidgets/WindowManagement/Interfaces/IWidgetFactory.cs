@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using uWidgets.UserInterface.WindowTypes;
+using uWidgets.WindowManagement.WindowTypes;
 
 namespace uWidgets.WindowManagement.Interfaces;
 

@@ -1,16 +1,17 @@
 using System;
+using System.Windows.Controls;
 using Wpf.Ui.Common;
-using Wpf.Ui.Controls;
+using MenuItem = Wpf.Ui.Controls.MenuItem;
 
 namespace uWidgets.UserInterface.Services;
 
 public class ContextMenuBuilder
 {
-    private readonly System.Windows.Controls.ContextMenu contextMenu;
-    
+    private readonly ContextMenu contextMenu;
+
     public ContextMenuBuilder()
     {
-        contextMenu = new System.Windows.Controls.ContextMenu();
+        contextMenu = new ContextMenu();
     }
 
     public ContextMenuBuilder With(object item)
@@ -28,8 +29,11 @@ public class ContextMenuBuilder
             IsEnabled = isEnabled
         };
 
-        return this.With(item);
+        return With(item);
     }
 
-    public System.Windows.Controls.ContextMenu Build() => contextMenu;
+    public ContextMenu Build()
+    {
+        return contextMenu;
+    }
 }

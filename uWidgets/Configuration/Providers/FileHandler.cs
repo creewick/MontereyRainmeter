@@ -9,7 +9,7 @@ public class FileHandler<T> : IFileHandler<T>
 {
     private readonly string path;
     private T? data;
-    
+
     public FileHandler(string filename)
     {
         path = Path.Combine(Directory.GetCurrentDirectory(), filename);

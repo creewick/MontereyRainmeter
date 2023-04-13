@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Interop;
@@ -12,10 +13,10 @@ public static class WindowOsIntegrationService
         const int WM_SYSCOMMAND = 0x112;
         const int SC_MOVE = 0xF010;
         const int WM_MOUSELEAVE = 0x2A2;
-        
+
         var source = PresentationSource.FromVisual(window) as HwndSource;
         source?.AddHook(DisableSnappingHook);
-        
+
         IntPtr DisableSnappingHook(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
         {
             if (msg == WM_SYSCOMMAND)
@@ -36,10 +37,10 @@ public static class WindowOsIntegrationService
     {
         const int WS_EX_TOOLWINDOW = 0x00000080;
         const int GWL_EXSTYLE = -20;
-        
-        IntPtr handle = new WindowInteropHelper(window).Handle;
 
-        int exStyle = (int)GetWindowLong(handle, GWL_EXSTYLE);
+        var handle = new WindowInteropHelper(window).Handle;
+
+        var exStyle = (int)GetWindowLong(handle, GWL_EXSTYLE);
 
         exStyle |= WS_EX_TOOLWINDOW;
         SetWindowLong(handle, GWL_EXSTYLE, (IntPtr)exStyle);
@@ -52,7 +53,7 @@ public static class WindowOsIntegrationService
     {
         int error;
         IntPtr result;
-        
+
         SetLastError(0);
 
         if (IntPtr.Size == 4)
@@ -67,19 +68,19 @@ public static class WindowOsIntegrationService
             error = Marshal.GetLastWin32Error();
         }
 
-        if ((result == IntPtr.Zero) && (error != 0))
-        {
-            throw new System.ComponentModel.Win32Exception(error);
-        }
+        if (result == IntPtr.Zero && error != 0) throw new Win32Exception(error);
     }
 
     [DllImport("user32.dll", EntryPoint = "SetWindowLongPtr", SetLastError = true)]
     private static extern IntPtr IntSetWindowLongPtr(IntPtr hWnd, int nIndex, IntPtr dwNewLong);
 
     [DllImport("user32.dll", EntryPoint = "SetWindowLong", SetLastError = true)]
-    private static extern Int32 IntSetWindowLong(IntPtr hWnd, int nIndex, Int32 dwNewLong);
+    private static extern int IntSetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
 
-    private static int IntPtrToInt32(IntPtr intPtr) => unchecked((int)intPtr.ToInt64());
+    private static int IntPtrToInt32(IntPtr intPtr)
+    {
+        return unchecked((int)intPtr.ToInt64());
+    }
 
     [DllImport("kernel32.dll", EntryPoint = "SetLastError")]
     private static extern void SetLastError(int dwErrorCode);

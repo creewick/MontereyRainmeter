@@ -10,10 +10,12 @@
             <RowDefinition Height="3*" />
         </Grid.RowDefinitions>
         <Viewbox Grid.Row="0" VerticalAlignment="Bottom">
-            <TextBlock Name="Date" HorizontalAlignment="Stretch" FontFamily="{StaticResource SfProRegular}" Foreground="{DynamicResource AccentFillColorDefaultBrush}" />
+            <TextBlock Name="Date" HorizontalAlignment="Stretch" FontFamily="{StaticResource SfProRegular}"
+                       Foreground="{DynamicResource AccentFillColorDefaultBrush}" />
         </Viewbox>
         <Viewbox Grid.Row="1" Name="TimeViewbox" VerticalAlignment="Top">
-            <TextBlock Name="Time" HorizontalAlignment="Stretch" FontFamily="{StaticResource SfProRegular}" Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
+            <TextBlock Name="Time" HorizontalAlignment="Stretch" FontFamily="{StaticResource SfProRegular}"
+                       Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
         </Viewbox>
     </Grid>
 </UserControl>

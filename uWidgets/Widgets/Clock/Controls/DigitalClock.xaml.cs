@@ -10,10 +10,6 @@ namespace uWidgets.Widgets.Clock.Controls;
 
 public partial class DigitalClock : UserControl
 {
-    public ClockSettings ClockSettings { get; }
-    public AppSettings Settings { get; }
-    public DispatcherTimer Timer { get; }
-
     public DigitalClock(ClockSettings clockSettings, AppSettings settings)
     {
         InitializeComponent();
@@ -24,42 +20,55 @@ public partial class DigitalClock : UserControl
         {
             Interval = TimeSpan.FromSeconds(1)
         };
-        Timer.Tick += TimerOnTick;
+        Timer.Tick += (_,_) => TimerOnTick();
         Timer.Start();
-        
+        Initialized += (_, _) => TimerOnTick();
         SizeChanged += OnSizeChanged;
     }
+
+    public ClockSettings ClockSettings { get; }
+    public AppSettings Settings { get; }
+    public DispatcherTimer Timer { get; }
+    private string shortDate;
+    private string longDate;
 
     private void OnSizeChanged(object sender, SizeChangedEventArgs e)
     {
         var width = Window.GetWindow(this)!.Width;
         var height = Window.GetWindow(this)!.Height;
-        
+
         var small = Math.Min(width, height) <= Settings.WidgetSize;
+        var mediumWidth = width <= Settings.WidgetSize * 2 + Settings.WidgetPadding;
         var smallHeight = height <= Settings.WidgetSize;
         
+        Margin = new Thickness(small ? 4 : 16);
         Date.Visibility = small ? Visibility.Hidden : Visibility.Visible;
+        Date.Text = mediumWidth ? shortDate : longDate;
 
-        Grid.RowDefinitions[0].Height = new GridLength(smallHeight ? 0 : 1, GridUnitType.Star);
-        TimeViewbox.VerticalAlignment = smallHeight ? VerticalAlignment.Center : VerticalAlignment.Top;
+
+        // TimeViewbox.VerticalAlignment = smallHeight ? VerticalAlignment.Center : VerticalAlignment.Top;
     }
 
-    private void TimerOnTick(object? sender, EventArgs e)
+    private void TimerOnTick()
     {
         var now = DateTime.Now;
         var cultureInfo = new CultureInfo(Settings.Region.Language);
-        var smallWidth = Width <= Settings.WidgetSize * 2 + Settings.WidgetPadding;
+        var mediumWidth = Window.GetWindow(this)!.Width <= Settings.WidgetSize * 2 + Settings.WidgetPadding;
 
         var hours = ClockSettings.ShowAMPM ? DateTimeFormat.Hours12 : DateTimeFormat.Hours24;
         var minutes = DateTimeFormat.Minutes;
         var seconds = ClockSettings.ShowSeconds ? DateTimeFormat.Seconds : string.Empty;
         var ampm = ClockSettings.ShowAMPM ? DateTimeFormat.Ampm : string.Empty;
-        var date = smallWidth ? DateTimeFormat.Date : DateTimeFormat.DateShort;
+
+        shortDate = now.ToString(DateTimeFormat.DateShort, cultureInfo);
+        longDate = Capitalize(now.ToString(DateTimeFormat.Date, cultureInfo));
 
         Time.Text = now.ToString($"{hours}{minutes}{seconds}{ampm}");
-        Date.Text = Capitalize(now.ToString(date, cultureInfo));
+        Date.Text = mediumWidth ? shortDate : longDate;
     }
-    
-    private static string Capitalize(string text) => char.ToUpper(text[0]) + text[1..];
 
+    private static string Capitalize(string text)
+    {
+        return char.ToUpper(text[0]) + text[1..];
+    }
 }

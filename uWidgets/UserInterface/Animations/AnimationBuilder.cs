@@ -6,14 +6,14 @@ namespace uWidgets.UserInterface.Animations;
 
 public class AnimationBuilder
 {
-    public int TotalFrames { get; }
-    public List<IAnimation> Animations { get; }
-
     public AnimationBuilder(int totalFrames)
     {
         TotalFrames = totalFrames;
         Animations = new List<IAnimation>();
     }
+
+    public int TotalFrames { get; }
+    public List<IAnimation> Animations { get; }
 
     public AnimationBuilder Add(IAnimation animation)
     {

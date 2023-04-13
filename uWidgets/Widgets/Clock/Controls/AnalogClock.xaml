@@ -6,15 +6,20 @@
              mc:Ignorable="d">
     <Viewbox Stretch="Uniform">
         <Canvas Width="1000" Height="1000">
-            <Ellipse Canvas.Left="0" Canvas.Top="0" Width="1000" Height="1000" Fill="{DynamicResource TextFillColorPrimaryBrush}" Opacity="0.1" />
+            <Ellipse Canvas.Left="0" Canvas.Top="0" Width="1000" Height="1000"
+                     Fill="{DynamicResource TextFillColorPrimaryBrush}" Opacity="0.1" />
             <Canvas Name="Strokes">
-                <Ellipse Canvas.Left="30" Canvas.Top="30" Width="940" Height="940" Stroke="{DynamicResource TextFillColorPrimaryBrush}" StrokeDashArray="0.3,7.64" StrokeThickness="30" />
-                <Ellipse Canvas.Left="30" Canvas.Top="30" Width="940" Height="940" Stroke="{DynamicResource TextFillColorPrimaryBrush}" StrokeDashArray="0.3,1.29" StrokeThickness="30" Opacity="0.25" />
+                <Ellipse Canvas.Left="30" Canvas.Top="30" Width="940" Height="940"
+                         Stroke="{DynamicResource TextFillColorPrimaryBrush}" StrokeDashArray="0.3,7.64"
+                         StrokeThickness="30" />
+                <Ellipse Canvas.Left="30" Canvas.Top="30" Width="940" Height="940"
+                         Stroke="{DynamicResource TextFillColorPrimaryBrush}" StrokeDashArray="0.3,1.29"
+                         StrokeThickness="30" Opacity="0.25" />
             </Canvas>
             <Canvas Name="Numbers">
                 <Canvas.Resources>
                     <Style TargetType="{x:Type TextBlock}">
-                        <Setter Property="FontFamily" Value="{StaticResource SfProMedium}"/>
+                        <Setter Property="FontFamily" Value="{StaticResource SfProMedium}" />
                         <Setter Property="FontSize" Value="120" />
                     </Style>
                 </Canvas.Resources>
@@ -31,15 +36,19 @@
                 <TextBlock Canvas.Left="280" Canvas.Top="135" Text="11" />
                 <TextBlock Canvas.Left="440" Canvas.Top="100" Text="12" />
             </Canvas>
-            <Ellipse Canvas.Left="470" Canvas.Top="470" Width="60" Height="60" Stroke="{DynamicResource TextFillColorPrimaryBrush}" StrokeThickness="12" />
-            <Ellipse Canvas.Left="480" Canvas.Top="480" Width="40" Height="40" Stroke="{DynamicResource AccentFillColorDefaultBrush}" StrokeThickness="8" />
+            <Ellipse Canvas.Left="470" Canvas.Top="470" Width="60" Height="60"
+                     Stroke="{DynamicResource TextFillColorPrimaryBrush}" StrokeThickness="12" />
+            <Ellipse Canvas.Left="480" Canvas.Top="480" Width="40" Height="40"
+                     Stroke="{DynamicResource AccentFillColorDefaultBrush}" StrokeThickness="8" />
             <Canvas Name="Hours">
                 <Path Data="M 500,470 V 420" StrokeThickness="12" Stroke="{DynamicResource TextFillColorPrimaryBrush}" />
-                <Path Data="M 500,420 V 250" StrokeEndLineCap="Round" StrokeStartLineCap="Round" StrokeThickness="30" Stroke="{DynamicResource TextFillColorPrimaryBrush}" />
+                <Path Data="M 500,420 V 250" StrokeEndLineCap="Round" StrokeStartLineCap="Round" StrokeThickness="30"
+                      Stroke="{DynamicResource TextFillColorPrimaryBrush}" />
             </Canvas>
             <Canvas Name="Minutes">
                 <Path Data="M 500,470 V 420" StrokeThickness="12" Stroke="{DynamicResource TextFillColorPrimaryBrush}" />
-                <Path Data="M 500,420 V 55" StrokeEndLineCap="Round" StrokeStartLineCap="Round" StrokeThickness="30" Stroke="{DynamicResource TextFillColorPrimaryBrush}" />
+                <Path Data="M 500,420 V 55" StrokeEndLineCap="Round" StrokeStartLineCap="Round" StrokeThickness="30"
+                      Stroke="{DynamicResource TextFillColorPrimaryBrush}" />
             </Canvas>
             <Canvas Name="Seconds">
                 <Path Data="M 500,520 V 575" Stroke="{DynamicResource AccentFillColorDefaultBrush}" />

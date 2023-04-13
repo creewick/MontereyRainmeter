@@ -9,9 +9,14 @@ namespace uWidgets.Configuration.Providers;
 
 public class LayoutProvider : FileHandler<List<WidgetLayout>>, ILayoutProvider
 {
-    public LayoutProvider() : base(Path.Combine("Configuration", "layout.json")) { }
+    public LayoutProvider() : base(Path.Combine("Configuration", "layout.json"))
+    {
+    }
 
-    public WidgetLayout Get(Guid id) => Get().Single(layout => layout.Id == id);
+    public WidgetLayout Get(Guid id)
+    {
+        return Get().Single(layout => layout.Id == id);
+    }
 
     public void Save(WidgetLayout newLayout)
     {

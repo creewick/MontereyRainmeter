@@ -1,21 +1,15 @@
 using System;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using uWidgets.UserInterface.Models;
 using uWidgets.UserInterface.Services;
 using uWidgets.WindowManagement.Interfaces;
+using uWidgets.WindowManagement.Models;
 using uWidgets.Windows.WidgetOptions;
 
-namespace uWidgets.UserInterface.WindowTypes;
+namespace uWidgets.WindowManagement.WindowTypes;
 
 public abstract class WidgetBase : WindowBase, IWidget
 {
-    public event IWidget.WidgetMovedHandler WidgetMoved;
-    public event IWidget.WidgetResizedHandler WidgetResized;
-    public event IWidget.WidgetOptionsChangedHandler WidgetOptionsChanged;
-    public WidgetContext Context { get; }
-
     protected WidgetBase(WidgetContext context) : base(context.Settings)
     {
         Context = context;
@@ -27,27 +21,32 @@ public abstract class WidgetBase : WindowBase, IWidget
         MinWidth = context.Settings.WidgetSize;
         MinHeight = context.Settings.WidgetSize;
         ContextMenu = GetContextMenu();
-        
+
         MouseLeftButtonDown += OnMouseLeftButtonDown;
         SourceInitialized += OnSourceInitialized;
-        Loaded += (_,_) => WidgetResized.Invoke(Context.Layout.Columns, Context.Layout.Rows, false);
+        Loaded += (_, _) => WidgetResized.Invoke(Context.Layout.Columns, Context.Layout.Rows, false);
     }
-    
+
+    public WidgetContext Context { get; }
+    public event IWidget.WidgetMovedHandler WidgetMoved;
+    public event IWidget.WidgetResizedHandler WidgetResized;
+    public event IWidget.WidgetOptionsChangedHandler WidgetOptionsChanged;
+
     private void OnSourceInitialized(object? sender, EventArgs e)
     {
         WindowOsIntegrationService.DisableWindowSnapping(this);
         WindowOsIntegrationService.RemoveWindowFromAltTab(this);
     }
-    
+
     private void OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
     {
         if (e.ButtonState != MouseButtonState.Pressed) return;
-        
+
         DragMove();
 
         WidgetMoved.Invoke((int)Left, (int)Top);
     }
-    
+
     private ContextMenu GetContextMenu()
     {
         return new ContextMenuBuilder()

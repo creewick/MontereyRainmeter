@@ -1,5 +1,4 @@
-using System.Windows;
-using uWidgets.UserInterface.WindowTypes;
+using uWidgets.WindowManagement.WindowTypes;
 
 namespace uWidgets.UserInterface.Interfaces;
 

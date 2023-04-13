@@ -15,5 +15,8 @@ public class LinearAnimation : IAnimation
         this.to = to;
     }
 
-    public void Animate(int frame, int totalFrames) => action(from + (to - from) * frame / totalFrames);
+    public void Animate(int frame, int totalFrames)
+    {
+        action(from + (to - from) * frame / totalFrames);
+    }
 }

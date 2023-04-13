@@ -2,8 +2,8 @@
   {
     "Id": "6076c5a9-3a20-46f6-bc4f-8464a2ca0f76",
     "Name": "Clock",
-    "X": 100,
-    "Y": 100,
+    "X": 1324,
+    "Y": 103,
     "Columns": 2,
     "Rows": 2,
     "Options": {
@@ -14,8 +14,8 @@
   {
     "Id": "898c1712-a0f7-465a-8074-ef6a76fb60ab",
     "Name": "Clock",
-    "X": 100,
-    "Y": 100,
+    "X": 1324,
+    "Y": 14,
     "Columns": 4,
     "Rows": 1,
     "Options": {
@@ -27,20 +27,21 @@
   {
     "Id": "818c1712-a0f7-465a-8074-ef6a76fb60ab",
     "Name": "Calendar",
-    "X": 100,
-    "Y": 100,
+    "X": 1502,
+    "Y": 103,
     "Columns": 4,
-    "Rows": 1
+    "Rows": 1,
+    "Options": null
   },
   {
     "Id": "898c1712-a0f7-465a-8075-ef6a76fb60ab",
     "Name": "Weather",
-    "X": 100,
-    "Y": 100,
+    "X": 1324,
+    "Y": 281,
     "Columns": 4,
-    "Rows": 1,
+    "Rows": 2,
     "Options": {
-      "LocationName": "Алматы",
+      "LocationName": "\u0410\u043B\u043C\u0430\u0442\u044B",
       "Latitude": 43.26,
       "Longitude": 76.93,
       "RefreshRateMinutes": 60

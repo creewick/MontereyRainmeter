@@ -11,7 +11,6 @@ public class AppSettings
     public int WidgetRadius => Appearance.WidgetRadius;
 }
 
-
 public class AppearanceSettings
 {
     public bool DarkTheme { get; set; }

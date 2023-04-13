@@ -12,16 +12,17 @@ using uWidgets.UserInterface.Models;
 using uWidgets.Widgets.Weather.Interfaces;
 using uWidgets.Widgets.Weather.Models;
 using uWidgets.Widgets.Weather.Services;
+using uWidgets.WindowManagement.Models;
 
 namespace uWidgets.Widgets.Weather;
 
 public partial class Weather
 {
-    public WeatherSettings WeatherSettings;
+    public DispatcherTimer Timer;
     public Dictionary<string, string> WeatherLocaleStrings;
     public IWeatherProvider WeatherProvider;
-    public DispatcherTimer Timer;
-    
+    public WeatherSettings WeatherSettings;
+
     public Weather(WidgetContext context, IWeatherProvider weatherProvider) : base(context)
     {
         WeatherProvider = weatherProvider;
@@ -30,24 +31,24 @@ public partial class Weather
         OnSettingsChange();
         OnSizeChange();
         OnTick();
-        
-        SizeChanged += (_,_) => OnSizeChange();
+
+        SizeChanged += (_, _) => OnSizeChange();
     }
 
     private void OnSettingsChange()
     {
-        WeatherSettings = Context.Layout.Options?.Deserialize<WeatherSettings>() 
+        WeatherSettings = Context.Layout.Options?.Deserialize<WeatherSettings>()
                           ?? throw new FormatException(nameof(WeatherSettings));
 
         var language = Context.Settings.Region.Language;
-        
+
         WeatherLocaleStrings = new FileHandler<Dictionary<string, string>>(
             Path.Combine("Widgets", "Weather", "Locales", $"{language}.json")
         ).Get();
 
         Timer?.Stop();
         Timer = new DispatcherTimer { Interval = TimeSpan.FromMinutes(WeatherSettings.RefreshRateMinutes) };
-        Timer.Tick += (_,_) => OnTick();
+        Timer.Tick += (_, _) => OnTick();
         Timer.Start();
     }
 
@@ -59,7 +60,7 @@ public partial class Weather
         Error.Visibility = forecast == null ? Visibility.Visible : Visibility.Hidden;
 
         if (forecast == null) return;
-        
+
         var today = DateTime.Now.Date;
         var nowHourly = forecast.Hourly.First(x => x.DateTime == today.AddHours(DateTime.Now.Hour));
         var nowDaily = forecast.Daily.First(x => x.DateTime == today);
@@ -93,7 +94,7 @@ public partial class Weather
         IconImage6.Source = WeatherCodeImageProvider.GetImage(hourly[6].WeatherCode);
         Temp6.Text = $"{hourly[6].Temperature:0}°";
     }
-    
+
     private void OnSizeChange()
     {
         var small = Width <= Context.Settings.WidgetSize && Height <= Context.Settings.WidgetSize;
@@ -104,7 +105,7 @@ public partial class Weather
         Grid.SetRowSpan(CityName, small || smallWide ? 2 : 1);
         Grid.SetColumnSpan(CityName, notWide ? 2 : 1);
         CityName.HorizontalAlignment = small ? HorizontalAlignment.Center : HorizontalAlignment.Left;
-        
+
         Grid.SetRow(CurrentTemp, small || smallWide ? 2 : 1);
         Grid.SetRowSpan(CurrentTemp, small || smallWide ? 6 : 3);
         Grid.SetColumnSpan(CurrentTemp, notWide ? 2 : 1);
@@ -116,14 +117,14 @@ public partial class Weather
         Grid.SetColumnSpan(CurrentIcon, notWide ? 2 : 1);
         CurrentIcon.HorizontalAlignment = notWide ? HorizontalAlignment.Left : HorizontalAlignment.Right;
         CurrentIcon.Visibility = small ? Visibility.Hidden : Visibility.Visible;
-        
+
         Grid.SetRow(CurrentDescription, notWide ? 6 : smallWide ? 3 : 1);
         Grid.SetColumn(CurrentDescription, notWide ? 0 : 1);
         Grid.SetRowSpan(CurrentDescription, smallWide ? 2 : 1);
         Grid.SetColumnSpan(CurrentDescription, notWide ? 2 : 1);
         CurrentDescription.HorizontalAlignment = notWide ? HorizontalAlignment.Left : HorizontalAlignment.Right;
         CurrentDescription.Visibility = small ? Visibility.Hidden : Visibility.Visible;
-        
+
         Grid.SetRow(CurrentMinMax, notWide ? 7 : smallWide ? 5 : 2);
         Grid.SetColumn(CurrentMinMax, notWide ? 0 : 1);
         Grid.SetRowSpan(CurrentMinMax, smallWide ? 2 : 1);

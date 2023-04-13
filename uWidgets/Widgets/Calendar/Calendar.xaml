@@ -1,14 +1,14 @@
 <windowTypes:WidgetBase x:Class="uWidgets.Widgets.Calendar.Calendar"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:windowTypes="clr-namespace:uWidgets.UserInterface.WindowTypes"
-        mc:Ignorable="d"
-        Title="Calendar">
+                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                        xmlns:windowTypes="clr-namespace:uWidgets.WindowManagement.WindowTypes"
+                        mc:Ignorable="d"
+                        Title="Calendar">
     <Window.Resources>
         <Style TargetType="{x:Type TextBlock}">
-            <Setter Property="FontFamily" Value="{StaticResource SfProMedium}"/>
+            <Setter Property="FontFamily" Value="{StaticResource SfProMedium}" />
             <Setter Property="TextAlignment" Value="Center" />
             <Setter Property="Padding" Value="4" />
         </Style>
@@ -22,7 +22,7 @@
             <Viewbox Grid.Row="0">
                 <TextBlock Name="WeekDay" Padding="0" Foreground="{DynamicResource AccentFillColorDefaultBrush}" />
             </Viewbox>
-            <Viewbox Grid.Row="1" >
+            <Viewbox Grid.Row="1">
                 <TextBlock Name="DayNumber" Padding="0" FontFamily="{StaticResource SfProLight}" />
             </Viewbox>
         </Grid>
@@ -37,7 +37,8 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Viewbox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="7" HorizontalAlignment="Left">
-                <TextBlock Name="MonthName" TextAlignment="Left" Foreground="{DynamicResource AccentFillColorDefaultBrush}" />
+                <TextBlock Name="MonthName" TextAlignment="Left"
+                           Foreground="{DynamicResource AccentFillColorDefaultBrush}" />
             </Viewbox>
         </Grid>
     </Grid>

@@ -11,5 +11,5 @@ public class WidgetLayout
     public int Y { get; set; }
     public int Columns { get; set; }
     public int Rows { get; set; }
-    public JsonElement? Options { get; set; } 
+    public JsonElement? Options { get; set; }
 }

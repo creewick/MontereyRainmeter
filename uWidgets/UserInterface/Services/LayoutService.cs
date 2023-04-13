@@ -1,33 +1,32 @@
 using System;
-using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Interop;
 using uWidgets.Configuration.Interfaces;
 using uWidgets.Configuration.Models;
 using uWidgets.UserInterface.Animations;
 using uWidgets.UserInterface.Interfaces;
-using uWidgets.UserInterface.WindowTypes;
+using uWidgets.WindowManagement.WindowTypes;
 
 namespace uWidgets.UserInterface.Services;
 
 public class LayoutService : ILayoutService
 {
-    private AppSettings Settings { get; }
-    private ILayoutProvider LayoutProvider { get; }
-
     public LayoutService(AppSettings settings, ILayoutProvider layoutProvider)
     {
         Settings = settings;
         LayoutProvider = layoutProvider;
     }
-    
+
+    private AppSettings Settings { get; }
+    private ILayoutProvider LayoutProvider { get; }
+
     public void OnWidgetMove(WidgetBase widget)
     {
         KeepOnScreen(widget);
 
         if (Settings.Appearance.GridSnap)
             SnapToGrid(widget);
-        
+
         LayoutProvider.Save(new WidgetLayout
         {
             Id = widget.Context.Layout.Id,
@@ -47,7 +46,7 @@ public class LayoutService : ILayoutService
 
         if (Settings.Appearance.GridSnap)
             SnapToGrid(widget, animate);
-        
+
         LayoutProvider.Save(new WidgetLayout
         {
             Id = widget.Context.Layout.Id,
@@ -59,19 +58,19 @@ public class LayoutService : ILayoutService
             Options = widget.Context.Layout.Options
         });
     }
-    
+
     public void KeepOnScreen(WindowBase window)
     {
         var screen = Screen.FromHandle(new WindowInteropHelper(window).Handle);
 
         window.Left = Math.Clamp(
-            window.Left, 
-            screen.WorkingArea.Top, 
+            window.Left,
+            screen.WorkingArea.Top,
             screen.WorkingArea.Right - window.Width);
-        
+
         window.Top = Math.Clamp(
-            window.Top, 
-            screen.WorkingArea.Top, 
+            window.Top,
+            screen.WorkingArea.Top,
             screen.WorkingArea.Bottom - window.Height);
     }
 
@@ -81,10 +80,10 @@ public class LayoutService : ILayoutService
 
         var span = Settings.WidgetSize + Settings.WidgetPadding;
         var offset = screen.WorkingArea.Width % span;
-        
+
         var oldLeft = window.Left;
         var oldTop = window.Top;
-        
+
         var newLeft = Math.Round((window.Left - offset) / span) * span + offset + screen.WorkingArea.Left;
         var newTop = Math.Round(window.Top / span) * span + Settings.WidgetPadding + screen.WorkingArea.Top;
 
@@ -106,7 +105,7 @@ public class LayoutService : ILayoutService
     {
         var oldWidth = window.Width;
         var oldHeight = window.Height;
-        
+
         var newWidth = GetPixelsByGridUnits(columns);
         var newHeight = GetPixelsByGridUnits(rows);
 
@@ -122,11 +121,11 @@ public class LayoutService : ILayoutService
             window.Width = newWidth;
             window.Height = newHeight;
         }
-    } 
-    
+    }
+
     public int GetPixelsByGridUnits(int units)
     {
-        return Settings.WidgetSize * units + 
+        return Settings.WidgetSize * units +
                Settings.WidgetPadding * (units - 1);
     }
 }
