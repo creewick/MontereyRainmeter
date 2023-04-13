@@ -1,9 +1,9 @@
-<models:Widget x:Class="uWidgets.Widgets.Clock.Clock"
+<windowTypes:WidgetBase x:Class="uWidgets.Widgets.Clock.Clock"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:models="clr-namespace:uWidgets.WidgetManagement.Models"
+        xmlns:windowTypes="clr-namespace:uWidgets.UserInterface.WindowTypes"
         Title="Clock">
     <Grid>
         <Viewbox Name="AnalogClock" Stretch="Uniform" Visibility="Hidden">
@@ -62,4 +62,4 @@
             </Viewbox>
         </Grid>
     </Grid>
-</models:Widget>
+</windowTypes:WidgetBase>

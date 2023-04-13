@@ -8,9 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
 using System.Windows.Threading;
-using uWidgets.Configuration.Interfaces;
-using uWidgets.Configuration.Models;
-using uWidgets.WidgetManagement.Models;
+using uWidgets.UserInterface.Models;
 
 namespace uWidgets.Widgets.Calendar;
 
@@ -19,12 +17,14 @@ public partial class Calendar
     private CultureInfo cultureInfo;
     private DispatcherTimer timer;
     
-    public Calendar(ISettingsManager settingsManager, ILayoutManager layoutManager, ILocaleManager localeManager, Guid id)
-        : base(settingsManager, layoutManager, localeManager, id)
+    public Calendar(WidgetContext context) : base(context)
     {
         InitializeComponent();
         OnSettingsChanged();
         OnSizeChanged();
+        
+        
+        cultureInfo = new CultureInfo(Context.Settings.Region.Language);
         
         timer?.Stop();
         timer = new DispatcherTimer { Interval = TimeSpan.FromMinutes(1) };
@@ -34,13 +34,11 @@ public partial class Calendar
         
         SizeChanged += (_,_) => OnSizeChanged();
         MouseDoubleClick += (_,_) => Process.Start("explorer.exe", @"shell:AppsFolder\microsoft.windowscommunicationsapps_8wekyb3d8bbwe!microsoft.windowslive.calendar");
-
-        Show();
     }
 
     private void OnSizeChanged()
     {
-        var small = Math.Min(Width, Height) <= SettingsManager.Get().WidgetSize;
+        var small = Math.Min(Width, Height) <= Context.Settings.WidgetSize;
 
         MonthCalendar.Visibility = small ? Visibility.Hidden : Visibility.Visible;
         TodaySmall.Visibility = small ? Visibility.Visible : Visibility.Hidden;
@@ -48,7 +46,7 @@ public partial class Calendar
 
     private void OnSettingsChanged()
     {
-        cultureInfo = new CultureInfo(SettingsManager.Get().Region.Language);
+        cultureInfo = new CultureInfo(Context.Settings.Region.Language);
     }
     
     private void OnTick()
@@ -82,7 +80,6 @@ public partial class Calendar
             .ForEach(x => MonthCalendar.Children.Remove(x));
         
         MonthCalendar.RowDefinitions
-            .Cast<RowDefinition>()
             .ToList()
             .ForEach(x => MonthCalendar.RowDefinitions.Remove(x));
     }

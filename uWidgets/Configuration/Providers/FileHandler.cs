@@ -3,17 +3,15 @@ using System.IO;
 using System.Text.Json;
 using uWidgets.Configuration.Interfaces;
 
-namespace uWidgets.Configuration.FileHandlers;
+namespace uWidgets.Configuration.Providers;
 
 public class FileHandler<T> : IFileHandler<T>
 {
-    private readonly string filename;
     private readonly string path;
     private T? data;
     
     public FileHandler(string filename)
     {
-        this.filename = filename;
         path = Path.Combine(Directory.GetCurrentDirectory(), filename);
     }
 

@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
-using uWidgets.Configuration.FileHandlers;
-using uWidgets.Configuration.Interfaces;
+using uWidgets.Configuration.Providers;
+using uWidgets.UserInterface.Models;
 using uWidgets.Widgets.Weather.Interfaces;
 using uWidgets.Widgets.Weather.Models;
 using uWidgets.Widgets.Weather.Services;
@@ -22,8 +22,7 @@ public partial class Weather
     public IWeatherProvider WeatherProvider;
     public DispatcherTimer Timer;
     
-    public Weather(ISettingsManager settingsManager, ILayoutManager layoutManager, ILocaleManager localeManager, IWeatherProvider weatherProvider, Guid id)
-        : base(settingsManager, layoutManager, localeManager, id)
+    public Weather(WidgetContext context, IWeatherProvider weatherProvider) : base(context)
     {
         WeatherProvider = weatherProvider;
 
@@ -33,15 +32,14 @@ public partial class Weather
         OnTick();
         
         SizeChanged += (_,_) => OnSizeChange();
-        Show();
     }
 
     private void OnSettingsChange()
     {
-        WeatherSettings = LayoutManager.Get(Id).Settings?.Deserialize<WeatherSettings>() 
+        WeatherSettings = Context.Layout.Settings?.Deserialize<WeatherSettings>() 
                           ?? throw new FormatException(nameof(WeatherSettings));
 
-        var language = SettingsManager.Get().Region.Language;
+        var language = Context.Settings.Region.Language;
         
         WeatherLocaleStrings = new FileHandler<Dictionary<string, string>>(
             Path.Combine("Widgets", "Weather", "Locales", $"{language}.json")
@@ -57,6 +55,11 @@ public partial class Weather
     {
         var forecast = await WeatherProvider.GetForecast(WeatherSettings.Latitude, WeatherSettings.Longitude);
 
+        General.Visibility = forecast == null ? Visibility.Hidden : Visibility.Visible;
+        Error.Visibility = forecast == null ? Visibility.Visible : Visibility.Hidden;
+
+        if (forecast == null) return;
+        
         var today = DateTime.Now.Date;
         var nowHourly = forecast.Hourly.First(x => x.DateTime == today.AddHours(DateTime.Now.Hour));
         var nowDaily = forecast.Daily.First(x => x.DateTime == today);
@@ -93,12 +96,10 @@ public partial class Weather
     
     private void OnSizeChange()
     {
-        var settings = SettingsManager.Get();
-        
-        var small = Width <= settings.WidgetSize && Height <= settings.WidgetSize;
-        var smallWide = Height <= settings.WidgetSize && Width > Height;
-        var notWide = Width <= settings.WidgetSize * 2 + settings.WidgetPadding;
-        var smallHeight = Height <= settings.WidgetSize;
+        var small = Width <= Context.Settings.WidgetSize && Height <= Context.Settings.WidgetSize;
+        var smallWide = Height <= Context.Settings.WidgetSize && Width > Height;
+        var notWide = Width <= Context.Settings.WidgetSize * 2 + Context.Settings.WidgetPadding;
+        var smallHeight = Height <= Context.Settings.WidgetSize;
 
         Grid.SetRowSpan(CityName, small || smallWide ? 2 : 1);
         Grid.SetColumnSpan(CityName, notWide ? 2 : 1);

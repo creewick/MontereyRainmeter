@@ -6,7 +6,7 @@ namespace uWidgets.UserInterface.Services;
 
 public class ContextMenuBuilder
 {
-    private System.Windows.Controls.ContextMenu contextMenu;
+    private readonly System.Windows.Controls.ContextMenu contextMenu;
     
     public ContextMenuBuilder()
     {

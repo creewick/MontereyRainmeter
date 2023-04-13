@@ -4,7 +4,8 @@ using uWidgets.Configuration.Models;
 
 namespace uWidgets.Configuration.Interfaces;
 
-public interface ILayoutManager : IFileHandler<IReadOnlyList<WidgetLayout>>
+public interface ILayoutProvider
 {
     WidgetLayout Get(Guid id);
+    List<WidgetLayout> Get();
 }

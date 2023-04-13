@@ -5,5 +5,5 @@ namespace uWidgets.Widgets.Weather.Interfaces;
 
 public interface IWeatherProvider
 {
-    public Task<WeatherForecast> GetForecast(double latitude, double longitude);
+    public Task<WeatherForecast?> GetForecast(double latitude, double longitude);
 }

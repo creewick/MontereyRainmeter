@@ -99,6 +99,9 @@
       <None Update="Widgets\Weather\Images\wind.png">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
+      <None Update="Widgets\Weather\Locales\vi.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 
     <ItemGroup>
@@ -116,6 +119,14 @@
         <Generator>MSBuild:Compile</Generator>
         <XamlRuntime>Wpf</XamlRuntime>
         <SubType>Designer</SubType>
+      </Page>
+      <Page Update="Widgets\WidgetOptions\WidgetOptions.xaml">
+        <Generator>MSBuild:Compile</Generator>
+        <XamlRuntime>Wpf</XamlRuntime>
+        <SubType>Designer</SubType>
+      </Page>
+      <Page Update="Windows\WidgetOptions\WidgetOptions.xaml">
+        <Generator>MSBuild:Compile</Generator>
       </Page>
     </ItemGroup>
 
@@ -142,6 +153,7 @@
 
     <ItemGroup>
       <Folder Include="Widgets\Weather\Images\" />
+      <Folder Include="Windows\" />
     </ItemGroup>
 
 </Project>

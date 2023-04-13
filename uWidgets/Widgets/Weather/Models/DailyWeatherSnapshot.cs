@@ -1,5 +1,3 @@
-using System;
-
 namespace uWidgets.Widgets.Weather.Models;
 
 public class DailyWeatherSnapshot : WeatherSnapshot

@@ -1,0 +1,9 @@
+{
+  "Name": "Clock",
+  "Description": "",
+  "ClockType": "Clock type",
+  "Analog": "Analog",
+  "Digital": "Digital",
+  "ShowSeconds": "Show seconds",
+  "ShowAMPM": "Show AM/PM"
+}

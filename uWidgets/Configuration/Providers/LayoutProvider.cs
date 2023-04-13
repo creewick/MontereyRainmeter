@@ -5,11 +5,11 @@ using System.Linq;
 using uWidgets.Configuration.Interfaces;
 using uWidgets.Configuration.Models;
 
-namespace uWidgets.Configuration.FileHandlers;
+namespace uWidgets.Configuration.Providers;
 
-public class LayoutManager : FileHandler<IReadOnlyList<WidgetLayout>>, ILayoutManager
+public class LayoutProvider : FileHandler<List<WidgetLayout>>, ILayoutProvider
 {
-    public LayoutManager() : base(Path.Combine("Configuration", "layout.json")) { }
+    public LayoutProvider() : base(Path.Combine("Configuration", "layout.json")) { }
 
     public WidgetLayout Get(Guid id) => Get().Single(layout => layout.Id == id);
 }

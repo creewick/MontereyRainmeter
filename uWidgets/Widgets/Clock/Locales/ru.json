@@ -1,0 +1,9 @@
+{
+  "Name": "Часы",
+  "Description": "",
+  "ClockType": "Тип часов",
+  "Analog": "Аналоговые",
+  "Digital": "Цифровые",
+  "ShowSeconds": "Показывать секунды",
+  "ShowAMPM": "Показывать AM/PM"
+}

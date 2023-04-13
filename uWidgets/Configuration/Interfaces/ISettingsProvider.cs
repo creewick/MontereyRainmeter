@@ -2,4 +2,7 @@ using uWidgets.Configuration.Models;
 
 namespace uWidgets.Configuration.Interfaces;
 
-public interface ISettingsManager : IFileHandler<AppSettings> { }
+public interface ISettingsProvider
+{
+    AppSettings Get();
+}

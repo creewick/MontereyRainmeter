@@ -25,6 +25,14 @@
     }
   },
   {
+    "Id": "818c1712-a0f7-465a-8074-ef6a76fb60ab",
+    "Name": "Calendar",
+    "X": 100,
+    "Y": 100,
+    "Columns": 4,
+    "Rows": 1
+  },
+  {
     "Id": "898c1712-a0f7-465a-8075-ef6a76fb60ab",
     "Name": "Weather",
     "X": 100,

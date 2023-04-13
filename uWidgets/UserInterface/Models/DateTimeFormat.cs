@@ -8,5 +8,5 @@ public static class DateTimeFormat
     public const string Hours24 = "HH";
     public const string Minutes = ":mm";
     public const string Seconds = ":ss";
-    public const string AMPM = " tt";
+    public const string Ampm = " tt";
 }

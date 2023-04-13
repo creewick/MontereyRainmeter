@@ -1,16 +1,12 @@
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
-using System.Linq;
 using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
 using System.Windows.Threading;
-using uWidgets.Configuration.Interfaces;
-using uWidgets.Configuration.Models;
 using uWidgets.UserInterface.Models;
 
 namespace uWidgets.Widgets.Clock;
@@ -20,8 +16,7 @@ public partial class Clock
     private ClockSettings clockSettings;
     private DispatcherTimer timer;
 
-    public Clock(ISettingsManager settingsManager, ILayoutManager layoutManager, ILocaleManager localeManager, Guid id)
-        : base(settingsManager, layoutManager, localeManager, id)
+    public Clock(WidgetContext context) : base(context)
     {
         InitializeComponent();
         OnSettingsChanged();
@@ -30,13 +25,11 @@ public partial class Clock
 
         SizeChanged += (_, _) => OnSizeChanged();
         MouseDoubleClick += (_,_) => Process.Start("explorer.exe", @"shell:AppsFolder\Microsoft.WindowsAlarms_8wekyb3d8bbwe!App");
-        
-        Show();
     }
 
     private void OnSizeChanged()
     {
-        var widgetSize = SettingsManager.Get().WidgetSize;
+        var widgetSize = Context.Settings.WidgetSize;
         var small = Math.Min(Width, Height) <= widgetSize;
         
         Strokes.Visibility = small ? Visibility.Hidden : Visibility.Visible;
@@ -63,7 +56,7 @@ public partial class Clock
 
     private void OnSettingsChanged()
     {
-        clockSettings = LayoutManager.Get(Id).Settings?.Deserialize<ClockSettings>() 
+        clockSettings = Context.Layout.Settings?.Deserialize<ClockSettings>() 
                         ?? throw new FormatException(nameof(clockSettings));
 
         AnalogClock.Visibility = clockSettings.Analog ? Visibility.Visible : Visibility.Collapsed;
@@ -86,9 +79,8 @@ public partial class Clock
     private void OnTick()
     {
         var now = DateTime.Now;
-        var settings = SettingsManager.Get();
-        var cultureInfo = new CultureInfo(settings.Region.Language);
-        var smallWidth = Width <= settings.WidgetSize * 2 + settings.WidgetPadding;
+        var cultureInfo = new CultureInfo(Context.Settings.Region.Language);
+        var smallWidth = Width <= Context.Settings.WidgetSize * 2 + Context.Settings.WidgetPadding;
         
         if (clockSettings.Analog)
         {
@@ -101,7 +93,7 @@ public partial class Clock
             var hours = clockSettings.ShowAMPM ? DateTimeFormat.Hours12 : DateTimeFormat.Hours24;
             var minutes = DateTimeFormat.Minutes;
             var seconds = clockSettings.ShowSeconds ? DateTimeFormat.Seconds : string.Empty;
-            var ampm = clockSettings.ShowAMPM ? DateTimeFormat.AMPM : string.Empty;
+            var ampm = clockSettings.ShowAMPM ? DateTimeFormat.Ampm : string.Empty;
             var date = smallWidth ? DateTimeFormat.Date : DateTimeFormat.DateShort;
 
             Time.Text = now.ToString($"{hours}{minutes}{seconds}{ampm}");

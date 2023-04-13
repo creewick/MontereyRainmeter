@@ -48,10 +48,10 @@ public static class WindowOsIntegrationService
     [DllImport("user32.dll")]
     private static extern IntPtr GetWindowLong(IntPtr hWnd, int nIndex);
 
-    private static IntPtr SetWindowLong(IntPtr hWnd, int nIndex, IntPtr dwNewLong)
+    private static void SetWindowLong(IntPtr hWnd, int nIndex, IntPtr dwNewLong)
     {
-        var error = 0;
-        var result = IntPtr.Zero;
+        int error;
+        IntPtr result;
         
         SetLastError(0);
 
@@ -71,8 +71,6 @@ public static class WindowOsIntegrationService
         {
             throw new System.ComponentModel.Win32Exception(error);
         }
-
-        return result;
     }
 
     [DllImport("user32.dll", EntryPoint = "SetWindowLongPtr", SetLastError = true)]
