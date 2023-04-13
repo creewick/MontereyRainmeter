@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Weather">
     <Grid>
-        <Grid Name="General" Margin="0, 12">
+        <Grid Name="General">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="1*" />
@@ -22,20 +22,20 @@
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
-            <Viewbox Name="CityName" Grid.Column="0" Grid.Row="0" Margin="16,0">
+            <Viewbox Name="CityName" Grid.Column="0" Grid.Row="0">
                 <TextBlock Name="CityNameText" FontFamily="{StaticResource SfProSemibold}" Foreground="{DynamicResource AccentFillColorDefaultBrush}">██████</TextBlock>
             </Viewbox>
-            <Viewbox Name="CurrentTemp" Grid.Column="0" Grid.Row="1" Margin="16,0">
+            <Viewbox Name="CurrentTemp" Grid.Column="0" Grid.Row="1">
                 <TextBlock Name="CurrentTempText" FontFamily="{StaticResource SfProLight}">––°</TextBlock>
             </Viewbox>
             <Viewbox Grid.Column="0" Grid.Row="4" />
-            <Viewbox Name="CurrentIcon" Grid.Column="1" Grid.Row="0" Margin="16,0">
+            <Viewbox Name="CurrentIcon" Grid.Column="1" Grid.Row="0">
                 <Image Name="CurrentIconImage"></Image>
             </Viewbox>
-            <Viewbox Name="CurrentDescription" Grid.Column="1" Grid.Row="1" Margin="16,0">
+            <Viewbox Name="CurrentDescription" Grid.Column="1" Grid.Row="1">
                 <TextBlock Name="CurrentDescriptionText" FontFamily="{StaticResource SfProMedium}">████</TextBlock>
             </Viewbox>
-            <Viewbox Name="CurrentMinMax" Grid.Column="1" Grid.Row="2" Margin="16,0">
+            <Viewbox Name="CurrentMinMax" Grid.Column="1" Grid.Row="2">
                 <TextBlock Name="CurrentMinMaxText" FontFamily="{StaticResource SfProMedium}">↓ ––° ↑ ––°</TextBlock>
             </Viewbox>
             <Grid Name="HourlyTempBlock" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Grid.RowSpan="4">

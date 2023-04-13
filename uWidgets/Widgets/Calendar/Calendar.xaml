@@ -14,7 +14,7 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <Grid Name="TodaySmall" Margin="0,8, 0, 4">
+        <Grid Name="TodaySmall">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="3*" />
@@ -26,7 +26,7 @@
                 <TextBlock Name="DayNumber" Padding="0" FontFamily="{StaticResource SfProLight}" />
             </Viewbox>
         </Grid>
-        <Grid Name="MonthCalendar" Margin="8, 12">
+        <Grid Name="MonthCalendar">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
@@ -37,7 +37,7 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Viewbox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="7" HorizontalAlignment="Left">
-                <TextBlock Name="MonthName" Padding="8,4,4,4" TextAlignment="Left" Foreground="{DynamicResource AccentFillColorDefaultBrush}" />
+                <TextBlock Name="MonthName" TextAlignment="Left" Foreground="{DynamicResource AccentFillColorDefaultBrush}" />
             </Viewbox>
         </Grid>
     </Grid>

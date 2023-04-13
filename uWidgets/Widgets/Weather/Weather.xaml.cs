@@ -36,7 +36,7 @@ public partial class Weather
 
     private void OnSettingsChange()
     {
-        WeatherSettings = Context.Layout.Settings?.Deserialize<WeatherSettings>() 
+        WeatherSettings = Context.Layout.Options?.Deserialize<WeatherSettings>() 
                           ?? throw new FormatException(nameof(WeatherSettings));
 
         var language = Context.Settings.Region.Language;

@@ -2,36 +2,65 @@ using System;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Interop;
+using uWidgets.Configuration.Interfaces;
 using uWidgets.Configuration.Models;
 using uWidgets.UserInterface.Animations;
 using uWidgets.UserInterface.Interfaces;
+using uWidgets.UserInterface.WindowTypes;
 
 namespace uWidgets.UserInterface.Services;
 
 public class LayoutService : ILayoutService
 {
     private AppSettings Settings { get; }
+    private ILayoutProvider LayoutProvider { get; }
 
-    public LayoutService(AppSettings settings)
+    public LayoutService(AppSettings settings, ILayoutProvider layoutProvider)
     {
         Settings = settings;
+        LayoutProvider = layoutProvider;
     }
     
-    public void OnWidgetMove(Window widget)
+    public void OnWidgetMove(WidgetBase widget)
     {
         KeepOnScreen(widget);
 
         if (Settings.Appearance.GridSnap)
             SnapToGrid(widget);
+        
+        LayoutProvider.Save(new WidgetLayout
+        {
+            Id = widget.Context.Layout.Id,
+            Name = widget.Context.Layout.Name,
+            X = (int)widget.Left,
+            Y = (int)widget.Top,
+            Columns = widget.Context.Layout.Columns,
+            Rows = widget.Context.Layout.Rows,
+            Options = widget.Context.Layout.Options
+        });
     }
 
-    public void OnWidgetResize(Window widget, int columns, int rows, bool animate = true)
+    public void OnWidgetResize(WidgetBase widget, int columns, int rows, bool animate = true)
     {
         ResizeByGridUnits(widget, columns, rows, animate);
-        OnWidgetMove(widget);
+        KeepOnScreen(widget);
+
+        if (Settings.Appearance.GridSnap)
+            SnapToGrid(widget, animate);
+        
+        LayoutProvider.Save(new WidgetLayout
+        {
+            Id = widget.Context.Layout.Id,
+            Name = widget.Context.Layout.Name,
+            X = (int)widget.Left,
+            Y = (int)widget.Top,
+            Columns = columns,
+            Rows = rows,
+            Options = widget.Context.Layout.Options
+        });
     }
     
-    public void KeepOnScreen(Window window)
+    public void KeepOnScreen(WindowBase window)
     {
         var screen = Screen.FromHandle(new WindowInteropHelper(window).Handle);
 
@@ -46,7 +75,7 @@ public class LayoutService : ILayoutService
             screen.WorkingArea.Bottom - window.Height);
     }
 
-    public void SnapToGrid(Window window)
+    public void SnapToGrid(WindowBase window, bool animate = true)
     {
         var screen = Screen.FromHandle(new WindowInteropHelper(window).Handle);
 
@@ -58,14 +87,22 @@ public class LayoutService : ILayoutService
         
         var newLeft = Math.Round((window.Left - offset) / span) * span + offset + screen.WorkingArea.Left;
         var newTop = Math.Round(window.Top / span) * span + Settings.WidgetPadding + screen.WorkingArea.Top;
-        
-        new AnimationBuilder(10)
-            .Add(new LinearAnimation(left => window.Left = left, oldLeft, newLeft))
-            .Add(new LinearAnimation(top => window.Top = top, oldTop, newTop))
-            .Animate();
+
+        if (animate)
+        {
+            new AnimationBuilder(10)
+                .Add(new LinearAnimation(left => window.Left = left, oldLeft, newLeft))
+                .Add(new LinearAnimation(top => window.Top = top, oldTop, newTop))
+                .Animate();
+        }
+        else
+        {
+            window.Left = newLeft;
+            window.Top = newTop;
+        }
     }
 
-    public void ResizeByGridUnits(Window window, int columns, int rows, bool animate = true)
+    public void ResizeByGridUnits(WindowBase window, int columns, int rows, bool animate = true)
     {
         var oldWidth = window.Width;
         var oldHeight = window.Height;

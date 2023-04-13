@@ -10,7 +10,7 @@ namespace uWidgets.UserInterface.WindowTypes;
 public abstract class WindowBase : Window
 {
     protected AppSettings Settings { get; }
-    protected Border BackgroundElement { get; set; }
+    public Border BackgroundElement { get; set; }
 
     protected WindowBase(AppSettings settings)
     {
@@ -40,7 +40,8 @@ public abstract class WindowBase : Window
         BackgroundElement = new Border
         {
             Background = new SolidColorBrush(color),
-            CornerRadius = new CornerRadius(isTransparent ? 0 : Settings.WidgetRadius)
+            CornerRadius = new CornerRadius(isTransparent ? 0 : Settings.WidgetRadius),
+            Padding = new Thickness(12)
         };
         
         var content = Content as UIElement;

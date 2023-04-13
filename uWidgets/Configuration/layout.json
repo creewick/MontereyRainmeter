@@ -6,7 +6,7 @@
     "Y": 100,
     "Columns": 2,
     "Rows": 2,
-    "Settings": {
+    "Options": {
       "Analog": true,
       "ShowSeconds": true
     }
@@ -18,7 +18,7 @@
     "Y": 100,
     "Columns": 4,
     "Rows": 1,
-    "Settings": {
+    "Options": {
       "Analog": false,
       "ShowAMPM": false,
       "ShowSeconds": false
@@ -39,7 +39,7 @@
     "Y": 100,
     "Columns": 4,
     "Rows": 1,
-    "Settings": {
+    "Options": {
       "LocationName": "Алматы",
       "Latitude": 43.26,
       "Longitude": 76.93,

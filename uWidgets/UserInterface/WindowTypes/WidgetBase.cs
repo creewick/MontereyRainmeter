@@ -1,4 +1,5 @@
 using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using uWidgets.UserInterface.Models;
@@ -13,7 +14,7 @@ public abstract class WidgetBase : WindowBase, IWidget
     public event IWidget.WidgetMovedHandler WidgetMoved;
     public event IWidget.WidgetResizedHandler WidgetResized;
     public event IWidget.WidgetOptionsChangedHandler WidgetOptionsChanged;
-    protected WidgetContext Context { get; }
+    public WidgetContext Context { get; }
 
     protected WidgetBase(WidgetContext context) : base(context.Settings)
     {

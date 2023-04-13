@@ -8,4 +8,5 @@ public interface ILayoutProvider
 {
     WidgetLayout Get(Guid id);
     List<WidgetLayout> Get();
+    void Save(WidgetLayout layout);
 }

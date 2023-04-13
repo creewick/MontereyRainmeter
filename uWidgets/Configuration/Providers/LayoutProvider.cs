@@ -12,4 +12,11 @@ public class LayoutProvider : FileHandler<List<WidgetLayout>>, ILayoutProvider
     public LayoutProvider() : base(Path.Combine("Configuration", "layout.json")) { }
 
     public WidgetLayout Get(Guid id) => Get().Single(layout => layout.Id == id);
+
+    public void Save(WidgetLayout newLayout)
+    {
+        var layouts = Get().Select(layout => layout.Id != newLayout.Id ? layout : newLayout).ToList();
+
+        Save(layouts);
+    }
 }
