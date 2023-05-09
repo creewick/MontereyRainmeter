@@ -2,6 +2,6 @@
 tLanguage=Language
 tTemperature=Temperature
 
-tMetric=Celsius
-tImperial=Fahrenheit
-tStandard=Kelvin
+tCelsius=Celsius
+tFahrenheit=Fahrenheit
+tKelvin=Kelvin
