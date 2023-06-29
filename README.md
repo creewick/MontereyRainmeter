@@ -71,7 +71,7 @@ So far we support 5 languages
 |<img src="https://github.com/yammadev/flag-icons/blob/master/png/UA@2x.png?raw=true" width="20px" />| Ukrainian |
 |<img src="https://github.com/yammadev/flag-icons/blob/master/png/US@2x.png?raw=true" width="20px" />| English |
 |<img src="https://github.com/yammadev/flag-icons/blob/master/png/DE@2x.png?raw=true" width="20px" />| German |
-|<img src="https://github.com/yammadev/flag-icons/blob/master/png/BR@2x.png?raw=true" width="20px" />| Brazil (portuguese) |
+|<img src="https://github.com/yammadev/flag-icons/blob/master/png/BR@2x.png?raw=true" width="20px" />| Brazilian portuguese |
 
 ## Special thanks
 
