@@ -63,7 +63,7 @@ Widgets appears in one of 5 predefined themes
 _* Currently works well only on Windows 11_
 ### Languages
 
-So far we support 4 languages
+So far we support 5 languages
 
 | |Language|
 |-|-|
