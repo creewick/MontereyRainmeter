@@ -7,7 +7,7 @@ public class AppSettings
     public RegionSettings Region { get; set; }
 
     public int WidgetSize => Appearance.WidgetSize;
-    public int WidgetPadding => Appearance.WidgetPadding;
+    public int WidgetMargin => Appearance.WidgetMargin;
     public int WidgetRadius => Appearance.WidgetRadius;
 }
 
@@ -20,7 +20,7 @@ public class AppearanceSettings
     public bool UseSystemAccentColor { get; set; }
     public bool GridSnap { get; set; }
     public int WidgetSize { get; set; }
-    public int WidgetPadding { get; set; }
+    public int WidgetMargin { get; set; }
     public int WidgetRadius { get; set; }
     public string FontFace { get; set; }
 }

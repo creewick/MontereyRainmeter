@@ -2,9 +2,9 @@
 
 namespace uWidgets.Widgets.Clock.Controls;
 
-public partial class AnalogClock : UserControl
+public partial class AnalogIIIClock : UserControl
 {
-    public AnalogClock()
+    public AnalogIIIClock()
     {
         InitializeComponent();
     }

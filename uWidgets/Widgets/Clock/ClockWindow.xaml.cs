@@ -1,7 +1,6 @@
 ﻿using System.Diagnostics;
 using Microsoft.Extensions.Localization;
 using uWidgets.Settings.Models;
-using uWidgets.Windows.Services;
 
 namespace uWidgets.Widgets.Clock;
 
@@ -11,6 +10,7 @@ public partial class ClockWindow
         : base(appSettings, widgetSettings, locale)
     {
         InitializeComponent();
+        DataContext = new ClockViewModel(appSettings, widgetSettings);
         
         MouseDoubleClick += (_, _) => Process.Start("explorer.exe", 
             @"shell:AppsFolder\Microsoft.WindowsAlarms_8wekyb3d8bbwe!App");

@@ -37,8 +37,12 @@ public abstract class JsonFileParser<T> : IRepository<T>
     public void Save(T newData)
     {
         data = newData;
+        
+        var options = new JsonSerializerOptions();
+        
+        if (jsonConverter != null) options.Converters.Add(jsonConverter);
 
-        var json = JsonSerializer.Serialize(newData);
+        var json = JsonSerializer.Serialize(newData, options);
         
         File.WriteAllText(filePath, json);
     }

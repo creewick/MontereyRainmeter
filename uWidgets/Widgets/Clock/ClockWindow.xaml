@@ -5,9 +5,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:windowTypes="clr-namespace:uWidgets.Windows.WindowTypes"
         xmlns:controls="clr-namespace:uWidgets.Widgets.Clock.Controls"
+        xmlns:clock="clr-namespace:uWidgets.Widgets.Clock"
+        d:DataContext="{d:DesignInstance Type=clock:ClockViewModel}"
         mc:Ignorable="d"
-        Title="ClockWindow">
-    <Grid>
-        <controls:AnalogClock />
+        Title="Clock">
+    <Grid Margin="{Binding Margin}">
+        <controls:AnalogIClock Visibility="{Binding AnalogIClock}" />
+        <controls:AnalogIIClock Visibility="{Binding AnalogIIClock}" />
+        <controls:AnalogIIIClock Visibility="{Binding AnalogIIIClock}" />
+        <controls:DigitalClock Visibility="{Binding DigitalClock}" />
+        <controls:WorldClock Visibility="{Binding WorldClock}" />
     </Grid>
 </windowTypes:WidgetBase>

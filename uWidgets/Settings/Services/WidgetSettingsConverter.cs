@@ -13,7 +13,7 @@ public class WidgetSettingsConverter : JsonConverter<WidgetSettings>
     {
         using var jsonDocument = JsonDocument.ParseValue(ref reader);
         var jsonObject = jsonDocument.RootElement;
-        var widgetName = jsonObject.GetProperty("Name").GetString();
+        var widgetName = jsonObject.GetProperty(nameof(WidgetSettings.Type)).GetString();
         var assembly = Assembly.GetExecutingAssembly();
 
         var type = assembly
@@ -24,7 +24,7 @@ public class WidgetSettingsConverter : JsonConverter<WidgetSettings>
         if (type == null)
             throw new ArgumentException($"Settings class for widget {widgetName} is not found");
 
-        return (WidgetSettings) (JsonSerializer.Deserialize(jsonObject.GetRawText(), type) 
+        return (WidgetSettings) (JsonSerializer.Deserialize(jsonObject.GetRawText(), type, options) 
                                ?? throw new FormatException($"Cannot deserialize settings for widget {widgetName}"));
     }
 

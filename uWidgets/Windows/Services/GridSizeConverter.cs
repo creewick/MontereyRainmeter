@@ -14,11 +14,11 @@ public class GridSizeConverter
 
     public int GetGridSize(double pixels)
     {
-        return (int)Math.Round((pixels + appSettings.WidgetPadding) / (appSettings.WidgetSize + appSettings.WidgetPadding));
+        return (int)Math.Round((pixels + appSettings.WidgetMargin) / (appSettings.WidgetSize + appSettings.WidgetMargin));
     }
     
     public double GetPixels(int gridSize)
     {
-        return gridSize * (appSettings.WidgetSize + appSettings.WidgetPadding) - appSettings.WidgetPadding;
+        return gridSize * (appSettings.WidgetSize + appSettings.WidgetMargin) - appSettings.WidgetMargin;
     }
 }

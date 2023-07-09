@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Interop;
 using uWidgets.Windows.WindowTypes;
@@ -8,7 +9,7 @@ namespace uWidgets.Windows.WidgetManager.WidgetActions;
 
 public class KeepOnScreenAction : IWidgetAction
 {
-    public void Run(WidgetBase widget)
+    public async Task Run(WidgetBase widget)
     {
         var handle = new WindowInteropHelper(widget).Handle;
         var screen = Screen.FromHandle(handle);

@@ -2,7 +2,6 @@
 using System.Windows;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Localization;
-using uWidgets.Locales.Models;
 using uWidgets.Locales.Repositories;
 using uWidgets.Settings.Models;
 using uWidgets.Settings.Repositories;

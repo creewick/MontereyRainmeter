@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Drawing;
+using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Interop;
-using uWidgets.Animations;
+using System.Windows.Media.Animation;
 using uWidgets.Settings.Models;
+using uWidgets.Windows.Services;
 using uWidgets.Windows.WindowTypes;
 
 namespace uWidgets.Windows.WidgetManager.WidgetActions;
@@ -17,7 +20,7 @@ public class SnapPositionToGridAction : IWidgetAction
         this.appSettings = appSettings;
     }
 
-    public void Run(WidgetBase widget)
+    public async Task Run(WidgetBase widget)
     {
         if (!appSettings.Appearance.GridSnap) return;
         
@@ -29,26 +32,47 @@ public class SnapPositionToGridAction : IWidgetAction
         var screenTop = screen.WorkingArea.Top / dpiScale;
         var screenLeft = screen.WorkingArea.Left / dpiScale;
 
-        var span = appSettings.WidgetSize + appSettings.WidgetPadding;
+        var span = appSettings.WidgetSize + appSettings.WidgetMargin;
         var offset = (screen.WorkingArea.Width / dpiScale) % span;
 
         var oldLeft = widget.Left;
         var oldTop = widget.Top;
 
         var newLeft = Math.Round((widget.Left - offset) / span) * span + offset + screenLeft;
-        var newTop = Math.Round(widget.Top / span) * span + appSettings.WidgetPadding + screenTop;
-
-        if (!appSettings.Battery.LowPowerMode)
-        {
-            new AnimationBuilder(10)
-                .Add(new LinearAnimation(left => widget.Left = left, oldLeft, newLeft))
-                .Add(new LinearAnimation(top => widget.Top = top, oldTop, newTop))
-                .Animate();
-        }
-        else
-        {
+        var newTop = Math.Round(widget.Top / span) * span + appSettings.WidgetMargin + screenTop;
+        
+        if (appSettings.Battery.LowPowerMode)
+        {      
             widget.Left = newLeft;
             widget.Top = newTop;
+            return;
         }
+
+        var leftAnimation = new DoubleAnimation
+        {
+            From = oldLeft,
+            To = newLeft,
+            Duration = new Duration(TimeSpan.FromSeconds(0.25))
+        };
+
+        var topAnimation = new DoubleAnimation
+        {
+            From = oldTop,
+            To = newTop,
+            Duration = new Duration(TimeSpan.FromSeconds(0.25))
+        };
+
+        var storyboard = new Storyboard();
+
+        storyboard.Children.Add(leftAnimation);
+        storyboard.Children.Add(topAnimation);
+
+        Storyboard.SetTarget(leftAnimation, widget);
+        Storyboard.SetTarget(topAnimation, widget);
+
+        Storyboard.SetTargetProperty(leftAnimation, new PropertyPath(Window.LeftProperty));
+        Storyboard.SetTargetProperty(topAnimation, new PropertyPath(Window.TopProperty));
+
+        await storyboard.BeginAsync();
     }
 }

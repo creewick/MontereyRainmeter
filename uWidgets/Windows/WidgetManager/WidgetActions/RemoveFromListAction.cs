@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using uWidgets.Windows.WindowTypes;
 
 namespace uWidgets.Windows.WidgetManager.WidgetActions;
@@ -12,7 +13,7 @@ public class RemoveFromListAction : IWidgetAction
         this.widgets = widgets;
     }
     
-    public void Run(WidgetBase widget)
+    public async Task Run(WidgetBase widget)
     {
         widgets.Remove(widget);
     }

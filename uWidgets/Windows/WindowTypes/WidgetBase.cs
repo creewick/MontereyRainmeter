@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -9,20 +8,18 @@ using uWidgets.Windows.Services;
 
 namespace uWidgets.Windows.WindowTypes;
 
-public class WidgetBase : WindowBase
+public abstract class WidgetBase : WindowBase
 {
-    private readonly AppSettings appSettings;
     public WidgetSettings WidgetSettings;
-    
+    public event EventHandler? WidgetMoved;
+    public event WidgetResizedEventHandler? WidgetResized;
+    public delegate void WidgetResizedEventHandler(Size size);
+
+    private readonly AppSettings appSettings;
     private readonly IStringLocalizer locale;
     private readonly GridSizeConverter gridSizeConverter;
 
-    public event EventHandler? WidgetMoved;
-    public event WidgetResizedEventHandler? WidgetResized;
-
-    public delegate void WidgetResizedEventHandler(Size size);
-
-    public WidgetBase(AppSettings appSettings, WidgetSettings widgetSettings, IStringLocalizer locale) : base(appSettings)
+    protected WidgetBase(AppSettings appSettings, WidgetSettings widgetSettings, IStringLocalizer locale) : base(appSettings)
     {
         gridSizeConverter = new GridSizeConverter(appSettings);
 
@@ -71,7 +68,7 @@ public class WidgetBase : WindowBase
     }
 
     private ContextMenu GetContextMenu() => new ContextMenuBuilder()
-        .With($"{locale["Edit"]} «{locale[WidgetSettings.Name]}»", null)
+        .With($"{locale["Edit"]} «{locale[WidgetSettings.Type]}»", OpenWidgetSettings)
         .With(new Separator())
         .With(locale["Size"], null, false)
         .With(locale["Small"], () => Resize(2, 2))
@@ -83,6 +80,11 @@ public class WidgetBase : WindowBase
         .With(locale["Edit widgets"], null)
         .Build();
 
+    private void OpenWidgetSettings()
+    {
+        var widgetSettingsWindow = new WidgetSettingsWindow(appSettings);
+        widgetSettingsWindow.Show();
+    }
 
     private void Resize(int columns, int rows)
     {

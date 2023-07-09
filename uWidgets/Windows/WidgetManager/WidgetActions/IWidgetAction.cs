@@ -1,8 +1,9 @@
-﻿using uWidgets.Windows.WindowTypes;
+﻿using System.Threading.Tasks;
+using uWidgets.Windows.WindowTypes;
 
 namespace uWidgets.Windows.WidgetManager.WidgetActions;
 
 public interface IWidgetAction
 {
-    public void Run(WidgetBase widget);
+    public Task Run(WidgetBase widget);
 }

@@ -23,11 +23,11 @@ public class WidgetFactory : IWidgetFactory
         var type = assembly
             .GetTypes()
             .FirstOrDefault(type => 
-                type.Name.Equals($"{widgetSettings.Name}Window") && 
+                type.Name.Equals($"{widgetSettings.Type}Window") && 
                 typeof(WidgetBase).IsAssignableFrom(type));
 
         if (type == null)
-            throw new ArgumentException($"Widget {widgetSettings.Name} is not found");
+            throw new ArgumentException($"Widget {widgetSettings.Type} is not found");
         
         var widget = (WidgetBase) ActivatorUtilities.CreateInstance(serviceProvider, type, widgetSettings);
 

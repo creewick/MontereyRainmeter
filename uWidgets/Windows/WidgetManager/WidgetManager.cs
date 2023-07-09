@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using uWidgets.Settings.Models;
 using uWidgets.Settings.Repositories;
@@ -38,6 +39,7 @@ public class WidgetManager : IWidgetManager
         {
             var widget = widgetFactory.CreateWidget(widgetLayout);
 
+            widget.Loaded += (_, _) => HandleEvent(WidgetLoadedActions(), widget);
             widget.WidgetMoved += (_, _) => HandleEvent(WidgetMovedActions(), widget);
             widget.WidgetResized += (size) => HandleEvent(WidgetResizedActions(size), widget);
             widget.Closed += (_, _) => HandleEvent(WidgetClosedActions(), widget);
@@ -47,16 +49,22 @@ public class WidgetManager : IWidgetManager
         }
     }
     
-    private void HandleEvent(IEnumerable<IWidgetAction> actions, WidgetBase widget)
+    private async Task HandleEvent(IEnumerable<IWidgetAction> actions, WidgetBase widget)
     {
         foreach (var action in actions) 
-            action.Run(widget);
+            await action.Run(widget);
         
         var widgetSettings = widgets
             .Select(w => w.WidgetSettings)
             .ToArray();
         
         widgetSettingsRepository.Save(widgetSettings);
+    }
+
+    private IEnumerable<IWidgetAction> WidgetLoadedActions()
+    {
+        yield return new KeepOnScreenAction();
+        yield return new SnapPositionToGridAction(appSettings);
     }
 
     private IEnumerable<IWidgetAction> WidgetMovedActions()
@@ -68,8 +76,9 @@ public class WidgetManager : IWidgetManager
 
     private IEnumerable<IWidgetAction> WidgetResizedActions(Size newSize)
     {
-        yield return new KeepOnScreenAction();
         yield return new SnapSizeToGridAction(appSettings, newSize);
+        yield return new KeepOnScreenAction();
+        yield return new SnapPositionToGridAction(appSettings);
         yield return new UpdateSettingsAction(gridSizeConverter);
     }
 

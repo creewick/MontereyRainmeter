@@ -1,15 +1,11 @@
 ﻿<Application x:Class="uWidgets.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:uWidgets"
              xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml">
     <Application.Resources>
         <ResourceDictionary>
-            <FontFamily x:Key="SfProLight">/Resources/Fonts/SF-Pro-Display-Light.otf#SF Pro Display</FontFamily>
-            <FontFamily x:Key="SfProRegular">/Resources/Fonts/SF-Pro-Display-Regular.otf#SF Pro Display</FontFamily>
-            <FontFamily x:Key="SfProMedium">/Resources/Fonts/SF-Pro-Display-Medium.otf#SF Pro Display</FontFamily>
-            <FontFamily x:Key="SfProSemibold">/Resources/Fonts/SF-Pro-Display-Semibold.otf#SF Pro Display</FontFamily>
-            <FontFamily x:Key="ArialRounded">/Resources/Fonts/Arial-Rounded-Bold.otf#Arial Rounded MT Pro Cyr</FontFamily>
+            <FontFamily x:Key="SfSemiBold">/Resources/Fonts/SF-Pro-Display-Semibold.otf#SF Pro Display Semibold</FontFamily>
+            <FontFamily x:Key="SfRegular">/Resources/Fonts/SF-Pro-Display-Regular.otf#SF Pro Display Regular</FontFamily>
             <ResourceDictionary.MergedDictionaries>
                 <ui:ThemesDictionary Theme="Dark" />
                 <ui:ControlsDictionary />

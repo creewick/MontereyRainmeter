@@ -1,4 +1,5 @@
-﻿using uWidgets.Windows.Services;
+﻿using System.Threading.Tasks;
+using uWidgets.Windows.Services;
 using uWidgets.Windows.WindowTypes;
 
 namespace uWidgets.Windows.WidgetManager.WidgetActions;
@@ -12,7 +13,7 @@ public class UpdateSettingsAction : IWidgetAction
         this.gridSizeConverter = gridSizeConverter;
     }
     
-    public void Run(WidgetBase widget)
+    public async Task Run(WidgetBase widget)
     {
         widget.WidgetSettings.X = (int)widget.Left;
         widget.WidgetSettings.Y = (int)widget.Top;

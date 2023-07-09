@@ -4,11 +4,12 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using uWidgets.Settings.Models;
 using Wpf.Ui.Appearance;
+using Wpf.Ui.Controls;
 using Wpf.Ui.Extensions;
 
 namespace uWidgets.Windows.WindowTypes;
 
-public class WindowBase : Window
+public class WindowBase : UiWindow
 {
     private readonly AppSettings appSettings;
 
@@ -19,10 +20,10 @@ public class WindowBase : Window
         WindowStyle = WindowStyle.None;
         AllowsTransparency = true;
         Background = new SolidColorBrush(Colors.Transparent);
-        
+
         SourceInitialized += OnSourceInitialized;
     }
-
+    
     private void OnSourceInitialized(object? sender, EventArgs e)
     {
         if (appSettings.Appearance.Transparency)
