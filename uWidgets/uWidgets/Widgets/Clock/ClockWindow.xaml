@@ -1,0 +1,19 @@
+﻿<windowTypes:WidgetBase x:Class="uWidgets.Widgets.Clock.ClockWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:controls="clr-namespace:uWidgets.Widgets.Clock.Controls"
+        xmlns:clock="clr-namespace:uWidgets.Widgets.Clock"
+        xmlns:windowTypes="clr-namespace:uWidgets.Windows.WindowTypes"
+        d:DataContext="{d:DesignInstance Type=clock:ClockViewModel}"
+        mc:Ignorable="d"
+        Title="Clock">
+    <Grid Margin="{Binding Margin}">
+        <controls:AnalogIClock Visibility="{Binding AnalogIClock}" />
+        <controls:AnalogIIClock Visibility="{Binding AnalogIIClock}" />
+        <controls:AnalogIIIClock Visibility="{Binding AnalogIIIClock}" />
+        <controls:DigitalClock Visibility="{Binding DigitalClock}" />
+        <controls:WorldClock Visibility="{Binding WorldClock}" />
+    </Grid>
+</windowTypes:WidgetBase>

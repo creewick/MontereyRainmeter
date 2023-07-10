@@ -1,0 +1,125 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net6.0-windows</TargetFramework>
+        <Nullable>enable</Nullable>
+        <UseWPF>true</UseWPF>
+        <UseWindowsForms>true</UseWindowsForms>
+        <RootNamespace>uWidgets</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
+      <PackageReference Include="Microsoft.Extensions.Localization" Version="7.0.8" />
+      <PackageReference Include="PropertyChanged.Fody" Version="4.1.0" />
+      <PackageReference Include="WPF-UI" Version="2.0.3" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Resources\Fonts\" />
+      <Folder Include="Windows\WindowTypes\AppSettingsWindow\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="Settings\appSettings.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="Settings\layout.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="Locales\ua_UA.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="Locales\ru_RU.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="Locales\en_US.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Remove="Clock\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Resources\Fonts\SF-Pro-Display-Medium.otf" />
+      <Resource Include="Resources\Fonts\SF-Pro-Display-Medium.otf" />
+      <None Remove="Resources\Fonts\Arial-Rounded-Bold.otf" />
+      <Resource Include="Resources\Fonts\Arial-Rounded-Bold.otf" />
+      <None Remove="Resources\Fonts\SF-Pro-Display-Light.otf" />
+      <Resource Include="Resources\Fonts\SF-Pro-Display-Light.otf" />
+      <None Remove="Resources\Fonts\SF-Pro-Display-Regular.otf" />
+      <Resource Include="Resources\Fonts\SF-Pro-Display-Regular.otf" />
+      <None Remove="Resources\Fonts\SF-Pro-Display-Semibold.otf" />
+      <Resource Include="Resources\Fonts\SF-Pro-Display-Semibold.otf" />
+      <None Remove="Resources\Fonts\SF-Pro-Display-Black.otf" />
+      <Resource Include="Resources\Fonts\SF-Pro-Display-Black.otf" />
+      <None Remove="Resources\Fonts\SF-Pro-Display-BlackItalic.otf" />
+      <Resource Include="Resources\Fonts\SF-Pro-Display-BlackItalic.otf" />
+      <None Remove="Resources\Fonts\SF-Pro-Display-Bold.otf" />
+      <Resource Include="Resources\Fonts\SF-Pro-Display-Bold.otf" />
+      <None Remove="Resources\Fonts\SF-Pro-Display-BoldItalic.otf" />
+      <Resource Include="Resources\Fonts\SF-Pro-Display-BoldItalic.otf" />
+      <None Remove="Resources\Fonts\SF-Pro-Display-Heavy.otf" />
+      <Resource Include="Resources\Fonts\SF-Pro-Display-Heavy.otf" />
+      <None Remove="Resources\Fonts\SF-Pro-Display-HeavyItalic.otf" />
+      <Resource Include="Resources\Fonts\SF-Pro-Display-HeavyItalic.otf" />
+      <None Remove="Resources\Fonts\SF-Pro-Display-LightItalic.otf" />
+      <Resource Include="Resources\Fonts\SF-Pro-Display-LightItalic.otf" />
+      <None Remove="Resources\Fonts\SF-Pro-Display-MediumItalic.otf" />
+      <Resource Include="Resources\Fonts\SF-Pro-Display-MediumItalic.otf" />
+      <None Remove="Resources\Fonts\SF-Pro-Display-RegularItalic.otf" />
+      <Resource Include="Resources\Fonts\SF-Pro-Display-RegularItalic.otf" />
+      <None Remove="Resources\Fonts\SF-Pro-Display-SemiboldItalic.otf" />
+      <Resource Include="Resources\Fonts\SF-Pro-Display-SemiboldItalic.otf" />
+      <None Remove="Resources\Fonts\SF-Pro-Display-Thin.otf" />
+      <Resource Include="Resources\Fonts\SF-Pro-Display-Thin.otf" />
+      <None Remove="Resources\Fonts\SF-Pro-Display-ThinItalic.otf" />
+      <Resource Include="Resources\Fonts\SF-Pro-Display-ThinItalic.otf" />
+      <None Remove="Resources\Fonts\SF-Pro-Display-Ultralight.otf" />
+      <Resource Include="Resources\Fonts\SF-Pro-Display-Ultralight.otf" />
+      <None Remove="Resources\Fonts\SF-Pro-Display-UltralightItalic.otf" />
+      <Resource Include="Resources\Fonts\SF-Pro-Display-UltralightItalic.otf" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Page Update="Windows\WindowTypes\WidgetSettings\WidgetSettingsWindow.xaml">
+        <Generator>MSBuild:Compile</Generator>
+        <XamlRuntime>Wpf</XamlRuntime>
+        <SubType>Designer</SubType>
+      </Page>
+      <Page Remove="Clock\**" />
+      <Page Update="Windows\WindowTypes\WidgetSettingsWindow\WidgetSettingsWindow.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+      <Page Update="Widgets\Clock\Controls\AnalogIClock.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+      <Page Update="Widgets\Clock\Controls\DigitalClock.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+      <Page Update="Widgets\Clock\Controls\WorldClock.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+      <Page Update="Widgets\Clock\Controls\AnalogIIClock.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+      <Page Update="Widgets\Clock\Controls\AnalogIIIClock.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+      <Page Update="Widgets\Clock\ClockWindow.xaml">
+        <Generator>MSBuild:Compile</Generator>
+        <XamlRuntime>Wpf</XamlRuntime>
+        <SubType>Designer</SubType>
+      </Page>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="Clock\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="Clock\**" />
+    </ItemGroup>
+
+</Project>

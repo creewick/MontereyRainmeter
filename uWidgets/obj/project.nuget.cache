@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "dgSpecHash": "7c7sUgS83QlRlHya8dImp8U6H6+7Ko9qGdFl3J6K6WVtgB1juY8aVmr4ooe807daJ1cQDJkWFHkmxdoQ/NBS0g==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\creewick\\RiderProjects\\MontereyRainmeter\\uWidgets\\uWidgets.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\creewick\\.nuget\\packages\\fody\\6.6.4\\fody.6.6.4.nupkg.sha512",
+    "C:\\Users\\creewick\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\7.0.0\\microsoft.extensions.dependencyinjection.7.0.0.nupkg.sha512",
+    "C:\\Users\\creewick\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\7.0.0\\microsoft.extensions.dependencyinjection.abstractions.7.0.0.nupkg.sha512",
+    "C:\\Users\\creewick\\.nuget\\packages\\microsoft.extensions.localization\\7.0.8\\microsoft.extensions.localization.7.0.8.nupkg.sha512",
+    "C:\\Users\\creewick\\.nuget\\packages\\microsoft.extensions.localization.abstractions\\7.0.8\\microsoft.extensions.localization.abstractions.7.0.8.nupkg.sha512",
+    "C:\\Users\\creewick\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\7.0.1\\microsoft.extensions.logging.abstractions.7.0.1.nupkg.sha512",
+    "C:\\Users\\creewick\\.nuget\\packages\\microsoft.extensions.options\\7.0.1\\microsoft.extensions.options.7.0.1.nupkg.sha512",
+    "C:\\Users\\creewick\\.nuget\\packages\\microsoft.extensions.primitives\\7.0.0\\microsoft.extensions.primitives.7.0.0.nupkg.sha512",
+    "C:\\Users\\creewick\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
+    "C:\\Users\\creewick\\.nuget\\packages\\propertychanged.fody\\4.1.0\\propertychanged.fody.4.1.0.nupkg.sha512",
+    "C:\\Users\\creewick\\.nuget\\packages\\system.drawing.common\\6.0.0\\system.drawing.common.6.0.0.nupkg.sha512",
+    "C:\\Users\\creewick\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+    "C:\\Users\\creewick\\.nuget\\packages\\wpf-ui\\2.0.3\\wpf-ui.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
