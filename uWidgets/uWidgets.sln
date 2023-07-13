@@ -1,10 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "uWidgets", "uWidgets\uWidgets.csproj", "{E2355D8E-3E18-416F-94CF-27C9A009E9EA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clock", "Widgets\Clock\Clock.csproj", "{32D68D11-C119-4385-804C-F98F6A27073D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clock", "Clock\Clock.csproj", "{32D68D11-C119-4385-804C-F98F6A27073D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{5EB1825C-FA79-42B9-8301-D50683092459}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WidgetContracts", "WidgetContracts\WidgetContracts.csproj", "{D9A9FB27-8C09-419D-A902-5946B1FDDDA9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "uWidgets", "uWidgets\uWidgets.csproj", "{7A5EB848-34ED-4C00-8C63-80451AC33189}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calendar", "Widgets\Calendar\Calendar.csproj", "{0AFF6010-F804-42CC-932F-A99EA0EDD39C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Widgets", "Widgets", "{5A3FB4BE-27E2-4339-89B6-D7E24ED28A90}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -12,17 +16,25 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E2355D8E-3E18-416F-94CF-27C9A009E9EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E2355D8E-3E18-416F-94CF-27C9A009E9EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E2355D8E-3E18-416F-94CF-27C9A009E9EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E2355D8E-3E18-416F-94CF-27C9A009E9EA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{32D68D11-C119-4385-804C-F98F6A27073D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{32D68D11-C119-4385-804C-F98F6A27073D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32D68D11-C119-4385-804C-F98F6A27073D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32D68D11-C119-4385-804C-F98F6A27073D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D9A9FB27-8C09-419D-A902-5946B1FDDDA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D9A9FB27-8C09-419D-A902-5946B1FDDDA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D9A9FB27-8C09-419D-A902-5946B1FDDDA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D9A9FB27-8C09-419D-A902-5946B1FDDDA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32D68D11-C119-4385-804C-F98F6A27073D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32D68D11-C119-4385-804C-F98F6A27073D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EB1825C-FA79-42B9-8301-D50683092459}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EB1825C-FA79-42B9-8301-D50683092459}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5EB1825C-FA79-42B9-8301-D50683092459}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EB1825C-FA79-42B9-8301-D50683092459}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A5EB848-34ED-4C00-8C63-80451AC33189}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A5EB848-34ED-4C00-8C63-80451AC33189}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A5EB848-34ED-4C00-8C63-80451AC33189}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A5EB848-34ED-4C00-8C63-80451AC33189}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AFF6010-F804-42CC-932F-A99EA0EDD39C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AFF6010-F804-42CC-932F-A99EA0EDD39C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AFF6010-F804-42CC-932F-A99EA0EDD39C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AFF6010-F804-42CC-932F-A99EA0EDD39C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0AFF6010-F804-42CC-932F-A99EA0EDD39C} = {5A3FB4BE-27E2-4339-89B6-D7E24ED28A90}
+		{32D68D11-C119-4385-804C-F98F6A27073D} = {5A3FB4BE-27E2-4339-89B6-D7E24ED28A90}
 	EndGlobalSection
 EndGlobal

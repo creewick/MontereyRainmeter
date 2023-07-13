@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="Calendar.Controls.MonthCalendar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:calendar="clr-namespace:Calendar"
+             d:DataContext="{d:DesignInstance Type=calendar:CalendarViewModel}"
+             mc:Ignorable="d">
+    <Grid Margin="{Binding MonthCalendarMargin}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="{Binding MonthCalendarRows}" />
+        </Grid.RowDefinitions>
+        <Viewbox Margin="5, 2" HorizontalAlignment="Left">
+            <TextBlock Name="MonthName" TextAlignment="Left" Text="{Binding Month}"
+                       FontFamily="{StaticResource SfSemiBold}" Foreground="{DynamicResource AccentFillColorDefaultBrush}" />
+        </Viewbox>
+        <ItemsControl Grid.Row="1" ItemsSource="{Binding MonthCalendarCells}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="7">
+                    </UniformGrid>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Viewbox>
+                            <Canvas Width="100" Height="100">
+                                <Ellipse Canvas.Left="0" Canvas.Top="0" Width="100" Height="100" Fill="{Binding Background}" />
+                            </Canvas>
+                        </Viewbox>
+                        <Viewbox Margin="0,3">
+                            <TextBlock Text="{Binding Text}" Foreground="{Binding Foreground}" Opacity="{Binding Opacity}" FontFamily="{StaticResource SfBold}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        </Viewbox>
+                    </Grid>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </Grid>
+</UserControl>
