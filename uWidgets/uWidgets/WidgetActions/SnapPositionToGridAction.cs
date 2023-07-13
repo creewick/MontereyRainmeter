@@ -2,8 +2,10 @@
 using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Forms;
 using System.Windows.Interop;
 using System.Windows.Media.Animation;
+using Shared.Models;
 using uWidgets.Services;
 
 namespace uWidgets.WidgetActions;
@@ -17,7 +19,7 @@ public class SnapPositionToGridAction : IWidgetAction
         this.appSettings = appSettings;
     }
 
-    public async Task Run(WidgetBase widget)
+    public async Task Run(Widget widget)
     {
         if (!appSettings.Appearance.GridSnap) return;
         

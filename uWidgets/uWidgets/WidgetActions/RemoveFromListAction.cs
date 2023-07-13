@@ -1,18 +1,19 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Shared.Models;
 
 namespace uWidgets.WidgetActions;
 
 public class RemoveFromListAction : IWidgetAction
 {
-    private readonly List<WidgetBase> widgets;
+    private readonly List<Widget> widgets;
 
-    public RemoveFromListAction(List<WidgetBase> widgets)
+    public RemoveFromListAction(List<Widget> widgets)
     {
         this.widgets = widgets;
     }
     
-    public async Task Run(WidgetBase widget)
+    public async Task Run(Widget widget)
     {
         widgets.Remove(widget);
     }

@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media.Animation;
+using Shared.Models;
 using uWidgets.Services;
 
 namespace uWidgets.WidgetActions;
@@ -19,7 +20,7 @@ public class SnapSizeToGridAction : IWidgetAction
         gridSizeConverter = new GridSizeConverter(appSettings);
     }
     
-    public async Task Run(WidgetBase widget)
+    public async Task Run(Widget widget)
     {
         var oldWidth = widget.Width;
         var oldHeight = widget.Height;
