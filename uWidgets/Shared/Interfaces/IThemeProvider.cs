@@ -1,4 +1,4 @@
-﻿namespace Shared.Themes;
+﻿namespace uWidgets.Themes;
 
 public interface IThemeProvider
 {

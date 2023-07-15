@@ -19,5 +19,5 @@ public static class PathBuilder
     public static string LayoutFile = Path.Combine(CurrentFolder, LayoutFileName);
     
     public static string GetWidgetFile(string widgetName) => Path.Combine(WidgetsFolder, widgetName + ".dll");
-    public static string GetLocaleFile(string language) => Path.Combine(LocalesFolderName, language + ".json");
+    public static string GetLocaleFile(string language) => Path.Combine(LocalesFolder, language + ".json");
 }

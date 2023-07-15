@@ -1,6 +1,6 @@
 ﻿using Shared.Models;
 
-namespace Clock;
+namespace Clock.Models;
 
 public class ClockSettings : WidgetSettings
 {

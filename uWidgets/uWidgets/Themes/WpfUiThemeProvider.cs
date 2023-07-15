@@ -4,7 +4,7 @@ using System.Windows.Media;
 using Shared.Interfaces;
 using Wpf.Ui.Appearance;
 
-namespace Shared.Themes;
+namespace uWidgets.Themes;
 
 public class WpfUiThemeProvider : IThemeProvider
 {
@@ -19,14 +19,15 @@ public class WpfUiThemeProvider : IThemeProvider
     
     public WpfUiThemeProvider(IAppSettingsProvider appSettingsProvider)
     {
+        Application.Current.MainWindow = new Window();
+        
         this.appSettingsProvider = appSettingsProvider;
+        this.appSettingsProvider.Updated += (_, _) => Apply();
     }
     
     public void Apply()
     {
-        Application.Current.MainWindow = new Window();
-        
-        Theme.Apply(GetThemeType());
+        Theme.Apply(GetThemeType(), BackgroundType.Acrylic);
         Accent.Apply(GetAccentColor());
     }
 
@@ -46,6 +47,6 @@ public class WpfUiThemeProvider : IThemeProvider
         if (appSettingsProvider.Get().Appearance.UseSystemAccentColor)
             return Accent.GetColorizationColor();
         
-        return (Color)ColorConverter.ConvertFromString(appSettingsProvider.Get().Appearance.AccentColor);
+        return (Color) ColorConverter.ConvertFromString(appSettingsProvider.Get().Appearance.AccentColor);
     }
 }

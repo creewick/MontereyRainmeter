@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Windows;
+using System.ComponentModel;
 using System.Windows.Controls;
 using Shared.Interfaces;
-using Shared.Models;
 using Shared.Services;
+using Shared.Templates;
 
 namespace uWidgets.WidgetFactory;
 
@@ -16,8 +16,10 @@ public class WidgetFactory : IWidgetFactory
         this.classActivator = classActivator;
     }
     
-    public Widget CreateWidget(WidgetSettings widgetSettings)
+    public Widget CreateWidget(IWidgetSettingsProvider widgetSettingsProvider)
     {
+        var widgetSettings = widgetSettingsProvider.Get();
+        
         if (widgetSettings == null)
             throw new ArgumentNullException(nameof(widgetSettings));
 
@@ -25,7 +27,10 @@ public class WidgetFactory : IWidgetFactory
         var controlName = widgetSettings.Subtype;
 
         var control = (UserControl) classActivator.Activate(assemblyPath, null, controlName);
+        var viewModel = (INotifyPropertyChanged) classActivator.Activate(assemblyPath, typeof(INotifyPropertyChanged), null, widgetSettingsProvider);
 
-        return (Widget) classActivator.Activate(typeof(Widget), control);
+        control.DataContext = viewModel;
+
+        return (Widget) classActivator.Activate(typeof(Widget), control, widgetSettingsProvider);
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
-using Shared.Models;
-using uWidgets.Services;
+using Shared.Services;
+using Shared.Templates;
 
 namespace uWidgets.WidgetActions;
 

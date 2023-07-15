@@ -1,8 +1,9 @@
-﻿using Shared.Models;
+﻿using Shared.Interfaces;
+using Shared.Templates;
 
 namespace uWidgets.WidgetFactory;
 
 public interface IWidgetFactory
 {
-    public Widget CreateWidget(WidgetSettings widgetSettings);
+    public Widget CreateWidget(IWidgetSettingsProvider widgetSettingsProvider);
 }

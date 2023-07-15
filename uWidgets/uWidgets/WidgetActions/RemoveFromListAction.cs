@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Shared.Models;
+using Shared.Templates;
 
 namespace uWidgets.WidgetActions;
 

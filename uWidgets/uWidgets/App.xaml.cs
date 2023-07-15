@@ -3,9 +3,9 @@ using System.Windows;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Localization;
 using Shared.Interfaces;
-using Shared.Themes;
 using uWidgets.Providers;
 using uWidgets.Services;
+using uWidgets.Themes;
 using uWidgets.WidgetFactory;
 using uWidgets.WidgetManager;
 

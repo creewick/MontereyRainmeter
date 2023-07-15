@@ -4,7 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:calendar="clr-namespace:Calendar"
-             d:DataContext="{d:DesignInstance Type=calendar:CalendarViewModel}"
+             xmlns:models="clr-namespace:Calendar.Models"
+             d:DataContext="{d:DesignInstance Type=models:CalendarViewModel}"
              mc:Ignorable="d">
     <UserControl.Resources>
         <Style TargetType="{x:Type TextBlock}">

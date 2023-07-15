@@ -1,5 +1,5 @@
 ﻿using System;
-using Shared.Models;
+using Shared.Templates;
 
 namespace Shared.Events;
 

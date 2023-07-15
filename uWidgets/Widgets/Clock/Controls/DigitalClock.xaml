@@ -4,7 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:clock="clr-namespace:Clock"
-             d:DataContext="{d:DesignInstance Type=clock:ClockViewModel}"
+             xmlns:models="clr-namespace:Clock.Models"
+             d:DataContext="{d:DesignInstance Type=models:ClockViewModel}"
              mc:Ignorable="d">
     <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <Viewbox Name="TimeBox" VerticalAlignment="Center">

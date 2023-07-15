@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Interop;
-using Shared.Models;
+using Shared.Templates;
 
 namespace uWidgets.WidgetActions;
 

@@ -2,22 +2,24 @@
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media.Animation;
-using Shared.Models;
+using Shared.Interfaces;
+using Shared.Services;
+using Shared.Templates;
 using uWidgets.Services;
 
 namespace uWidgets.WidgetActions;
 
 public class SnapSizeToGridAction : IWidgetAction
 {
-    private readonly AppSettings appSettings;
+    private readonly IAppSettingsProvider appSettingsProvider;
     private readonly Size? newSize;
     private readonly GridSizeConverter gridSizeConverter;
 
-    public SnapSizeToGridAction(AppSettings appSettings, Size? newSize)
+    public SnapSizeToGridAction(IAppSettingsProvider appSettingsProvider, Size? newSize)
     {
-        this.appSettings = appSettings;
+        this.appSettingsProvider = appSettingsProvider;
         this.newSize = newSize;
-        gridSizeConverter = new GridSizeConverter(appSettings);
+        gridSizeConverter = new GridSizeConverter(appSettingsProvider);
     }
     
     public async Task Run(Widget widget)
@@ -31,7 +33,7 @@ public class SnapSizeToGridAction : IWidgetAction
         var newWidth = gridSizeConverter.GetPixels(columns);
         var newHeight = gridSizeConverter.GetPixels(rows);
 
-        if (appSettings.Battery.LowPowerMode)
+        if (appSettingsProvider.Get().Battery.LowPowerMode)
         {      
             widget.Width = newWidth;
             widget.Height = newHeight;

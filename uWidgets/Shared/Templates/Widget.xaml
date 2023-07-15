@@ -1,0 +1,31 @@
+﻿<Window x:Class="Shared.Templates.Widget"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:models="clr-namespace:Shared.Models"
+        ShowInTaskbar="False" WindowStyle="None" AllowsTransparency="True" Background="Transparent"
+        Left="{Binding Left}" Top="{Binding Top}"
+        Width="{Binding Width}" Height="{Binding Height}"
+        d:DataContext="{d:DesignInstance Type=models:WidgetViewModel}" mc:Ignorable="d">
+    <Border Name="Border" Background="{Binding Background}" CornerRadius="{Binding CornerRadius}" Padding="{Binding Padding}">
+        <ContentPresenter Content="{Binding Control}" />
+    </Border>
+    <Window.ContextMenu>
+        <ContextMenu>
+            <MenuItem Header="{Binding Locale.Edit}" />
+            <Separator />
+            <MenuItem Header="{Binding Locale.Size}" IsEnabled="False" />
+            <MenuItem Header="{Binding Locale.Small}" />
+            <MenuItem Header="{Binding Locale.Medium}" />
+            <MenuItem Header="{Binding Locale.Large}" />
+            <Separator />
+            <MenuItem Header="{Binding Locale.RemoveWidget}" />
+            <Separator />
+            <MenuItem Header="{Binding Locale.EditWidgets}" />
+            <Separator />
+            <MenuItem Header="Light Theme" Command="{Binding LightMode}" />
+            <MenuItem Header="Dark Theme" Command="{Binding DarkMode}" />
+        </ContextMenu>
+    </Window.ContextMenu>
+</Window>

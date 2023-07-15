@@ -5,7 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:clock="clr-namespace:Clock"
              xmlns:controls="clr-namespace:Clock.Controls"
-             d:DataContext="{d:DesignInstance Type=clock:ClockViewModel}"
+             xmlns:models="clr-namespace:Clock.Models"
+             d:DataContext="{d:DesignInstance Type=models:ClockViewModel}"
              mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>

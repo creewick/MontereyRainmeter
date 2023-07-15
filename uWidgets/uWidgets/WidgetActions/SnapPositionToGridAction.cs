@@ -5,22 +5,25 @@ using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Interop;
 using System.Windows.Media.Animation;
-using Shared.Models;
+using Shared.Interfaces;
+using Shared.Templates;
 using uWidgets.Services;
 
 namespace uWidgets.WidgetActions;
 
 public class SnapPositionToGridAction : IWidgetAction
 {
-    private readonly AppSettings appSettings;
+    private readonly IAppSettingsProvider appSettingsProvider;
 
-    public SnapPositionToGridAction(AppSettings appSettings)
+    public SnapPositionToGridAction(IAppSettingsProvider appSettingsProvider)
     {
-        this.appSettings = appSettings;
+        this.appSettingsProvider = appSettingsProvider;
     }
 
     public async Task Run(Widget widget)
     {
+        var appSettings = appSettingsProvider.Get();
+        
         if (!appSettings.Appearance.GridSnap) return;
         
         var handle = new WindowInteropHelper(widget).Handle;

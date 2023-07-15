@@ -2,6 +2,7 @@
   {
     "Type": "Clock",
     "Subtype": "AnalogIClock",
+    "Id": "64e1008b-a9d8-4204-bafe-251e83687e1d",
     "X": 100,
     "Y": 100,
     "Columns": 2,
@@ -11,6 +12,7 @@
   {
     "Type": "Clock",
     "Subtype": "AnalogIIClock",
+    "Id": "ce3f40f1-2c85-4d15-9813-8d30c6ce60eb",
     "X": 300,
     "Y": 300,
     "Columns": 2,
@@ -21,6 +23,7 @@
   {
     "Type": "Clock",
     "Subtype": "WorldClock",
+    "Id": "f01c57fe-b177-48f9-9f5c-1a9ee31d0bcc",
     "X": 300,
     "Y": 300,
     "Columns": 2,
@@ -31,6 +34,7 @@
   {
     "Type": "Clock",
     "Subtype": "AnalogIIIClock",
+    "Id": "39804ba3-e05e-4e36-96be-c7d79589bd78",
     "X": 300,
     "Y": 300,
     "Columns": 2,
@@ -41,6 +45,27 @@
   {
     "Type": "Clock",
     "Subtype": "DigitalClock",
+    "Id": "53446409-b8ff-4901-b355-7604c3847221",
+    "X": 400,
+    "Y": 400,
+    "Columns": 2,
+    "Rows": 2,
+    "ShowSeconds": true
+  },
+  {
+    "Type": "Calendar",
+    "Subtype": "TodayCalendar",
+    "Id": "26125044-b053-4a1f-a828-824c9ad937b3",
+    "X": 400,
+    "Y": 400,
+    "Columns": 2,
+    "Rows": 2,
+    "ShowSeconds": true
+  },
+  {
+    "Type": "Calendar",
+    "Subtype": "MonthCalendar",
+    "Id": "a4d875ca-85ea-42a4-87d0-546d3924a150",
     "X": 400,
     "Y": 400,
     "Columns": 2,
