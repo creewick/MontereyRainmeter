@@ -14,16 +14,16 @@
     </Border>
     <Window.ContextMenu>
         <ContextMenu>
-            <MenuItem Header="{Binding Locale.Edit}" />
+            <MenuItem Header="{Binding Locale.Edit}" Command="{Binding ContextMenu.EditWidget}" />
             <Separator />
             <MenuItem Header="{Binding Locale.Size}" IsEnabled="False" />
-            <MenuItem Header="{Binding Locale.Small}" />
-            <MenuItem Header="{Binding Locale.Medium}" />
-            <MenuItem Header="{Binding Locale.Large}" />
+            <MenuItem Header="{Binding Locale.Small}" Command="{Binding ContextMenu.Small}" />
+            <MenuItem Header="{Binding Locale.Medium}" Command="{Binding ContextMenu.Medium}" />
+            <MenuItem Header="{Binding Locale.Large}" Command="{Binding ContextMenu.Large}" />
             <Separator />
-            <MenuItem Header="{Binding Locale.RemoveWidget}" />
+            <MenuItem Header="{Binding Locale.RemoveWidget}" Command="{Binding ContextMenu.RemoveWidget}" />
             <Separator />
-            <MenuItem Header="{Binding Locale.EditWidgets}" />
+            <MenuItem Header="{Binding Locale.EditWidgets}" Command="{Binding ContextMenu.EditWidgets}" />
             <Separator />
             <MenuItem Header="Light Theme" Command="{Binding LightMode}" />
             <MenuItem Header="Dark Theme" Command="{Binding DarkMode}" />

@@ -27,18 +27,7 @@ public class WidgetViewModel : INotifyPropertyChanged
     public double Width => gridSizeConverter.GetPixels(widgetSettingsProvider.Get().Columns);
     public double Height => gridSizeConverter.GetPixels(widgetSettingsProvider.Get().Rows);
     public WidgetLocale Locale => new(locale, widgetSettingsProvider.Get().Type);
-    public RelayCommand DarkMode => new(() =>
-    {
-        var appSettings = appSettingsProvider.Get();
-        appSettings.Appearance.DarkTheme = true;
-        appSettingsProvider.Update(appSettings);
-    });
-    public RelayCommand LightMode => new(() =>
-    {
-        var appSettings = appSettingsProvider.Get();
-        appSettings.Appearance.DarkTheme = false;
-        appSettingsProvider.Update(appSettings);
-    });
+    public WidgetContextMenu ContextMenu { get; set; }
 
     public WidgetViewModel(IAppSettingsProvider appSettingsProvider, IWidgetSettingsProvider widgetSettingsProvider, 
         IStringLocalizer locale, UserControl userControl)
