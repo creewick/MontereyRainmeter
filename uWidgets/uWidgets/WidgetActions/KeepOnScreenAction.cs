@@ -3,14 +3,13 @@ using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Interop;
-using Shared.Interfaces;
 using Shared.Templates;
 
 namespace uWidgets.WidgetActions;
 
 public class KeepOnScreenAction : IWidgetAction
 {
-    public async Task Run(Widget widget, IWidgetSettingsProvider widgetSettingsProvider)
+    public async Task Run(Widget widget)
     {
         var handle = new WindowInteropHelper(widget).Handle;
         var screen = Screen.FromHandle(handle);

@@ -17,13 +17,11 @@ public partial class Widget : Window
     public event EventHandler<WidgetEventArgs>? WidgetClosed;
     public event EventHandler<WidgetMovedEventArgs>? WidgetMoved;
     public event EventHandler<WidgetResizedEventArgs>? WidgetResized;
-    public Guid Id;
     
     public Widget(IAppSettingsProvider appSettingsProvider, IWidgetSettingsProvider widgetSettingsProvider, 
         IStringLocalizer locale, UserControl userControl)
     {
         DataContext = new WidgetViewModel(appSettingsProvider, widgetSettingsProvider, locale, userControl);
-        Id = widgetSettingsProvider.Get().Id;
 
         InitializeComponent();
 

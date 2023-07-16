@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using Shared.Interfaces;
 using Shared.Services;
 using Shared.Templates;
 
@@ -14,14 +13,11 @@ public class UpdateSettingsAction : IWidgetAction
         this.gridSizeConverter = gridSizeConverter;
     }
     
-    public async Task Run(Widget widget, IWidgetSettingsProvider widgetSettingsProvider)
+    public async Task Run(Widget widget)
     {
-        var widgetSettings = widgetSettingsProvider.Get();
-        widgetSettings.X = (int) widget.Left;
-        widgetSettings.Y = (int) widget.Top;
-        widgetSettings.Columns = gridSizeConverter.GetGridSize(widget.Width);
-        widgetSettings.Rows = gridSizeConverter.GetGridSize(widget.Height);
-
-        widgetSettingsProvider.Update(widgetSettings);
+        // widget.WidgetSettings.X = (int)widget.Left;
+        // widget.WidgetSettings.Y = (int)widget.Top;
+        // widget.WidgetSettings.Columns = gridSizeConverter.GetGridSize(widget.Width);
+        // widget.WidgetSettings.Rows = gridSizeConverter.GetGridSize(widget.Height);
     }
 }

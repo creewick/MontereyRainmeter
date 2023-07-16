@@ -22,7 +22,7 @@ public class SnapSizeToGridAction : IWidgetAction
         gridSizeConverter = new GridSizeConverter(appSettingsProvider);
     }
     
-    public async Task Run(Widget widget, IWidgetSettingsProvider widgetSettingsProvider)
+    public async Task Run(Widget widget)
     {
         var oldWidth = widget.Width;
         var oldHeight = widget.Height;
