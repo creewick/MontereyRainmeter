@@ -61,15 +61,5 @@
     "Columns": 2,
     "Rows": 2,
     "ShowSeconds": true
-  },
-  {
-    "Type": "Calendar",
-    "Subtype": "MonthCalendar",
-    "Id": "a4d875ca-85ea-42a4-87d0-546d3924a150",
-    "X": 400,
-    "Y": 400,
-    "Columns": 2,
-    "Rows": 2,
-    "ShowSeconds": true
   }
 ]
