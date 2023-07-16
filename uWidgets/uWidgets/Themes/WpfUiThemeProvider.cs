@@ -27,8 +27,8 @@ public class WpfUiThemeProvider : IThemeProvider
     
     public void Apply()
     {
-        Theme.Apply(GetThemeType(), BackgroundType.Acrylic);
         Accent.Apply(GetAccentColor());
+        Theme.Apply(GetThemeType(), BackgroundType.Acrylic);
     }
 
     private ThemeType GetThemeType()

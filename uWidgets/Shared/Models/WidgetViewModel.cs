@@ -15,6 +15,7 @@ public class WidgetViewModel : INotifyPropertyChanged
     private readonly GridSizeConverter gridSizeConverter;
     private readonly IAppSettingsProvider appSettingsProvider;
     private readonly IWidgetSettingsProvider widgetSettingsProvider;
+    public event PropertyChangedEventHandler? PropertyChanged;
     
     public Brush Background => GetBackground(appSettingsProvider.Get());
     public CornerRadius CornerRadius => new(appSettingsProvider.Get().Appearance.Transparency ? 0 : appSettingsProvider.Get().WidgetMargin);
@@ -38,8 +39,6 @@ public class WidgetViewModel : INotifyPropertyChanged
         appSettings.Appearance.DarkTheme = false;
         appSettingsProvider.Update(appSettings);
     });
-    
-    public event PropertyChangedEventHandler? PropertyChanged;
 
     public WidgetViewModel(IAppSettingsProvider appSettingsProvider, IWidgetSettingsProvider widgetSettingsProvider, 
         IStringLocalizer locale, UserControl userControl)
