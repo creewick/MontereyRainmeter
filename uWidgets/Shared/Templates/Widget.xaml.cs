@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using Microsoft.Extensions.Localization;
 using Shared.Events;
 using Shared.Interfaces;
@@ -22,6 +24,11 @@ public partial class Widget : Window
         IStringLocalizer locale, UserControl userControl)
     {
         DataContext = new WidgetViewModel(appSettingsProvider, widgetSettingsProvider, locale, userControl);
+        
+        appSettingsProvider.Updated += (_, appSettings) =>
+        {
+            // Theme.Apply(appSettings.Appearance.DarkTheme ? ThemeType.Dark : ThemeType.Light, BackgroundType.Acrylic, true, true);
+        };
 
         InitializeComponent();
 

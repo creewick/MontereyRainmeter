@@ -5,6 +5,7 @@ using Microsoft.Extensions.Localization;
 using Shared.Interfaces;
 using uWidgets.Providers;
 using uWidgets.Services;
+using uWidgets.Themes;
 using uWidgets.WidgetFactory;
 using uWidgets.WidgetManager;
 
