@@ -54,7 +54,7 @@ public class ClockViewModel : INotifyPropertyChanged
             return TimeSpan.FromSeconds(1);
 
         if (clockSettings.ShowSeconds)
-            return TimeSpan.FromSeconds(1d / 60);
+            return TimeSpan.FromSeconds(1d / 10);
         
         return TimeSpan.FromSeconds(1);
     }
