@@ -68,7 +68,11 @@ public class CalendarViewModel : INotifyPropertyChanged
         };
         
         timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
-        timer.Tick += (_, _) => { Time = DateTime.Now; };
+        timer.Tick += (_, _) => 
+        { 
+            Time = DateTime.Now;
+            Update();
+        };
         timer.Start();
     }
 

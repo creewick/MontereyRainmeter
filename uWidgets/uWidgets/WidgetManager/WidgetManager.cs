@@ -17,7 +17,7 @@ public class WidgetManager : IWidgetManager
     private readonly GridSizeConverter gridSizeConverter;
     private readonly IAppSettingsProvider appSettingsProvider;
 
-    private readonly List<Widget> widgets = new();
+    private readonly Dictionary<Widget, IWidgetSettingsProvider> widgetSettingsProviders = new();
 
     public WidgetManager(IWidgetFactory widgetFactory, ILayoutProvider layoutProvider,
         IAppSettingsProvider appSettingsProvider)
@@ -42,7 +42,7 @@ public class WidgetManager : IWidgetManager
             widget.WidgetResized += (_, args) => WidgetEventHandler(args.Widget, OnWidgetResize);
             widget.WidgetMoved += (_, args) => WidgetEventHandler(args.Widget, OnWidgetMove);
 
-            widgets.Add(widget);
+            widgetSettingsProviders.Add(widget, widgetSettingsProvider);
             widget.Show();
         }
     }
@@ -51,10 +51,8 @@ public class WidgetManager : IWidgetManager
     {
         foreach (var action in actions)
         {
-            action.Run(widget);
+            action.Run(widget, widgetSettingsProviders[widget]);
         }
-        
-        // layoutProvider.Update();
     }
 
     private List<IWidgetAction> OnWidgetOpened => new()
@@ -65,14 +63,15 @@ public class WidgetManager : IWidgetManager
 
     private List<IWidgetAction> OnWidgetClosed => new()
     {
-        new RemoveFromListAction(widgets)
+        new RemoveFromListAction(widgetSettingsProviders)
     };
 
     private List<IWidgetAction> OnWidgetResize => new()
     {
         new SnapSizeToGridAction(appSettingsProvider, new Size()),
         new KeepOnScreenAction(),
-        new SnapPositionToGridAction(appSettingsProvider)
+        new SnapPositionToGridAction(appSettingsProvider),
+        new UpdateSettingsAction(gridSizeConverter),
     };
     
     private List<IWidgetAction> OnWidgetMove => new()

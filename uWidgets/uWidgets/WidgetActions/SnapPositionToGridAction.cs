@@ -20,7 +20,7 @@ public class SnapPositionToGridAction : IWidgetAction
         this.appSettingsProvider = appSettingsProvider;
     }
 
-    public async Task Run(Widget widget)
+    public async Task Run(Widget widget, IWidgetSettingsProvider widgetSettingsProvider)
     {
         var appSettings = appSettingsProvider.Get();
         

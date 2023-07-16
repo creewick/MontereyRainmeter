@@ -1,7 +1,9 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using Microsoft.Extensions.Localization;
 using Shared.Interfaces;
 using Shared.Services;
@@ -15,8 +17,9 @@ public class WidgetViewModel : INotifyPropertyChanged
     private readonly GridSizeConverter gridSizeConverter;
     private readonly IAppSettingsProvider appSettingsProvider;
     private readonly IWidgetSettingsProvider widgetSettingsProvider;
-    
-    public Brush Background => GetBackground(appSettingsProvider.Get());
+
+    public SolidColorBrush Background => new(GetBackgroundColor(appSettingsProvider.Get()));
+
     public CornerRadius CornerRadius => new(appSettingsProvider.Get().Appearance.Transparency ? 0 : appSettingsProvider.Get().WidgetMargin);
     public UserControl Control { get; set; }
     public double Padding => appSettingsProvider.Get().WidgetSize * 0.1;
@@ -49,16 +52,16 @@ public class WidgetViewModel : INotifyPropertyChanged
         this.appSettingsProvider = appSettingsProvider;
         this.widgetSettingsProvider = widgetSettingsProvider;
         gridSizeConverter = new GridSizeConverter(appSettingsProvider);
-        
+
         appSettingsProvider.Updated += (_, _) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(string.Empty));
         widgetSettingsProvider.Updated += (_, _) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(string.Empty));
     }
-
-    private static SolidColorBrush GetBackground(AppSettings appSettings)
+    
+    private static Color GetBackgroundColor(AppSettings appSettings)
     {
-        var color = (Color)Application.Current.Resources["ApplicationBackgroundColor"];
-        color.A = (byte)(appSettings.Appearance.Transparency ? 64 : 255);
+        var color = (Color) Application.Current.Resources["ApplicationBackgroundColor"];
+        color.A = (byte) (appSettings.Appearance.Transparency ? 64 : 255);
 
-        return new SolidColorBrush(color);
+        return color;
     }
 }

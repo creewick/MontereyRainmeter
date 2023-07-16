@@ -38,6 +38,7 @@ public class WpfUiThemeProvider : IThemeProvider
             Application.Current.Resources.MergedDictionaries.Remove(oldDict);
         }
         Application.Current.Resources.MergedDictionaries.Add(newDict);
+        Accent.Apply(GetAccentColor());
     }
 
     private bool GetDarkTheme()
