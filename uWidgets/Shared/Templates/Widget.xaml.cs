@@ -22,13 +22,8 @@ public partial class Widget : Window
         IStringLocalizer locale, UserControl userControl)
     {
         DataContext = new WidgetViewModel(appSettingsProvider, widgetSettingsProvider, locale, userControl);
-        
-        appSettingsProvider.Updated += (_, appSettings) =>
-        {
-            Activate();
-            Wpf.Ui.Appearance.Background.Remove(this);
-            Wpf.Ui.Appearance.Background.Apply(this, BackgroundType.Acrylic, true);
-        };
+
+        appSettingsProvider.Updated += (_, appSettings) => ApplyTransparency(appSettings);
 
         InitializeComponent();
 
@@ -56,6 +51,8 @@ public partial class Widget : Window
 
     private void ApplyTransparency(AppSettings appSettings)
     {
+        Activate();
+        Wpf.Ui.Appearance.Background.Remove(this);
         Wpf.Ui.Appearance.Background.Apply(this, BackgroundType.Acrylic, true);
         
         this.ApplyCorners(appSettings.Appearance.WidgetRadius switch
