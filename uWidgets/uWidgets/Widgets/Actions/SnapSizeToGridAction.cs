@@ -7,7 +7,7 @@ using Shared.Services;
 using Shared.Templates;
 using uWidgets.Services;
 
-namespace uWidgets.WidgetActions;
+namespace uWidgets.Widgets.Actions;
 
 public class SnapSizeToGridAction : IWidgetAction
 {
@@ -22,13 +22,13 @@ public class SnapSizeToGridAction : IWidgetAction
         gridSizeConverter = new GridSizeConverter(appSettingsProvider);
     }
     
-    public async Task Run(Widget widget)
+    public async Task Run(Widget widget, IWidgetSettingsProvider widgetSettingsProvider)
     {
         var oldWidth = widget.Width;
         var oldHeight = widget.Height;
         
         var columns = gridSizeConverter.GetGridSize(newSize?.Width ?? widget.Width);
-        var rows = gridSizeConverter.GetGridSize(newSize?.Height ?? widget.Width);
+        var rows = gridSizeConverter.GetGridSize(newSize?.Height ?? widget.Height);
         
         var newWidth = gridSizeConverter.GetPixels(columns);
         var newHeight = gridSizeConverter.GetPixels(rows);

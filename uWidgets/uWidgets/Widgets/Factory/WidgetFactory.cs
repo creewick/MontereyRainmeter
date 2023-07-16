@@ -5,7 +5,7 @@ using Shared.Interfaces;
 using Shared.Services;
 using Shared.Templates;
 
-namespace uWidgets.WidgetFactory;
+namespace uWidgets.Widgets.Factory;
 
 public class WidgetFactory : IWidgetFactory
 {

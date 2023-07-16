@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace Calendar.Controls;
+namespace Calendar.Views;
 
 public partial class TodayCalendar : UserControl
 {

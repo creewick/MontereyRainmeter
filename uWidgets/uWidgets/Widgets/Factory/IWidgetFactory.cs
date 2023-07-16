@@ -1,7 +1,7 @@
 ﻿using Shared.Interfaces;
 using Shared.Templates;
 
-namespace uWidgets.WidgetFactory;
+namespace uWidgets.Widgets.Factory;
 
 public interface IWidgetFactory
 {

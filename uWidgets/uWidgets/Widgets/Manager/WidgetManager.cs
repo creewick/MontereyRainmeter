@@ -5,10 +5,10 @@ using Shared.Interfaces;
 using Shared.Services;
 using Shared.Templates;
 using uWidgets.Providers;
-using uWidgets.WidgetActions;
-using uWidgets.WidgetFactory;
+using uWidgets.Widgets.Actions;
+using uWidgets.Widgets.Factory;
 
-namespace uWidgets.WidgetManager;
+namespace uWidgets.Widgets.Manager;
 
 public class WidgetManager : IWidgetManager
 {
@@ -37,24 +37,19 @@ public class WidgetManager : IWidgetManager
             
             var widget = widgetFactory.CreateWidget(widgetSettingsProvider);
 
-            widget.WidgetOpened += (_, args) => WidgetEventHandler(args.Widget, OnWidgetOpened);
-            widget.WidgetClosed += (_, args) => WidgetEventHandler(args.Widget, OnWidgetClosed);
-            widget.WidgetResized += (_, args) => WidgetEventHandler(args.Widget, OnWidgetResize);
-            widget.WidgetMoved += (_, args) => WidgetEventHandler(args.Widget, OnWidgetMove);
+            widget.WidgetOpened += (_, _) => WidgetEventHandler(widget, widgetSettingsProvider, OnWidgetOpened);
+            widget.WidgetClosed += (_, _) => WidgetEventHandler(widget, widgetSettingsProvider, OnWidgetClosed);
+            widget.WidgetResized += (_, args) => WidgetEventHandler(widget, widgetSettingsProvider, OnWidgetResize(args.Size));
+            widget.WidgetMoved += (_, _) => WidgetEventHandler(widget, widgetSettingsProvider, OnWidgetMove);
 
             widgets.Add(widget);
             widget.Show();
         }
     }
 
-    private void WidgetEventHandler(Widget widget, List<IWidgetAction> actions)
+    private void WidgetEventHandler(Widget widget, IWidgetSettingsProvider widgetSettingsProvider, List<IWidgetAction> actions)
     {
-        foreach (var action in actions)
-        {
-            action.Run(widget);
-        }
-        
-        // layoutProvider.Update();
+        actions.ForEach(action => action.Run(widget, widgetSettingsProvider));
     }
 
     private List<IWidgetAction> OnWidgetOpened => new()
@@ -65,14 +60,15 @@ public class WidgetManager : IWidgetManager
 
     private List<IWidgetAction> OnWidgetClosed => new()
     {
-        new RemoveFromListAction(widgets)
+        new RemoveFromListAction(widgets, layoutProvider)
     };
 
-    private List<IWidgetAction> OnWidgetResize => new()
+    private List<IWidgetAction> OnWidgetResize(Size? size) => new()
     {
-        new SnapSizeToGridAction(appSettingsProvider, new Size()),
+        new SnapSizeToGridAction(appSettingsProvider, size),
         new KeepOnScreenAction(),
-        new SnapPositionToGridAction(appSettingsProvider)
+        new SnapPositionToGridAction(appSettingsProvider),
+        new UpdateSettingsAction(gridSizeConverter),
     };
     
     private List<IWidgetAction> OnWidgetMove => new()

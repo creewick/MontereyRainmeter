@@ -1,15 +1,14 @@
-﻿using Shared.Templates;
+﻿using System.Windows;
+using Shared.Templates;
 
 namespace Shared.Events;
 
 public class WidgetResizedEventArgs : WidgetEventArgs
 {
-    public double Width { get; }
-    public double Height { get; }
+    public Size? Size { get; }
 
-    public WidgetResizedEventArgs(Widget widget, double width, double height) : base(widget)
+    public WidgetResizedEventArgs(Widget widget, Size? size) : base(widget)
     {
-        Width = width;
-        Height = height;
+        this.Size = size;
     }
 }

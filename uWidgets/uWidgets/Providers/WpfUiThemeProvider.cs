@@ -4,7 +4,7 @@ using System.Windows.Media;
 using Shared.Interfaces;
 using Wpf.Ui.Appearance;
 
-namespace uWidgets.Themes;
+namespace uWidgets.Providers;
 
 public class WpfUiThemeProvider : IThemeProvider
 {

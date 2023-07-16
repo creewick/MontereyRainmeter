@@ -10,7 +10,6 @@
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
         <OutputPath>..\..\uWidgets\bin\Debug\Widgets\</OutputPath>
-        <PlatformTarget>ARM64</PlatformTarget>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">

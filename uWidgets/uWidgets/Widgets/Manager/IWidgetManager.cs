@@ -1,4 +1,4 @@
-﻿namespace uWidgets.WidgetManager;
+﻿namespace uWidgets.Widgets.Manager;
 
 public interface IWidgetManager
 {

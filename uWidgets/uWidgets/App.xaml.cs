@@ -5,9 +5,8 @@ using Microsoft.Extensions.Localization;
 using Shared.Interfaces;
 using uWidgets.Providers;
 using uWidgets.Services;
-using uWidgets.Themes;
-using uWidgets.WidgetFactory;
-using uWidgets.WidgetManager;
+using uWidgets.Widgets.Factory;
+using uWidgets.Widgets.Manager;
 
 namespace uWidgets;
 
@@ -38,8 +37,8 @@ public partial class App
         });
 
         services.AddSingleton<IClassActivator, ClassActivator>();
-        services.AddSingleton<IWidgetFactory, WidgetFactory.WidgetFactory>();
-        services.AddSingleton<IWidgetManager, WidgetManager.WidgetManager>();
+        services.AddSingleton<IWidgetFactory, WidgetFactory>();
+        services.AddSingleton<IWidgetManager, WidgetManager>();
 
         return services.BuildServiceProvider();
     }

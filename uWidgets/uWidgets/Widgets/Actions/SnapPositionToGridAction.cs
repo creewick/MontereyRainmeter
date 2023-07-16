@@ -9,7 +9,7 @@ using Shared.Interfaces;
 using Shared.Templates;
 using uWidgets.Services;
 
-namespace uWidgets.WidgetActions;
+namespace uWidgets.Widgets.Actions;
 
 public class SnapPositionToGridAction : IWidgetAction
 {
@@ -20,7 +20,7 @@ public class SnapPositionToGridAction : IWidgetAction
         this.appSettingsProvider = appSettingsProvider;
     }
 
-    public async Task Run(Widget widget)
+    public async Task Run(Widget widget, IWidgetSettingsProvider widgetSettingsProvider)
     {
         var appSettings = appSettingsProvider.Get();
         

@@ -20,13 +20,13 @@ public class WidgetViewModel : INotifyPropertyChanged
     public Brush Background => GetBackground(appSettingsProvider.Get());
     public CornerRadius CornerRadius => new(appSettingsProvider.Get().Appearance.Transparency ? 0 : appSettingsProvider.Get().WidgetMargin);
     public UserControl Control { get; set; }
+    public double MinSize => appSettingsProvider.Get().WidgetSize;
     public double Padding => appSettingsProvider.Get().WidgetSize * 0.1;
     public double Left => widgetSettingsProvider.Get().X;
     public double Top => widgetSettingsProvider.Get().Y;
     public double Width => gridSizeConverter.GetPixels(widgetSettingsProvider.Get().Columns);
     public double Height => gridSizeConverter.GetPixels(widgetSettingsProvider.Get().Rows);
     public WidgetLocale Locale => new(locale, widgetSettingsProvider.Get().Type);
-
     public RelayCommand DarkMode => new(() =>
     {
         var appSettings = appSettingsProvider.Get();
@@ -48,9 +48,9 @@ public class WidgetViewModel : INotifyPropertyChanged
         this.appSettingsProvider = appSettingsProvider;
         this.widgetSettingsProvider = widgetSettingsProvider;
         gridSizeConverter = new GridSizeConverter(appSettingsProvider);
-        
-        appSettingsProvider.Updated += (_, _) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(string.Empty));
-        widgetSettingsProvider.Updated += (_, _) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(string.Empty));
+
+        appSettingsProvider.Updated += (_, _) => Update();
+        widgetSettingsProvider.Updated += (_, _) => Update();
     }
 
     private static SolidColorBrush GetBackground(AppSettings appSettings)
@@ -60,4 +60,6 @@ public class WidgetViewModel : INotifyPropertyChanged
 
         return new SolidColorBrush(color);
     }
+
+    private void Update() => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(string.Empty));
 }

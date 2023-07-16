@@ -7,8 +7,9 @@
         ShowInTaskbar="False" WindowStyle="None" AllowsTransparency="True" Background="Transparent"
         Left="{Binding Left}" Top="{Binding Top}"
         Width="{Binding Width}" Height="{Binding Height}"
+        MinWidth="{Binding MinSize}" MinHeight="{Binding MinSize}"
         d:DataContext="{d:DesignInstance Type=models:WidgetViewModel}" mc:Ignorable="d">
-    <Border Name="Border" Background="{Binding Background}" CornerRadius="{Binding CornerRadius}" Padding="{Binding Padding}">
+    <Border Background="{Binding Background}" CornerRadius="{Binding CornerRadius}" Padding="{Binding Padding}">
         <ContentPresenter Content="{Binding Control}" />
     </Border>
     <Window.ContextMenu>
