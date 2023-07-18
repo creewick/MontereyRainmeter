@@ -6,6 +6,7 @@ using Shared.Events;
 using Shared.Interfaces;
 using Shared.Models;
 using Shared.Services;
+using Shared.Windows;
 using Wpf.Ui.Appearance;
 using Wpf.Ui.Common;
 using Wpf.Ui.Extensions;
@@ -36,7 +37,7 @@ public partial class Widget : Window
                 Medium = new RelayCommand(() => Resize(4, 2)),
                 Large = new RelayCommand(() => Resize(4, 4)),
                 RemoveWidget = new RelayCommand(() => WidgetClosed?.Invoke(this, new WidgetEventArgs(this))),
-                EditWidgets = new RelayCommand(() => { }),
+                EditWidgets = new RelayCommand(() => new AppSettingsWindow(appSettingsProvider).Show()),
                 DarkMode = new RelayCommand(() =>
                 {
                     var settings = appSettingsProvider.Get();

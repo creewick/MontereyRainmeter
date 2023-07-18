@@ -69,4 +69,13 @@
       <Folder Include="Widgets\" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Page Update="AppSettingsWindow\AppearancePage.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+      <Page Update="AppSettingsWindow\AppSettingsWindow.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+    </ItemGroup>
+
 </Project>

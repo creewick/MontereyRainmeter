@@ -1,0 +1,43 @@
+<ui:UiWindow x:Class="Shared.Windows.AppSettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+        xmlns:windows="clr-namespace:Shared.Windows"
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent" 
+        ResizeMode="CanResizeWithGrip" MinWidth="800" MinHeight="500"
+        mc:Ignorable="d">
+    <Grid Background="#80404040">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <ui:TitleBar Title="uWidgets" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" />
+        <ui:NavigationFluent Margin="8 0" x:Name="RootNavigation" Frame="{Binding ElementName=Frame}" Grid.Row="1" Grid.Column="0">
+            <ui:NavigationFluent.Items>
+                <ui:NavigationItem Content="Appearance" PageType="windows:AppearancePage" Icon="DarkTheme20" />
+                <ui:NavigationItem Content="Language" PageType="windows:AppearancePage" Icon="Globe16" />
+                <ui:NavigationItem Content="Battery" PageType="windows:AppearancePage" Icon="Battery720" />
+                <ui:NavigationItem Content="About" PageType="windows:AppearancePage" Icon="Info16" />
+                <ui:NavigationSeparator />
+                <ui:NavigationItem Content="All Widgets" PageType="windows:AppearancePage" Icon="BorderAll16" />
+                <ui:NavigationSeparator />
+                <!-- <ui:NavigationItem Content="Clock" Icon="Clock16" /> -->
+                <!-- <ui:NavigationItem Content="Calendar" Icon="CalendarMonth20" /> -->
+                <!-- <ui:NavigationItem Content="Weather" Icon="WeatherPartlyCloudyDay16" /> -->
+                <!-- <ui:NavigationItem Content="Music" Icon="MusicNote120" /> -->
+                <!-- <ui:NavigationItem Content="Monitor" Icon="Gauge20" /> -->
+                <!-- <ui:NavigationItem Content="Volume" Icon="SoundWaveCircle20" /> -->
+                <!-- <ui:NavigationItem Content="Notes" Icon="Note16" /> -->
+                <!-- <ui:NavigationItem Content="Reminders" Icon="CheckboxChecked16" /> -->
+                <!-- <ui:NavigationItem Content="Timer" Icon="Timer16" /> -->
+            </ui:NavigationFluent.Items>
+        </ui:NavigationFluent>
+        <Frame Name="Frame" Grid.Row="1" Grid.Column="1" />
+    </Grid>
+</ui:UiWindow>
