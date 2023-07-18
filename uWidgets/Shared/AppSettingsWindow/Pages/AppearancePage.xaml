@@ -1,0 +1,81 @@
+<Page x:Class="Shared.AppSettingsWindow.Pages.AppearancePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      xmlns:pages="clr-namespace:Shared.AppSettingsWindow.Pages"
+      d:DataContext="{d:DesignInstance Type=pages:AppearancePage}"
+      mc:Ignorable="d">
+    <StackPanel MaxWidth="900" Margin="14 0">
+        <TextBlock FontSize="24" Margin="14 0 0 20" FontWeight="Medium" Text="Appearance" Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
+        <ui:Card Margin="0 0 0 14">
+            <DockPanel>
+                <TextBlock DockPanel.Dock="Left" Text="Theme" FontSize="14" VerticalAlignment="Center" />
+                <ComboBox Name="ThemeSelector" DockPanel.Dock="Right" SelectedItem="{Binding CurrentTheme}" HorizontalAlignment="Right">
+                    <TextBlock Width="150" Name="LightTheme" Text="Light" />
+                    <TextBlock Width="150" Name="DarkTheme" Text="Dark" />
+                    <TextBlock Width="150" Name="SystemTheme" Text="Let system decide" />
+                </ComboBox>
+            </DockPanel>
+        </ui:Card>
+        <ui:Card Margin="0 0 0 14" Padding="14 0">
+            <StackPanel>
+                <DockPanel Height="70" VerticalAlignment="Center">
+                    <TextBlock DockPanel.Dock="Left" Text="Accent color" FontSize="14" VerticalAlignment="Center" />
+                    <ComboBox DockPanel.Dock="Right" Width="200" HorizontalAlignment="Right">
+                        <TextBlock Text="Template color" />
+                        <TextBlock Text="Custom color" />
+                        <TextBlock Text="Let system decide" />
+                    </ComboBox>
+                </DockPanel>
+                <Separator />
+                <StackPanel Height="80" VerticalAlignment="Center" Orientation="Horizontal">
+                    <ui:CardColor Background="#3478F6" Width="50" Height="50" Margin="0 0 14 0" />
+                    <ui:CardColor Background="#8B4291" Width="50" Height="50" Margin="0 0 14 0" />
+                    <ui:CardColor Background="#E55C9C" Width="50" Height="50" Margin="0 0 14 0" />
+                    <ui:CardColor Background="#CE4744" Width="50" Height="50" Margin="0 0 14 0" />
+                    <ui:CardColor Background="#E8883A" Width="50" Height="50" Margin="0 0 14 0" />
+                    <ui:CardColor Background="#F6C94E" Width="50" Height="50" Margin="0 0 14 0" />
+                    <ui:CardColor Background="#78B856" Width="50" Height="50" Margin="0 0 14 0" />
+                    <ui:CardColor Background="#989898" Width="50" Height="50" Margin="0 0 14 0" />
+                </StackPanel>
+            </StackPanel>
+        </ui:Card>
+        <ui:Card Margin="0 0 0 14" Padding="14 0">
+            <StackPanel>
+                <DockPanel Height="60" VerticalAlignment="Center">
+                    <TextBlock DockPanel.Dock="Left" Text="Transparency effects" FontSize="14" VerticalAlignment="Center" />
+                    <ui:ToggleSwitch DockPanel.Dock="Right" HorizontalAlignment="Right" />
+                </DockPanel>
+                <Separator />
+                <DockPanel Height="60" VerticalAlignment="Center">
+                    <TextBlock DockPanel.Dock="Left" Text="Snap widgets to the grid" FontSize="14" VerticalAlignment="Center" />
+                    <ui:ToggleSwitch DockPanel.Dock="Right" HorizontalAlignment="Right" />
+                </DockPanel>
+            </StackPanel>
+        </ui:Card>
+        <ui:Card Margin="0 0 0 14" Padding="14 0">
+            <StackPanel>
+                <DockPanel Height="60" VerticalAlignment="Center">
+                    <TextBlock DockPanel.Dock="Left" Text="Advanced" FontSize="14" VerticalAlignment="Center" />
+                </DockPanel>
+                <Separator />
+                <DockPanel Height="60" VerticalAlignment="Center">
+                    <TextBlock DockPanel.Dock="Left" Text="Widget size" FontSize="14" VerticalAlignment="Center" />
+                    <ui:NumberBox DockPanel.Dock="Right" Width="200" HorizontalAlignment="Right" />
+                </DockPanel>
+                <Separator />
+                <DockPanel Height="60" VerticalAlignment="Center">
+                    <TextBlock DockPanel.Dock="Left" Text="Widget margin" FontSize="14" VerticalAlignment="Center" />
+                    <ui:NumberBox DockPanel.Dock="Right" Width="200" HorizontalAlignment="Right" />
+                </DockPanel>
+                <Separator />
+                <DockPanel Height="60" VerticalAlignment="Center">
+                    <TextBlock DockPanel.Dock="Left" Text="Widget corner radius" FontSize="14" VerticalAlignment="Center" />
+                    <ui:NumberBox DockPanel.Dock="Right" Width="200" HorizontalAlignment="Right" />
+                </DockPanel>
+            </StackPanel>
+        </ui:Card>
+    </StackPanel>
+</Page>
