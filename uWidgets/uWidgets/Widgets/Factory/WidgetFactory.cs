@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Windows.Controls;
 using Shared.Interfaces;
 using Shared.Services;
@@ -26,11 +25,8 @@ public class WidgetFactory : IWidgetFactory
         var assemblyPath = PathBuilder.GetWidgetFile(widgetSettings.Type);
         var controlName = widgetSettings.Subtype;
 
-        var control = (UserControl) classActivator.Activate(assemblyPath, null, controlName);
-        var viewModel = (INotifyPropertyChanged) classActivator.Activate(assemblyPath, typeof(INotifyPropertyChanged), null, widgetSettingsProvider);
-
-        control.DataContext = viewModel;
-
+        var control = (UserControl) classActivator.Activate(assemblyPath, null, controlName, widgetSettingsProvider);
+        
         return (Widget) classActivator.Activate(typeof(Widget), control, widgetSettingsProvider);
     }
 }

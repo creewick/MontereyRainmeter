@@ -1,6 +1,6 @@
 ﻿using Shared.Models;
 
-namespace Calendar.Models;
+namespace Calendar;
 
 public class CalendarSettings : WidgetSettings
 {

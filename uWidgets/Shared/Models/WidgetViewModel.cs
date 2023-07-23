@@ -5,7 +5,6 @@ using System.Windows.Media;
 using Microsoft.Extensions.Localization;
 using Shared.Interfaces;
 using Shared.Services;
-using Wpf.Ui.Common;
 
 namespace Shared.Models;
 

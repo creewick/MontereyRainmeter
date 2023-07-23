@@ -10,6 +10,5 @@ public class WidgetContextMenu
     public RelayCommand Large { get; set; }
     public RelayCommand RemoveWidget { get; set; }
     public RelayCommand EditWidgets { get; set; }
-    public RelayCommand DarkMode { get; set; }
-    public RelayCommand LightMode { get; set; }
+    public RelayCommand ExitApp { get; set; }
 }

@@ -6,16 +6,16 @@
         <UseWPF>true</UseWPF>
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
         <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+        <Configurations>Debug;Release</Configurations>
+        <Platforms>x64;x86;ARM32;ARM64;AnyCPU</Platforms>
     </PropertyGroup>
-
+    
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-        <OutputPath>..\..\uWidgets\bin\Debug\Widgets\</OutputPath>
-        <PlatformTarget>ARM64</PlatformTarget>
+        <OutputPath>..\..\uWidgets\bin\$(PlatformTarget)\Debug\Widgets\</OutputPath>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-        <OutputPath>..\..\uWidgets\bin\Release\Widgets\</OutputPath>
-        <DebugType>None</DebugType>
+        <OutputPath>..\..\uWidgets\bin\$(PlatformTarget)\Release\Widgets\</OutputPath>
     </PropertyGroup>
 
     <ItemGroup>

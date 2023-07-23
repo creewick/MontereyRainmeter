@@ -6,7 +6,7 @@ using Wpf.Ui.Appearance;
 
 namespace uWidgets.Providers;
 
-public class WpfUiThemeProvider : IThemeProvider
+public class ThemeProvider : IThemeProvider
 {
     private readonly IAppSettingsProvider appSettingsProvider;
 
@@ -17,7 +17,7 @@ public class WpfUiThemeProvider : IThemeProvider
         SystemThemeType.CapturedMotion
     };
     
-    public WpfUiThemeProvider(IAppSettingsProvider appSettingsProvider)
+    public ThemeProvider(IAppSettingsProvider appSettingsProvider)
     {
         Application.Current.MainWindow = new Window();
         
@@ -27,8 +27,8 @@ public class WpfUiThemeProvider : IThemeProvider
     
     public void Apply()
     {
-        Accent.Apply(GetAccentColor());
-        Theme.Apply(GetThemeType(), BackgroundType.Acrylic);
+        Accent.Apply(GetAccentColor(), GetThemeType());
+        Theme.Apply(GetThemeType(), BackgroundType.Acrylic, false);
     }
 
     private ThemeType GetThemeType()

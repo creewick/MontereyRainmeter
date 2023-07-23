@@ -4,15 +4,14 @@
         <OutputType>WinExe</OutputType>
         <TargetFramework>net6.0-windows</TargetFramework>
         <Version>0.0.1.0</Version>
+        <AssemblyVersion>$(Version)</AssemblyVersion>
         <Nullable>enable</Nullable>
         <UseWPF>true</UseWPF>
         <UseWindowsForms>true</UseWindowsForms>
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
         <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
-    </PropertyGroup>
-
-    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-      <PlatformTarget>ARM64</PlatformTarget>
+        <Configurations>Debug;Release</Configurations>
+        <Platforms>x64;x86;ARM32;ARM64;AnyCPU</Platforms>
     </PropertyGroup>
 
     <ItemGroup>
@@ -23,25 +22,63 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Resource Include="Resources\Fonts\Arial-Rounded-Bold.otf" />
-      <Resource Include="Resources\Fonts\SF-Pro-Display-Black.otf" />
-      <Resource Include="Resources\Fonts\SF-Pro-Display-BlackItalic.otf" />
-      <Resource Include="Resources\Fonts\SF-Pro-Display-Bold.otf" />
-      <Resource Include="Resources\Fonts\SF-Pro-Display-BoldItalic.otf" />
-      <Resource Include="Resources\Fonts\SF-Pro-Display-Heavy.otf" />
-      <Resource Include="Resources\Fonts\SF-Pro-Display-HeavyItalic.otf" />
-      <Resource Include="Resources\Fonts\SF-Pro-Display-Light.otf" />
-      <Resource Include="Resources\Fonts\SF-Pro-Display-LightItalic.otf" />
-      <Resource Include="Resources\Fonts\SF-Pro-Display-Medium.otf" />
-      <Resource Include="Resources\Fonts\SF-Pro-Display-MediumItalic.otf" />
-      <Resource Include="Resources\Fonts\SF-Pro-Display-Regular.otf" />
-      <Resource Include="Resources\Fonts\SF-Pro-Display-RegularItalic.otf" />
-      <Resource Include="Resources\Fonts\SF-Pro-Display-Semibold.otf" />
-      <Resource Include="Resources\Fonts\SF-Pro-Display-SemiboldItalic.otf" />
-      <Resource Include="Resources\Fonts\SF-Pro-Display-Thin.otf" />
-      <Resource Include="Resources\Fonts\SF-Pro-Display-ThinItalic.otf" />
-      <Resource Include="Resources\Fonts\SF-Pro-Display-Ultralight.otf" />
-      <Resource Include="Resources\Fonts\SF-Pro-Display-UltralightItalic.otf" />
+      <Resource Include="Resources\Fonts\Arial-Rounded-Bold.otf">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Resources\Fonts\SF-Pro-Display-Black.otf">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Resources\Fonts\SF-Pro-Display-BlackItalic.otf">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Resources\Fonts\SF-Pro-Display-Bold.otf">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Resources\Fonts\SF-Pro-Display-BoldItalic.otf">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Resources\Fonts\SF-Pro-Display-Heavy.otf">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Resources\Fonts\SF-Pro-Display-HeavyItalic.otf">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Resources\Fonts\SF-Pro-Display-Light.otf">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Resources\Fonts\SF-Pro-Display-LightItalic.otf">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Resources\Fonts\SF-Pro-Display-Medium.otf">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Resources\Fonts\SF-Pro-Display-MediumItalic.otf">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Resources\Fonts\SF-Pro-Display-Regular.otf">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Resources\Fonts\SF-Pro-Display-RegularItalic.otf">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Resources\Fonts\SF-Pro-Display-Semibold.otf">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Resources\Fonts\SF-Pro-Display-SemiboldItalic.otf">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Resources\Fonts\SF-Pro-Display-Thin.otf">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Resources\Fonts\SF-Pro-Display-ThinItalic.otf">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Resources\Fonts\SF-Pro-Display-Ultralight.otf">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Resources\Fonts\SF-Pro-Display-UltralightItalic.otf">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
     </ItemGroup>
 
     <ItemGroup>

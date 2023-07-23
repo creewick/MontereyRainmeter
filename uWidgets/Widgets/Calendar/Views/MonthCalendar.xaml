@@ -3,11 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:calendar="clr-namespace:Calendar"
-             xmlns:models="clr-namespace:Calendar.Models"
-             d:DataContext="{d:DesignInstance Type=models:CalendarViewModel}"
+             xmlns:viewModels="clr-namespace:Calendar.ViewModels"
+             d:DataContext="{d:DesignInstance Type=viewModels:MonthCalendarViewModel}"
              mc:Ignorable="d">
-    <Grid Margin="{Binding MonthCalendarMargin}">
+    <Grid Margin="{Binding Margin}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="{Binding MonthCalendarRows}" />
@@ -19,8 +18,7 @@
         <ItemsControl Grid.Row="1" ItemsSource="{Binding MonthCalendarCells}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <UniformGrid Columns="7">
-                    </UniformGrid>
+                    <UniformGrid Columns="7" />
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
@@ -28,11 +26,12 @@
                     <Grid>
                         <Viewbox>
                             <Canvas Width="100" Height="100">
-                                <Ellipse Canvas.Left="0" Canvas.Top="0" Width="100" Height="100" Fill="{Binding Background}" />
+                                <Ellipse Canvas.Left="0" Canvas.Top="0" Width="100" Height="100" Visibility="{Binding Circle}" Fill="{DynamicResource AccentFillColorDefaultBrush}" />
                             </Canvas>
                         </Viewbox>
                         <Viewbox Margin="0,3">
-                            <TextBlock Text="{Binding Text}" Foreground="{Binding Foreground}" Opacity="{Binding Opacity}" FontFamily="{StaticResource SfBold}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                            <TextBlock Text="{Binding Text}" Opacity="{Binding Opacity}" 
+                                       Foreground="{DynamicResource TextFillColorPrimaryBrush}" FontFamily="{StaticResource SfBold}" VerticalAlignment="Center" HorizontalAlignment="Center" />
                         </Viewbox>
                     </Grid>
                 </DataTemplate>

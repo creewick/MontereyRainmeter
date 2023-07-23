@@ -1,0 +1,14 @@
+<Page x:Class="Shared.AppSettingsWindow.Pages.AboutPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:Shared.AppSettingsWindow.Pages"
+      d:DataContext="{d:DesignInstance Type=local:AboutPage}"
+      mc:Ignorable="d">
+    <StackPanel VerticalAlignment="Center">
+        <TextBlock Text="uWidgets" FontWeight="Bold" FontSize="32" HorizontalAlignment="Center" />
+        <TextBlock Text="{Binding Version}" FontSize="20" HorizontalAlignment="Center" />
+        <TextBlock Text="creewick" FontSize="28" HorizontalAlignment="Center" />
+    </StackPanel>
+</Page>

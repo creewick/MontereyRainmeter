@@ -4,10 +4,8 @@
         <TargetFramework>net6.0-windows</TargetFramework>
         <Nullable>enable</Nullable>
         <UseWPF>true</UseWPF>
-    </PropertyGroup>
-
-    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-      <PlatformTarget>ARM64</PlatformTarget>
+        <Configurations>Debug;Release</Configurations>
+        <Platforms>x64;x86;ARM32;ARM64;AnyCPU</Platforms>
     </PropertyGroup>
 
     <ItemGroup>

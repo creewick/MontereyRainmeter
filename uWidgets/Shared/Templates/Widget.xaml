@@ -24,9 +24,7 @@
             <MenuItem Header="{Binding Locale.RemoveWidget}" Command="{Binding ContextMenu.RemoveWidget}" />
             <Separator />
             <MenuItem Header="{Binding Locale.EditWidgets}" Command="{Binding ContextMenu.EditWidgets}" />
-            <Separator />
-            <MenuItem Header="Light Theme" Command="{Binding ContextMenu.LightMode}" />
-            <MenuItem Header="Dark Theme" Command="{Binding ContextMenu.DarkMode}" />
+            <MenuItem Header="Exit app" Command="{Binding ContextMenu.ExitApp}" />
         </ContextMenu>
     </Window.ContextMenu>
 </Window>

@@ -28,7 +28,7 @@ public partial class App
 
         services.AddSingleton<IAppSettingsProvider, AppSettingsProvider>();
         services.AddSingleton<ILayoutProvider, LayoutProvider>();
-        services.AddSingleton<IThemeProvider, WpfUiThemeProvider>();
+        services.AddSingleton<IThemeProvider, ThemeProvider>();
         services.AddSingleton<IStringLocalizer>(serviceCollection =>
         {
             var appSettings = serviceCollection.GetRequiredService<IAppSettingsProvider>().Get();

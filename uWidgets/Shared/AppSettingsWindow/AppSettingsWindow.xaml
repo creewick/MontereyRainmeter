@@ -21,20 +21,24 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <ui:TitleBar Title="uWidgets" Grid.Row="0" Grid.Column="0" ShowMinimize="False" ShowMaximize="False" ShowClose="False" />
-        <ui:TitleBar Title=" " Grid.Row="0" Grid.Column="1">
-            <ui:TitleBar.Background>
+        <Border Grid.Row="0" Grid.Column="1" BorderThickness="1 0 0 0">
+            <Border.BorderBrush>
+                <SolidColorBrush Color="{DynamicResource TextFillColorPrimary}" Opacity="0.1" />
+            </Border.BorderBrush>
+            <Border.Background>
                 <SolidColorBrush Color="{DynamicResource ApplicationBackgroundColor}" Opacity="0.8" />
-            </ui:TitleBar.Background>
-        </ui:TitleBar>
+            </Border.Background>
+            <ui:TitleBar Title=" " />
+        </Border>
         <ui:NavigationFluent Margin="8 0" x:Name="RootNavigation" Frame="{Binding ElementName=Frame}" Grid.Row="1" Grid.Column="0">
             <ui:NavigationFluent.Items>
                 <ui:NavigationItem Content="Appearance" PageType="pages:AppearancePage" Icon="DarkTheme20" />
-                <ui:NavigationItem Content="Language" PageType="pages:AppearancePage" Icon="Globe16" />
-                <ui:NavigationItem Content="Battery" PageType="pages:AppearancePage" Icon="Battery720" />
-                <ui:NavigationItem Content="About" PageType="pages:AppearancePage" Icon="Info16" />
-                <ui:NavigationSeparator />
-                <ui:NavigationItem Content="All Widgets" PageType="pages:AppearancePage" Icon="BorderAll16" />
-                <ui:NavigationSeparator />
+                <!-- <ui:NavigationItem Content="Language" PageType="pages:AppearancePage" Icon="Globe16" /> -->
+                <!-- <ui:NavigationItem Content="Battery" PageType="pages:AppearancePage" Icon="Battery720" /> -->
+                <ui:NavigationItem Content="About" PageType="pages:AboutPage" Icon="Info16" />
+                <!-- <ui:NavigationSeparator /> -->
+                <!-- <ui:NavigationItem Content="All Widgets" PageType="pages:AppearancePage" Icon="BorderAll16" /> -->
+                <!-- <ui:NavigationSeparator /> -->
                 <!-- <ui:NavigationItem Content="Clock" Icon="Clock16" /> -->
                 <!-- <ui:NavigationItem Content="Calendar" Icon="CalendarMonth20" /> -->
                 <!-- <ui:NavigationItem Content="Weather" Icon="WeatherPartlyCloudyDay16" /> -->
@@ -46,13 +50,16 @@
                 <!-- <ui:NavigationItem Content="Timer" Icon="Timer16" /> -->
             </ui:NavigationFluent.Items>
         </ui:NavigationFluent>
-        <Grid Grid.Row="1" Grid.Column="1">
-            <Grid.Background>
+        <Border Grid.Row="1" Grid.Column="1" BorderThickness="1 0 0 0">
+            <Border.BorderBrush>
+                <SolidColorBrush Color="{DynamicResource TextFillColorPrimary}" Opacity="0.1" />
+            </Border.BorderBrush>
+            <Border.Background>
                 <SolidColorBrush Color="{DynamicResource ApplicationBackgroundColor}" Opacity="0.8" />
-            </Grid.Background>
+            </Border.Background>
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <Frame Name="Frame" />
             </ScrollViewer>
-        </Grid>
+        </Border>
     </Grid>
 </ui:UiWindow>

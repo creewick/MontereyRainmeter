@@ -12,10 +12,10 @@
         <ui:Card Margin="0 0 0 14">
             <DockPanel>
                 <TextBlock DockPanel.Dock="Left" Text="Theme" FontSize="14" VerticalAlignment="Center" />
-                <ComboBox Name="ThemeSelector" DockPanel.Dock="Right" SelectedItem="{Binding CurrentTheme}" HorizontalAlignment="Right">
-                    <TextBlock Width="150" Name="LightTheme" Text="Light" />
-                    <TextBlock Width="150" Name="DarkTheme" Text="Dark" />
-                    <TextBlock Width="150" Name="SystemTheme" Text="Let system decide" />
+                <ComboBox Name="ThemeSelector" DockPanel.Dock="Right" SelectedItem="{Binding CurrentTheme}" Width="200" HorizontalAlignment="Right">
+                    <TextBlock Name="LightTheme" Text="Light" />
+                    <TextBlock Name="DarkTheme" Text="Dark" />
+                    <TextBlock Name="SystemTheme" Text="Let system decide" />
                 </ComboBox>
             </DockPanel>
         </ui:Card>
@@ -23,22 +23,25 @@
             <StackPanel>
                 <DockPanel Height="70" VerticalAlignment="Center">
                     <TextBlock DockPanel.Dock="Left" Text="Accent color" FontSize="14" VerticalAlignment="Center" />
-                    <ComboBox DockPanel.Dock="Right" Width="200" HorizontalAlignment="Right">
-                        <TextBlock Text="Template color" />
-                        <TextBlock Text="Custom color" />
-                        <TextBlock Text="Let system decide" />
+                    <ComboBox Name="AccentTypeSelector" DockPanel.Dock="Right" SelectedItem="{Binding CurrentAccentType}" Width="200" HorizontalAlignment="Right">
+                        <TextBlock Name="TemplateColor" Text="Template color" />
+                        <TextBlock Name="SystemColor" Text="Let system decide" />
                     </ComboBox>
                 </DockPanel>
-                <Separator />
-                <StackPanel Height="80" VerticalAlignment="Center" Orientation="Horizontal">
-                    <ui:CardColor Background="#3478F6" Width="50" Height="50" Margin="0 0 14 0" />
-                    <ui:CardColor Background="#8B4291" Width="50" Height="50" Margin="0 0 14 0" />
-                    <ui:CardColor Background="#E55C9C" Width="50" Height="50" Margin="0 0 14 0" />
-                    <ui:CardColor Background="#CE4744" Width="50" Height="50" Margin="0 0 14 0" />
-                    <ui:CardColor Background="#E8883A" Width="50" Height="50" Margin="0 0 14 0" />
-                    <ui:CardColor Background="#F6C94E" Width="50" Height="50" Margin="0 0 14 0" />
-                    <ui:CardColor Background="#78B856" Width="50" Height="50" Margin="0 0 14 0" />
-                    <ui:CardColor Background="#989898" Width="50" Height="50" Margin="0 0 14 0" />
+                <StackPanel Visibility="{Binding ShowTemplateColors}">
+                    <Separator />
+                    <ListView Name="AccentColorSelector" ItemsSource="{Binding Colors}" Margin="0 14">
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal" />
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ui:CardColor Background="{Binding}" Width="50" Height="50" />
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
                 </StackPanel>
             </StackPanel>
         </ui:Card>
@@ -46,12 +49,12 @@
             <StackPanel>
                 <DockPanel Height="60" VerticalAlignment="Center">
                     <TextBlock DockPanel.Dock="Left" Text="Transparency effects" FontSize="14" VerticalAlignment="Center" />
-                    <ui:ToggleSwitch DockPanel.Dock="Right" HorizontalAlignment="Right" />
+                    <ui:ToggleSwitch Name="TransparencySelector" DockPanel.Dock="Right" IsChecked="{Binding Transparency}" HorizontalAlignment="Right" />
                 </DockPanel>
                 <Separator />
                 <DockPanel Height="60" VerticalAlignment="Center">
                     <TextBlock DockPanel.Dock="Left" Text="Snap widgets to the grid" FontSize="14" VerticalAlignment="Center" />
-                    <ui:ToggleSwitch DockPanel.Dock="Right" HorizontalAlignment="Right" />
+                    <ui:ToggleSwitch Name="GridSnapSelector" DockPanel.Dock="Right" IsChecked="{Binding GridSnap}" HorizontalAlignment="Right" />
                 </DockPanel>
             </StackPanel>
         </ui:Card>
@@ -63,17 +66,17 @@
                 <Separator />
                 <DockPanel Height="60" VerticalAlignment="Center">
                     <TextBlock DockPanel.Dock="Left" Text="Widget size" FontSize="14" VerticalAlignment="Center" />
-                    <ui:NumberBox DockPanel.Dock="Right" Width="200" HorizontalAlignment="Right" />
+                    <ui:NumberBox DockPanel.Dock="Right" Name="WidgetSizeSelector" Width="200"  Value="{Binding WidgetSize}" IntegersOnly="True" HorizontalAlignment="Right" />
                 </DockPanel>
                 <Separator />
                 <DockPanel Height="60" VerticalAlignment="Center">
                     <TextBlock DockPanel.Dock="Left" Text="Widget margin" FontSize="14" VerticalAlignment="Center" />
-                    <ui:NumberBox DockPanel.Dock="Right" Width="200" HorizontalAlignment="Right" />
+                    <ui:NumberBox DockPanel.Dock="Right" Name="WidgetMarginSelector" Width="200" Value="{Binding WidgetMargin}" IntegersOnly="True" HorizontalAlignment="Right" />
                 </DockPanel>
                 <Separator />
                 <DockPanel Height="60" VerticalAlignment="Center">
                     <TextBlock DockPanel.Dock="Left" Text="Widget corner radius" FontSize="14" VerticalAlignment="Center" />
-                    <ui:NumberBox DockPanel.Dock="Right" Width="200" HorizontalAlignment="Right" />
+                    <ui:NumberBox DockPanel.Dock="Right" Name="WidgetRadiusSelector" Width="200" Value="{Binding WidgetRadius}" IntegersOnly="True" HorizontalAlignment="Right" />
                 </DockPanel>
             </StackPanel>
         </ui:Card>
