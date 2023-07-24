@@ -44,6 +44,10 @@ public class WidgetManager : IWidgetManager
             appSettingsProvider.Updated += (_, _) => WidgetEventHandler(widget, widgetSettingsProvider, OnAppSettingsChanged);
 
             widgets.Add(widget);
+        }
+
+        foreach (var widget in widgets)
+        {
             widget.Show();
         }
     }

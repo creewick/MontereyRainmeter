@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Runtime.InteropServices;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Interop;
 using Microsoft.Extensions.Localization;
 using Shared.Events;
 using Shared.Interfaces;
@@ -8,11 +12,10 @@ using Shared.Models;
 using Shared.Services;
 using Wpf.Ui.Appearance;
 using Wpf.Ui.Common;
-using Wpf.Ui.Extensions;
 
 namespace Shared.Templates;
 
-public partial class Widget : Window
+public partial class Widget
 {
     public event EventHandler<WidgetEventArgs>? WidgetOpened;
     public event EventHandler<WidgetEventArgs>? WidgetClosed;
@@ -27,6 +30,8 @@ public partial class Widget : Window
     {
         Id = widgetSettingsProvider.Get().Id;
         gridSizeConverter = new GridSizeConverter(appSettingsProvider);
+        ExtendsContentIntoTitleBar = true;
+        WindowBackdropType = BackgroundType.Acrylic;
         DataContext = new WidgetViewModel(appSettingsProvider, widgetSettingsProvider, locale, userControl)
         {
             ContextMenu = new()
@@ -37,30 +42,23 @@ public partial class Widget : Window
                 Large = new RelayCommand(() => Resize(4, 4)),
                 RemoveWidget = new RelayCommand(() => WidgetClosed?.Invoke(this, new WidgetEventArgs(this))),
                 EditWidgets = new RelayCommand(() => new AppSettingsWindow.AppSettingsWindow(appSettingsProvider).Show()),
-                DarkMode = new RelayCommand(() =>
-                {
-                    var settings = appSettingsProvider.Get();
-                    settings.Appearance.DarkTheme = true;
-                    appSettingsProvider.Update(settings);
-                }),
-                LightMode = new RelayCommand(() =>
-                {
-                    var settings = appSettingsProvider.Get();
-                    settings.Appearance.DarkTheme = false;
-                    appSettingsProvider.Update(settings);
-                })
+                ExitApp = new RelayCommand(() => Application.Current.Shutdown())
             }
         };
-        
-
-        appSettingsProvider.Updated += (_, appSettings) => ApplyTransparency(appSettings);
 
         InitializeComponent();
-
+        
         MouseLeftButtonDown += (_, _) => OnMouseLeftButtonDown();
-        MouseLeftButtonUp += (_, _) => OnMouseLeftButtonUp();
         SourceInitialized += (_, _) => OnSourceInitialized(appSettingsProvider.Get());
-        Closed += (_, _) => WidgetClosed?.Invoke(this, new WidgetEventArgs(this));
+        Theme.Changed += async (_, _) =>
+        {
+            if (!appSettingsProvider.Get().Appearance.Transparency) return;
+
+            await Task.Delay(500);
+            Activate();
+            Wpf.Ui.Appearance.Background.Apply(this, BackgroundType.None);
+            Wpf.Ui.Appearance.Background.Apply(this, BackgroundType.Acrylic);
+        };
     }
 
     private void Resize(int columns, int rows)
@@ -72,47 +70,16 @@ public partial class Widget : Window
 
     private void OnMouseLeftButtonDown()
     {
-        if (ResizeMode != ResizeMode.NoResize)
-        {
-            ResizeMode = ResizeMode.NoResize;
-        }
-        
         DragMove();
         
         WidgetMoved?.Invoke(this, new WidgetMovedEventArgs(this, Left, Top));
     }
     
-    private void OnMouseLeftButtonUp()
-    {
-        if (ResizeMode == ResizeMode.NoResize)
-        {
-            ResizeMode = ResizeMode.CanResizeWithGrip;
-        }
-    }
-
-
     private void OnSourceInitialized(AppSettings appSettings)
     {
         this.RemoveFromAltTab();
         this.ResizeEnd(() => WidgetResized?.Invoke(this, new WidgetResizedEventArgs(this, null)));
 
-        if (appSettings.Appearance.Transparency) ApplyTransparency(appSettings);
-
         WidgetOpened?.Invoke(this, new WidgetEventArgs(this));
-    }
-    
-
-    private void ApplyTransparency(AppSettings appSettings)
-    {
-        Activate();
-        Wpf.Ui.Appearance.Background.Remove(this);
-        Wpf.Ui.Appearance.Background.Apply(this, BackgroundType.Acrylic, true);
-        
-        this.ApplyCorners(appSettings.Appearance.WidgetRadius switch
-        {
-            0 => WindowCornerPreference.DoNotRound,
-            < 8 => WindowCornerPreference.RoundSmall,
-            _ => WindowCornerPreference.Round
-        });
     }
 }
