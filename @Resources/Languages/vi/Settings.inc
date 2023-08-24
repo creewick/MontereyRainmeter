@@ -1,6 +1,6 @@
 [Variables]
 tWidgets=Tiện ích
-tExtras=Thêm thiết đặt
+tExtras=Thêm
 tAppearence=Ngoại hình
 tLanguage=Ngôn ngữ
 tBattery=Chế độ pin
