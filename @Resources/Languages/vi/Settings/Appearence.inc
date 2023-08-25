@@ -12,9 +12,9 @@ tForegroundColor=Màu xung quanh
 tFrom=Từ
 tTo=tới
 
-tWidgetSize=Kích cỡ tiện ích
-tWidgetPadding=Widget padding
-tWidgetRadius=Widget radius
-tFontFace=Font face
+tWidgetSize=Kích cỡ
+tWidgetPadding=Tỉ lệ
+tWidgetRadius=Độ nghiêng
+tFontFace=Phông chữ
 
-tColorThemeHelp=%0 is wallpaper's darkest color[\13][\10]%1 is wallpaper's lightest color
+tColorThemeHelp=%0 là màu nền tối nhất[\13][\10]%1 là màu nền sáng nhất
