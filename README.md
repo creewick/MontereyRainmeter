@@ -2,7 +2,7 @@
 
 <div align="center">
   A MacOS style widget pack for Windows
-  
+
   Inspired by [Big Sur for Rainmeter](https://www.deviantart.com/fediafedia/art/Big-Sur-RC1-for-Rainmeter-846882462)
 </div>
 
@@ -17,7 +17,7 @@
 ### [User guide](https://github.com/creewick/MontereyRainmeter/wiki/User-guide)
 ### [Performance Index](https://github.com/creewick/MontereyRainmeter/wiki/Performance-Index)
 ### [Documentation](https://github.com/creewick/MontereyRainmeter/wiki/Documentation)
-  
+
 
 ## What will you get
 
@@ -38,7 +38,7 @@ We have 9 widgets available
 |<img src="@Resources/Images/Icons/Notes.png" />|**Notes**|Gives you a quick access to your most important text information|
 |<img src="@Resources/Images/Icons/Reminders.png" />|**Reminders**|A basic to-do list with counter|
 |<img src="@Resources/Images/Icons/Timer.png" />|**Timer**|A basic countdown with an alarm sound|
-  
+
 <img src="@Resources/Images/Banners/sizes.png" width="500px" align="right" />
 
 ### Sizes
@@ -63,7 +63,7 @@ Widgets appears in one of 5 predefined themes
 _* Currently works well only on Windows 11_
 ### Languages
 
-So far we support 4 languages
+So far we support 5 languages
 
 | |Language|
 |-|-|
@@ -71,6 +71,7 @@ So far we support 4 languages
 |<img src="https://github.com/yammadev/flag-icons/blob/master/png/UA@2x.png?raw=true" width="20px" />| Ukrainian |
 |<img src="https://github.com/yammadev/flag-icons/blob/master/png/US@2x.png?raw=true" width="20px" />| English |
 |<img src="https://github.com/yammadev/flag-icons/blob/master/png/DE@2x.png?raw=true" width="20px" />| German |
+|<img src="https://github.com/yammadev/flag-icons/blob/master/png/BR@2x.png?raw=true" width="20px" />| Brazilian portuguese |
 
 ## Special thanks
 
@@ -85,6 +86,7 @@ So far we support 4 languages
 | [ikarus1969](https://github.com/ikarus1969) | German translation |
 | [ActiveColor](https://deviantart.com/activecolors) | helped with persisting settings, code review |
 | [kalukal](https://www.deviantart.com/kalukal) | Unlock animation idea |
+| [EloisaSemH](https://github.com/EloisaSemH) | Brazilian portuguese translation |
 
 ## Works good with
 * [Centered taskbar icons - TaskbarX](https://chrisandriessen.nl/taskbarx)
