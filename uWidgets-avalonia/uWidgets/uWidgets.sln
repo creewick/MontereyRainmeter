@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "uWidgets", "uWidgets\uWidgets.csproj", "{DAD15939-698E-4D4A-9F2A-2FC916892B64}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{200E63D8-D6DF-4B0C-976A-6077B20ACE6A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clock", "Widgets\Clock\Clock.csproj", "{6D7B9B46-6D86-4151-9FF1-774550D7B7B5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Widgets", "Widgets", "{60489DDD-500D-44F2-BCB2-2919112A74A9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DAD15939-698E-4D4A-9F2A-2FC916892B64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAD15939-698E-4D4A-9F2A-2FC916892B64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAD15939-698E-4D4A-9F2A-2FC916892B64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAD15939-698E-4D4A-9F2A-2FC916892B64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{200E63D8-D6DF-4B0C-976A-6077B20ACE6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{200E63D8-D6DF-4B0C-976A-6077B20ACE6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{200E63D8-D6DF-4B0C-976A-6077B20ACE6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{200E63D8-D6DF-4B0C-976A-6077B20ACE6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D7B9B46-6D86-4151-9FF1-774550D7B7B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D7B9B46-6D86-4151-9FF1-774550D7B7B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D7B9B46-6D86-4151-9FF1-774550D7B7B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D7B9B46-6D86-4151-9FF1-774550D7B7B5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6D7B9B46-6D86-4151-9FF1-774550D7B7B5} = {60489DDD-500D-44F2-BCB2-2919112A74A9}
+	EndGlobalSection
+EndGlobal

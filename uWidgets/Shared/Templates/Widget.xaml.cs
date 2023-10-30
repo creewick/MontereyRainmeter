@@ -21,6 +21,7 @@ public partial class Widget
     public event EventHandler<WidgetEventArgs>? WidgetClosed;
     public event EventHandler<WidgetMovedEventArgs>? WidgetMoved;
     public event EventHandler<WidgetResizedEventArgs>? WidgetResized;
+    
     public Guid Id;
 
     private GridSizeConverter gridSizeConverter;
@@ -31,7 +32,8 @@ public partial class Widget
         Id = widgetSettingsProvider.Get().Id;
         gridSizeConverter = new GridSizeConverter(appSettingsProvider);
         ExtendsContentIntoTitleBar = true;
-        WindowBackdropType = BackgroundType.Acrylic;
+        WindowBackdropType = GetBackgroundType(appSettingsProvider);
+        WindowCornerPreference = GetWindowCornerPreference(appSettingsProvider);
         DataContext = new WidgetViewModel(appSettingsProvider, widgetSettingsProvider, locale, userControl)
         {
             ContextMenu = new()
@@ -47,11 +49,14 @@ public partial class Widget
         };
 
         InitializeComponent();
-        
+
         MouseLeftButtonDown += (_, _) => OnMouseLeftButtonDown();
         SourceInitialized += (_, _) => OnSourceInitialized(appSettingsProvider.Get());
-        Theme.Changed += async (_, _) =>
+        appSettingsProvider.Updated  += async (_, _) =>
         {
+            WindowBackdropType = GetBackgroundType(appSettingsProvider);
+            WindowCornerPreference = GetWindowCornerPreference(appSettingsProvider);
+            
             if (!appSettingsProvider.Get().Appearance.Transparency) return;
 
             await Task.Delay(500);
@@ -81,5 +86,24 @@ public partial class Widget
         this.ResizeEnd(() => WidgetResized?.Invoke(this, new WidgetResizedEventArgs(this, null)));
 
         WidgetOpened?.Invoke(this, new WidgetEventArgs(this));
+    }
+
+    private static BackgroundType GetBackgroundType(IAppSettingsProvider appSettingsProvider)
+    {
+        return appSettingsProvider.Get().Appearance.Transparency
+            ? BackgroundType.Acrylic
+            : BackgroundType.None;
+    }
+
+    private static WindowCornerPreference GetWindowCornerPreference(IAppSettingsProvider appSettingsProvider)
+    {
+        if (!appSettingsProvider.Get().Appearance.Transparency) return WindowCornerPreference.DoNotRound;
+
+        return appSettingsProvider.Get().WidgetRadius switch
+        {
+            0 => WindowCornerPreference.DoNotRound,
+            < 8 => WindowCornerPreference.RoundSmall,
+            _ => WindowCornerPreference.Round,
+        };
     }
 }

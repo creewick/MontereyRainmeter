@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AvaloniaProject">
+    <option name="projectPerEditor">
+      <map>
+        <entry key="Shared/Styles/WidgetStyles.axaml" value="uWidgets/uWidgets.csproj" />
+        <entry key="Shared/Templates/Widget.axaml" value="uWidgets/uWidgets.csproj" />
+        <entry key="Shared/Widget.axaml" value="uWidgets/uWidgets.csproj" />
+        <entry key="Widgets/Clock/Clock.axaml" value="uWidgets/uWidgets.csproj" />
+        <entry key="Widgets/Clock/Views/AnalogIClock.axaml" value="uWidgets/uWidgets.csproj" />
+        <entry key="uWidgets/App.axaml" value="uWidgets/uWidgets.csproj" />
+        <entry key="uWidgets/MainWindow.axaml" value="uWidgets/uWidgets.csproj" />
+      </map>
+    </option>
+  </component>
+</project>

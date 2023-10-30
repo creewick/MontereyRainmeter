@@ -1,0 +1,11 @@
+[
+  {
+    "Type": "Clock",
+    "Id": "64e1008b-a9d8-4204-bafe-251e83687e1d",
+    "X": 100,
+    "Y": 100,
+    "Columns": 2,
+    "Rows": 2,
+    "ShowSeconds": true
+  }
+]
