@@ -1,0 +1,4 @@
+[Variables]
+tEditWidgets=ウィジェットの編集
+tDisableSidebar=サイドバーモードをオフにする
+tQuitRainmeter=Rainmeterを終了する
